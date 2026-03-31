@@ -134,6 +134,7 @@
       <div class="tab" data-tab="april">April Schedule</div>
       <div class="tab" data-tab="matcher">Matcher</div>
       <div class="tab" data-tab="impact">Impact</div>
+      <div class="tab" data-tab="parameters">Parameters</div>
     </div>
 
     <div class="pane active" id="pane-network">
@@ -195,79 +196,53 @@
       </div>
     </div>
 
+
     <div class="pane" id="pane-matcher">
       <div class="card">
-        <div class="card-title">Backhaul Match Simulator</div>
+        <div class="card-title">Backhaul Finder</div>
+        <div class="small" style="margin-bottom:10px">Type a start and finish location, choose a date and weight, then the model returns the 3 best backhaul opportunities based on lane fit, timing, destination overlap, and return probability.</div>
         <div class="form-grid">
-          <div class="field"><label>Origin</label><select id="originInput" class="select"></select></div>
-          <div class="field"><label>Destination</label><select id="destInput" class="select"></select></div>
+          <div class="field"><label>Start</label><input id="searchStartInput" class="input" value="Dallas" placeholder="Dallas, Carrollton, Houston, Austin..."></div>
+          <div class="field"><label>Finish</label><input id="searchFinishInput" class="input" value="Austin" placeholder="Austin, Pflugerville, San Antonio..."></div>
         </div>
         <div class="form-grid3" style="margin-top:8px">
-          <div class="field"><label>Pickup Date</label><input id="pickupInput" type="date" class="input" value="2026-04-10"></div>
-          <div class="field"><label>Delivery Date</label><input id="deliveryInput" type="date" class="input" value="2026-04-11"></div>
-          <div class="field"><label>Move Size</label>
-            <select id="sizeInput" class="select">
+          <div class="field"><label>Pickup Date</label><input id="searchPickupInput" type="date" class="input" value="2026-04-10"></div>
+          <div class="field"><label>Weight</label>
+            <select id="searchWeightInput" class="select">
               <option value="4000">4,000 lbs</option>
               <option value="8000" selected>8,000 lbs</option>
               <option value="12000">12,000 lbs</option>
               <option value="16000">16,000 lbs</option>
             </select>
           </div>
+          <div class="field"><label>Return Window</label>
+            <select id="searchWindowInput" class="select">
+              <option value="1">Same / Next Day</option>
+              <option value="2" selected>Within 2 Days</option>
+              <option value="3">Within 3 Days</option>
+            </select>
+          </div>
         </div>
-        <div style="margin-top:10px"><button class="btn" id="runMatch">Find Return Match</button></div>
-      </div>
-      <div class="match-card" id="matchResult">
-        <div class="mini-title" style="color:var(--green)">Best Return Opportunity</div>
-        <div id="matchBody" class="small"></div>
-      </div>
-      <div class="card">
-        <div class="card-title">Chain Search</div>
-        <div class="small" style="margin-bottom:10px">Find two loads that line up, including repositioning between the first delivery market and the second pickup market. Example: Dallas → Austin, then San Antonio → Fort Worth.</div>
-        <div class="form-grid">
-          <div class="field"><label>Leg 1 Origin</label><select id="chainOriginInput" class="select"></select></div>
-          <div class="field"><label>Leg 1 Destination</label><select id="chainDestInput" class="select"></select></div>
-        </div>
-        <div class="form-grid" style="margin-top:8px">
-          <div class="field"><label>Leg 2 Pickup</label><select id="chainPickupInput" class="select"></select></div>
-          <div class="field"><label>Leg 2 Destination</label><select id="chainFinalInput" class="select"></select></div>
-        </div>
-        <div class="form-grid3" style="margin-top:8px">
-          <div class="field"><label>First Pickup Date</label><input id="chainStartDate" type="date" class="input" value="2026-04-10"></div>
-          <div class="field"><label>Max Reposition Miles</label><input id="chainMaxMiles" type="number" class="input" value="90" min="0" max="300"></div>
-          <div class="field"><label>Move Size</label><select id="chainSizeInput" class="select">
-            <option value="4000">4,000 lbs</option>
-            <option value="8000">8,000 lbs</option>
-            <option value="12000" selected>12,000 lbs</option>
-            <option value="16000">16,000 lbs</option>
-          </select></div>
-        </div>
-        <div style="margin-top:10px"><button class="btn" id="runChain">Find Lined-Up Loads</button></div>
-      </div>
-      <div class="result-box" id="chainResult">
-        <div class="mini-title" style="color:var(--blue)">Best Chain Found</div>
-        <div id="chainBody" class="small"></div>
+        <div style="margin-top:10px"><button class="btn" id="runSearchMatches">Find Top 3 Matches</button></div>
       </div>
       <div class="card">
-        <div class="card-title">Scoring Logic Used In Demo</div>
+        <div class="card-title">Resolved Lane</div>
+        <div id="searchResolved" class="small"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Top 3 Backhaul Matches</div>
+        <div id="topMatchCards"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">What The Match % Means</div>
         <div class="small">
-          1) truck must finish within the destination market<br>
-          2) return pickup must be same day or next day<br>
-          3) return load must fit weight class / truck requirement<br>
-          4) score boosts for high-deadhead lanes and high-dollar loads
+          Match % favors 1) best office/region fit to your typed start/finish, 2) return pickups that start in the delivery market, 3) dates that line up within the chosen return window, and 4) stronger demand / lower leak lanes.
         </div>
-      </div>
-      <div class="card">
-        <div class="card-title">Top Return Pairings In April</div>
-        <table>
-          <thead><tr><th>Outbound</th><th>Return</th><th class="right">Matches</th><th class="right">Lift</th></tr></thead>
-          <tbody id="pairingTable"></tbody>
-        </table>
       </div>
     </div>
-
     <div class="pane" id="pane-impact">
       <div class="card">
-        <div class="card-title">Texas April Business Case – Long Haul Only (Rebalanced to $12M Monthly Revenue)</div>
+        <div class="card-title">Texas April Business Case – Long Haul Only (Rebalanced to $6M Monthly Revenue, 70% Local Baseline) (Rebalanced to $12M Monthly Revenue)</div>
         <div class="grid2">
           <div class="impact-card">
             <div class="mini-title" style="color:var(--amber)">Before</div>
@@ -313,6 +288,90 @@
         </div>
       </div>
     </div>
+
+    <div class="pane" id="pane-parameters">
+      <div class="card">
+        <div class="card-title">Model Parameters</div>
+        <div class="small">This page lists the assumptions used in the April Texas backhaul demo so management can review exactly what drives the results.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Fleet & Capacity</div>
+        <table>
+          <tbody>
+            <tr><td>Total offices</td><td class="right">14</td></tr>
+            <tr><td>Total trucks</td><td class="right">178</td></tr>
+            <tr><td>Weekday utilization (Sun–Thurs)</td><td class="right">75%</td></tr>
+            <tr><td>Baseline local mix target</td><td class="right">70%</td></tr>
+            <tr><td>Weekend utilization (Fri–Sat)</td><td class="right">100%</td></tr>
+            <tr><td>April planning horizon</td><td class="right">30 days</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Move Mix, Pricing & Duration</div>
+        <table>
+          <thead><tr><th>Move Size</th><th class="right">% of Moves</th><th class="right">Price</th><th class="right">Days</th><th class="right">Truck Need</th></tr></thead>
+          <tbody>
+            <tr><td>4,000 lbs</td><td class="right">15%</td><td class="right">$2,000</td><td class="right">1</td><td class="right">0.5 truck</td></tr>
+            <tr><td>8,000 lbs</td><td class="right">35%</td><td class="right">$3,500</td><td class="right">2</td><td class="right">1 truck</td></tr>
+            <tr><td>12,000 lbs</td><td class="right">35%</td><td class="right">$5,000</td><td class="right">2</td><td class="right">1.5 trucks</td></tr>
+            <tr><td>16,000 lbs</td><td class="right">15%</td><td class="right">$6,500</td><td class="right">2</td><td class="right">2 trucks</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Lane Scope</div>
+        <table>
+          <tbody>
+            <tr><td>Long-haul included</td><td class="right">Yes</td></tr>
+            <tr><td>Short-haul included in impact math</td><td class="right">No (local-first model)</td></tr>
+            <tr><td>DFW ⇄ Hill Country</td><td class="right">Included</td></tr>
+            <tr><td>DFW ⇄ Houston Metro</td><td class="right">Included</td></tr>
+            <tr><td>Hill Country ⇄ Houston Metro</td><td class="right">Included</td></tr>
+            <tr><td>Intra-region moves</td><td class="right">Excluded from impact</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Revenue & Margin Assumptions</div>
+        <table>
+          <tbody>
+            <tr><td>Texas monthly baseline revenue</td><td class="right">$6,000,000</td></tr>
+            <tr><td>Average truck-day revenue</td><td class="right">$1,400</td></tr>
+            <tr><td>Base operating margin</td><td class="right">15%</td></tr>
+            <tr><td>Recovered truck-day margin</td><td class="right">25%</td></tr>
+            <tr><td>Booking office share</td><td class="right">20%</td></tr>
+            <tr><td>Hauling office share</td><td class="right">80%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Backhaul / Matching Assumptions</div>
+        <table>
+          <tbody>
+            <tr><td>Average deadhead waste modeled</td><td class="right">~15%</td></tr>
+            <tr><td>Recovered truck-days monetized at</td><td class="right">$1,400/day</td></tr>
+            <tr><td>Return timing target</td><td class="right">Same day / next day</td></tr>
+            <tr><td>Matcher uses route, date, size, and reposition</td><td class="right">Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">How Impact Is Calculated</div>
+        <div class="small">
+          <strong style="color:var(--amber)">Before:</strong> office and company revenue are scaled to a $6M monthly Texas baseline, then profit is calculated at a 15% margin.<br><br>
+          <strong style="color:var(--green)">After:</strong> baseline revenue stays in place and recovered truck-days are added at $1,400 per day. Profit on those recovered truck-days is modeled at a 25% margin.<br><br>
+          <strong style="color:var(--text)">Important:</strong> this model is intended to show operational efficiency from reducing deadhead and improving backhaul matching. A 70% local baseline is reserved first at each office, and long-haul activity is constrained to the remaining capacity. It is not assuming brand-new statewide demand is created.
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -352,6 +411,7 @@ const BASE_MARGIN = 0.15;
 const GAINED_TRUCK_DAY_MARGIN = 0.25;
 const LONG_HAUL_NET_PER_LOAD = 1400;
 const TARGET_MONTHLY_REVENUE = 6000000;
+const LOCAL_BASELINE_SHARE = 0.70;
 
 const SHORT_ROUTES = [
   {from:'austin', to:'pflugerville', dist:16, demand:1.0},
@@ -535,7 +595,8 @@ function buildAprilModel(){
 
     LONG_ROUTES.forEach((r, rIdx)=>{
       const fromCap = capByOffice[r.from];
-      const base = fromCap * 0.17 * r.demand * dayFactor;
+      const longHaulCap = Math.max(0, fromCap * (1 - LOCAL_BASELINE_SHARE));
+      const base = longHaulCap * 0.52 * r.demand * dayFactor;
       const wave = 1 + 0.10*Math.sin((idx+rIdx)/3.4) + 0.04*Math.cos((idx+rIdx)/2.1);
       const loads = Math.max(0, Math.round(base * wave));
       const matched = Math.round(loads * Math.min(0.7, 0.28 + (1-r.leak)*0.45));
@@ -582,13 +643,17 @@ function buildAprilModel(){
       const currentIn = officeTotals[o.id].inbound;
       const shortOutToday = currentOut - officeDaily[o.id].reduce((s,x)=>s+x.outbound,0);
       const shortInToday = currentIn - officeDaily[o.id].reduce((s,x)=>s+x.inbound,0);
-      const outboundToday = longOut + shortOutToday;
-      const inboundToday = longIn + shortInToday;
-      const local = Math.max(0, Math.round(cap*0.56 - outboundToday*0.18 + (isWeekend(d)?1:0)));
+
+      const local = Math.max(0, Math.min(cap, Math.round(cap * LOCAL_BASELINE_SHARE)));
+      const longCapacity = Math.max(0, cap - local);
+
+      const outboundToday = Math.min(longOut + shortOutToday, longCapacity);
+      const inboundToday = Math.min(longIn + shortInToday, longCapacity);
       const empty = Math.max(0, cap - local - outboundToday);
+
       officeTotals[o.id].local += local;
-      officeTotals[o.id].outbound += longOut;
-      officeTotals[o.id].inbound += longIn;
+      officeTotals[o.id].outbound += outboundToday;
+      officeTotals[o.id].inbound += inboundToday;
       officeTotals[o.id].empty += empty;
       officeDaily[o.id].push({
         date:dateStr(d), office:o.id, capacity:cap, local, outbound:outboundToday, inbound:inboundToday, empty
@@ -844,125 +909,151 @@ renderDay(daySelect.value); daySelect.addEventListener('change',e=>renderDay(e.t
 })();
 
 // Matcher
-function populateSelects(){
-  const baseSelectIds=['originInput','destInput','chainOriginInput','chainDestInput','chainPickupInput','chainFinalInput'];
-  baseSelectIds.forEach(id=>{
-    const sel=document.getElementById(id);
-    OFFICES.forEach(o=>{ const opt=document.createElement('option'); opt.value=o.id; opt.textContent=o.name; sel.appendChild(opt); });
-  });
-  document.getElementById('originInput').value='carrollton';
-  document.getElementById('destInput').value='houston';
-  document.getElementById('chainOriginInput').value='dallas';
-  document.getElementById('chainDestInput').value='austin';
-  document.getElementById('chainPickupInput').value='sanantonio';
-  document.getElementById('chainFinalInput').value='fortworth';
-}
-populateSelects();
+
 function moveSpec(weight){ return MOVE_SPECS[weight]; }
-function scoreReturn(outbound, candidate, weight){
-  const spec=moveSpec(weight);
-  const sameMarketBoost = officeOrAreaMatch(candidate.from, outbound.to) ? 25 : 0;
-  const leakBoost = candidate.leak ? candidate.leak*100 : 8;
-  const sizePenalty = spec.trucks>1.5 && candidate.loads<2 ? 10 : 0;
-  const dayGap = (new Date(candidate.date+'T12:00:00') - new Date(outbound.delivery+'T12:00:00'))/86400000;
-  return Math.round(45 + sameMarketBoost + leakBoost - sizePenalty - Math.max(0,dayGap)*10);
+
+function normalizeName(s){
+  return (s || '').toLowerCase().replace(/[^a-z0-9]/g,'');
 }
-function runMatch(){
-  const origin=document.getElementById('originInput').value;
-  const dest=document.getElementById('destInput').value;
-  const pickup=document.getElementById('pickupInput').value;
-  const delivery=document.getElementById('deliveryInput').value;
-  const weight=+document.getElementById('sizeInput').value;
-  const spec=moveSpec(weight);
-  const deliveryDate=new Date(delivery+'T12:00:00');
-  const candidates=MODEL.laneDaily
-    .filter(x=>x.type==='long' && officeOrAreaMatch(x.from,dest) && !officeOrAreaMatch(x.to,origin))
-    .filter(x=>{
-      const d=new Date(x.date+'T12:00:00');
-      const diff=(d-deliveryDate)/86400000;
-      return diff>=0 && diff<=1;
-    })
-    .map(x=>({...x, score:scoreReturn({to:dest,delivery},x,weight)}))
-    .sort((a,b)=>b.score-a.score || b.incrementalProfit-a.incrementalProfit);
-  const fallback=MODEL.laneDaily.filter(x=>x.type==='long' && officeOrAreaMatch(x.from,dest)).sort((a,b)=>b.loads-a.loads)[0];
-  const best = candidates[0] || fallback;
-  const avoidedDeadheadCost = spec.trucks * DAILY_TRUCK_COST * 0.15 * spec.days + (best ? best.recovered*400 : 0);
-  const netProfit = spec.revenue*(1-OFFICE_SHARE) + (spec.trucks * LOCAL_TRUCK_DAY_REVENUE * GAINED_TRUCK_DAY_MARGIN) + avoidedDeadheadCost;
-  const confidence = Math.max(56, Math.min(96, best && best.score ? best.score : 62));
-  document.getElementById('matchBody').innerHTML = `
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--green);margin-bottom:8px">${OFFICE[origin].name} → ${OFFICE[dest].name}</div>
-    <div style="margin-bottom:8px">Best return is <strong>${OFFICE[best.from].name} → ${OFFICE[best.to].name}</strong> on <strong>${niceDate(new Date(best.date+'T12:00:00'))}</strong>.</div>
-    <table>
-      <tr><td style="color:#4e6a84">Match confidence</td><td class="right" style="color:#2dd55b">${confidence}%</td></tr>
-      <tr><td style="color:#4e6a84">Return loads on lane</td><td class="right">${best.loads}</td></tr>
-      <tr><td style="color:#4e6a84">Truck requirement</td><td class="right">${spec.trucks} trucks / ${spec.days} day(s)</td></tr>
-      <tr><td style="color:#4e6a84">Origin office share</td><td class="right">${fmtMoney(spec.revenue*OFFICE_SHARE)}</td></tr>
-      <tr><td style="color:#4e6a84">Estimated net lift</td><td class="right" style="color:#2dd55b">${fmtMoney(netProfit)}</td></tr>
-      <tr><td style="color:#4e6a84">Truck-days freed at destination</td><td class="right" style="color:#2dd55b">${round(spec.trucks*spec.days*0.15 + 0.6,1)}</td></tr>
-    </table>`;
-  if(best){ map.flyTo([(OFFICE[best.from].lat+OFFICE[best.to].lat)/2,(OFFICE[best.from].lng+OFFICE[best.to].lng)/2],7,{duration:1.1}); }
+
+function findOfficeMatches(query){
+  const q = normalizeName(query);
+  if(!q) return [];
+  return OFFICES.map(o => {
+    const name = normalizeName(o.name);
+    const area = normalizeName(o.area);
+    let score = 0;
+    if(name === q) score += 100;
+    if(name.startsWith(q)) score += 75;
+    if(name.includes(q)) score += 55;
+    if(area === q) score += 40;
+    if(area.includes(q)) score += 20;
+    return { office:o, score };
+  }).filter(x => x.score > 0).sort((a,b)=>b.score-a.score);
 }
-function runChain(){
-  const leg1From=document.getElementById('chainOriginInput').value;
-  const leg1To=document.getElementById('chainDestInput').value;
-  const leg2From=document.getElementById('chainPickupInput').value;
-  const leg2To=document.getElementById('chainFinalInput').value;
-  const startDate=document.getElementById('chainStartDate').value;
-  const maxMiles=+document.getElementById('chainMaxMiles').value || 0;
-  const weight=+document.getElementById('chainSizeInput').value;
-  const spec=moveSpec(weight);
-  const start=new Date(startDate+'T12:00:00');
-  const leg1Candidates=MODEL.laneDaily.filter(x=>x.type==='long' && officeOrAreaMatch(x.from,leg1From) && officeOrAreaMatch(x.to,leg1To) && x.date===startDate);
-  const leg1 = leg1Candidates.sort((a,b)=>b.loads-a.loads)[0] || {from:leg1From,to:leg1To,date:startDate,loads:1,deadheadTruckDays:spec.trucks*spec.days*0.15,incrementalProfit:0};
-  const leg1Arrival=new Date(start); leg1Arrival.setDate(leg1Arrival.getDate() + Math.max(1,spec.days-1));
-  const leg2Candidates=MODEL.laneDaily.filter(x=>x.type==='long' && officeOrAreaMatch(x.from,leg2From) && officeOrAreaMatch(x.to,leg2To)).map(x=>{
-    const d=new Date(x.date+'T12:00:00');
-    const dayGap=(d-leg1Arrival)/86400000;
-    const repositionMiles=haversineMiles(OFFICE[leg1To].lat,OFFICE[leg1To].lng,OFFICE[leg2From].lat,OFFICE[leg2From].lng);
-    const repositionDays=repositionMiles/350;
-    const score=100 - Math.abs(dayGap-1)*18 - repositionMiles*0.22 + x.loads*6 + (x.leak?x.leak*45:0);
-    return {...x, dayGap, repositionMiles, repositionDays, score};
-  }).filter(x=>x.dayGap>=0 && x.dayGap<=2 && x.repositionMiles<=maxMiles).sort((a,b)=>b.score-a.score);
-  const best=leg2Candidates[0];
-  const baselineDeadhead = spec.trucks * spec.days * DAILY_TRUCK_COST * 0.15 + (best ? best.repositionMiles*2.25 : maxMiles*2);
-  const localFallback = spec.trucks * LOCAL_TRUCK_DAY_REVENUE * Math.max(0, Math.round(best ? best.dayGap : 1));
-  const chainRevenue = spec.revenue*(1-OFFICE_SHARE) + (best ? Math.max(2800, best.loads*LONG_HAUL_NET_PER_LOAD*0.6) : 0);
-  const optimized = chainRevenue + localFallback;
-  const lift = optimized - baselineDeadhead;
-  const conf = best ? Math.max(52, Math.min(97, Math.round(best.score))) : 40;
-  const body=document.getElementById('chainBody');
-  if(!best){
-    body.innerHTML=`<div style="color:var(--red);font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;margin-bottom:8px">No tight chain found</div>Try widening reposition miles or changing the first date. The best nearby option would be to hold the truck in <strong>${OFFICE[leg1To].name}</strong> and let it earn local revenue at <strong>$2,000/day</strong> until a return opens.`;
+
+function bestOfficeMatch(query, fallbackId){
+  const matches = findOfficeMatches(query);
+  if(matches.length) return matches[0].office;
+  return OFFICE[fallbackId];
+}
+
+function officeDisplay(o){
+  return `${o.name} (${o.area})`;
+}
+
+function scoreBackhaulCandidate(originOffice, destOffice, outbound, candidate, weight, pickupDate, returnWindow){
+  const spec = moveSpec(weight);
+  const pickup = new Date(pickupDate + 'T12:00:00');
+  const outDate = new Date(outbound.date + 'T12:00:00');
+  const returnDate = new Date(candidate.date + 'T12:00:00');
+  const gap = (returnDate - outDate) / 86400000;
+  const sameDestOffice = candidate.from === destOffice.id ? 24 : 0;
+  const sameDestRegion = OFFICE[candidate.from].area === destOffice.area ? 16 : 0;
+  const backTowardOriginOffice = candidate.to === originOffice.id ? 20 : 0;
+  const backTowardOriginRegion = OFFICE[candidate.to].area === originOffice.area ? 14 : 0;
+  const timingScore = Math.max(0, 22 - (Math.abs(gap - 1) * 8));
+  const demandScore = Math.min(18, candidate.loads * 1.6);
+  const leakScore = Math.max(0, 14 - (candidate.leak * 40));
+  const truckFitPenalty = spec.trucks > 1.5 && candidate.loads < 2 ? 10 : 0;
+  const raw = sameDestOffice + sameDestRegion + backTowardOriginOffice + backTowardOriginRegion + timingScore + demandScore + leakScore - truckFitPenalty;
+  return Math.max(35, Math.min(98, Math.round(raw)));
+}
+
+function buildMatchCard(originOffice, destOffice, outbound, candidate, weight){
+  const spec = moveSpec(weight);
+  const score = scoreBackhaulCandidate(originOffice, destOffice, outbound, candidate, weight, outbound.date, 2);
+  const haulingRevenue = spec.revenue * (1 - OFFICE_SHARE);
+  const bookingRevenue = spec.revenue * OFFICE_SHARE;
+  const addedTruckRevenue = spec.trucks * LOCAL_TRUCK_DAY_REVENUE;
+  const addedProfit = addedTruckRevenue * GAINED_TRUCK_DAY_MARGIN;
+  const returnLabel = `${OFFICE[candidate.from].name} → ${OFFICE[candidate.to].name}`;
+  return {
+    score,
+    html: `
+      <div class="match-card" style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--green)">${score}% match</div>
+            <div class="small" style="color:var(--text)"><strong>${officeDisplay(originOffice)}</strong> → <strong>${officeDisplay(destOffice)}</strong></div>
+          </div>
+          <div class="pill green">${spec.days} day / ${spec.trucks} truck${spec.trucks>1?'s':''}</div>
+        </div>
+        <table style="margin-top:8px">
+          <tr><td style="color:#4e6a84">Outbound lane</td><td class="right">${OFFICE[outbound.from].name} → ${OFFICE[outbound.to].name}</td></tr>
+          <tr><td style="color:#4e6a84">Return lane</td><td class="right">${returnLabel}</td></tr>
+          <tr><td style="color:#4e6a84">Return date</td><td class="right">${niceDate(new Date(candidate.date+'T12:00:00'))}</td></tr>
+          <tr><td style="color:#4e6a84">Weight</td><td class="right">${Number(weight).toLocaleString()} lbs</td></tr>
+          <tr><td style="color:#4e6a84">Move price</td><td class="right">${fmtMoney(spec.revenue)}</td></tr>
+          <tr><td style="color:#4e6a84">Booking office 20%</td><td class="right">${fmtMoney(bookingRevenue)}</td></tr>
+          <tr><td style="color:#4e6a84">Hauling office 80%</td><td class="right">${fmtMoney(haulingRevenue)}</td></tr>
+          <tr><td style="color:#4e6a84">Added truck-day revenue</td><td class="right">${fmtMoney(addedTruckRevenue)}</td></tr>
+          <tr><td style="color:#4e6a84">Added profit @ 25%</td><td class="right" style="color:#2dd55b">${fmtMoney(addedProfit)}</td></tr>
+        </table>
+      </div>`
+  };
+}
+
+function runSearchMatches(){
+  const startQuery = document.getElementById('searchStartInput').value;
+  const finishQuery = document.getElementById('searchFinishInput').value;
+  const pickupDate = document.getElementById('searchPickupInput').value;
+  const weight = +document.getElementById('searchWeightInput').value;
+  const returnWindow = +document.getElementById('searchWindowInput').value;
+
+  const originOffice = bestOfficeMatch(startQuery, 'dallas');
+  const destOffice = bestOfficeMatch(finishQuery, 'austin');
+
+  const outboundCandidates = MODEL.laneDaily
+    .filter(x => x.type === 'long')
+    .filter(x => (x.from === originOffice.id || OFFICE[x.from].area === originOffice.area))
+    .filter(x => (x.to === destOffice.id || OFFICE[x.to].area === destOffice.area))
+    .filter(x => x.date >= pickupDate)
+    .sort((a,b) => {
+      const aOffice = (a.from === originOffice.id ? 10 : 0) + (a.to === destOffice.id ? 10 : 0);
+      const bOffice = (b.from === originOffice.id ? 10 : 0) + (b.to === destOffice.id ? 10 : 0);
+      if (bOffice !== aOffice) return bOffice - aOffice;
+      if (b.loads !== a.loads) return b.loads - a.loads;
+      return a.date.localeCompare(b.date);
+    });
+
+  const outbound = outboundCandidates[0];
+  const resolvedEl = document.getElementById('searchResolved');
+  const cardsEl = document.getElementById('topMatchCards');
+
+  if(!outbound){
+    resolvedEl.innerHTML = `No outbound lane found for <strong>${startQuery}</strong> → <strong>${finishQuery}</strong>. Try a nearby office or a bigger market name like DFW, Houston, Austin, or San Antonio.`;
+    cardsEl.innerHTML = '';
     return;
   }
-  body.innerHTML=`
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--blue);margin-bottom:8px">${OFFICE[leg1From].name} → ${OFFICE[leg1To].name} then ${OFFICE[best.from].name} → ${OFFICE[best.to].name}</div>
-    <table>
-      <tr><td style="color:#4e6a84">Leg 1 date</td><td class="right">${niceDate(new Date(startDate+'T12:00:00'))}</td></tr>
-      <tr><td style="color:#4e6a84">Leg 2 date</td><td class="right">${niceDate(new Date(best.date+'T12:00:00'))}</td></tr>
-      <tr><td style="color:#4e6a84">Reposition</td><td class="right">${round(best.repositionMiles,1)} miles</td></tr>
-      <tr><td style="color:#4e6a84">Idle gap</td><td class="right">${round(best.dayGap,1)} day(s)</td></tr>
-      <tr><td style="color:#4e6a84">Match confidence</td><td class="right" style="color:#2dd55b">${conf}%</td></tr>
-      <tr><td style="color:#4e6a84">Baseline deadhead / waiting cost</td><td class="right" style="color:#f44061">${fmtMoney(baselineDeadhead)}</td></tr>
-      <tr><td style="color:#4e6a84">Profit after lining up both loads</td><td class="right" style="color:#2dd55b">${fmtMoney(optimized)}</td></tr>
-      <tr><td style="color:#4e6a84">Net lift from chain</td><td class="right" style="color:#2dd55b">${fmtMoney(lift)}</td></tr>
-    </table>`;
-  map.flyToBounds([[OFFICE[leg1From].lat,OFFICE[leg1From].lng],[OFFICE[leg1To].lat,OFFICE[leg1To].lng],[OFFICE[best.from].lat,OFFICE[best.from].lng],[OFFICE[best.to].lat,OFFICE[best.to].lng]],{padding:[40,40]});
-}
-document.getElementById('runMatch').addEventListener('click', runMatch);
-document.getElementById('runChain').addEventListener('click', runChain);
-runMatch();
-runChain();
-(function renderPairings(){
-  const tbody=document.getElementById('pairingTable');
-  MODEL.pairings.forEach(p=>{
-    const reverse = MODEL.pairings.find(x=>officeOrAreaMatch(x.outbound.from,p.outbound.to) && officeOrAreaMatch(x.outbound.to,p.outbound.from));
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${OFFICE[p.outbound.from].name} → ${OFFICE[p.outbound.to].name}</td><td>${reverse ? `${OFFICE[reverse.outbound.from].name} → ${OFFICE[reverse.outbound.to].name}` : 'Nearest market return'}</td><td class="right">${Math.round(p.matches)}</td><td class="right" style="color:#2dd55b">${fmtMoney(p.lift)}</td>`;
-    tbody.appendChild(tr);
-  });
-})();
 
+  const returnCandidates = MODEL.laneDaily
+    .filter(x => x.type === 'long')
+    .filter(x => {
+      const gap = (new Date(x.date+'T12:00:00') - new Date(outbound.date+'T12:00:00')) / 86400000;
+      return gap >= 0 && gap <= returnWindow;
+    })
+    .filter(x => x.from === destOffice.id || OFFICE[x.from].area === destOffice.area)
+    .map(x => buildMatchCard(originOffice, destOffice, outbound, x, weight))
+    .sort((a,b) => b.score - a.score)
+    .slice(0,3);
+
+  resolvedEl.innerHTML = `
+    <strong>Resolved start:</strong> ${officeDisplay(originOffice)}<br>
+    <strong>Resolved finish:</strong> ${officeDisplay(destOffice)}<br>
+    <strong>Primary outbound used:</strong> ${OFFICE[outbound.from].name} → ${OFFICE[outbound.to].name} on ${niceDate(new Date(outbound.date+'T12:00:00'))}
+  `;
+
+  cardsEl.innerHTML = returnCandidates.length
+    ? returnCandidates.map(x => x.html).join('')
+    : '<div class="small">No return opportunities found inside the selected window.</div>';
+
+  const points = [[OFFICE[outbound.from].lat, OFFICE[outbound.from].lng], [OFFICE[outbound.to].lat, OFFICE[outbound.to].lng]];
+  map.flyToBounds(points, {padding:[40,40]});
+}
+
+document.getElementById('runSearchMatches').addEventListener('click', runSearchMatches);
+runSearchMatches();
 // Impact
 (function renderImpactTable(){
   const tbody=document.getElementById('impactTable');
