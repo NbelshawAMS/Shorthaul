@@ -120,8 +120,8 @@
     <div class="panel-float" id="legend">
       <div class="mini-title">Market Legend</div>
       <div class="leg-row"><div class="swatch" style="background:#3b8bf5"></div>DFW – 72 trucks</div>
-      <div class="leg-row"><div class="swatch" style="background:#9b72f4"></div>Austin Region – 34 trucks</div>
-      <div class="leg-row"><div class="swatch" style="background:#f44061"></div>San Antonio – 32 trucks</div>
+      <div class="leg-row"><div class="swatch" style="background:#9b72f4"></div>Hill Country – 66 trucks</div>
+      <div class="leg-row"><div class="swatch" style="background:#f44061"></div>San Antonio Core – 32 trucks</div>
       <div class="leg-row"><div class="swatch" style="background:#2dd55b"></div>Houston – 36 trucks</div>
       <div class="leg-row"><div class="swatch" style="background:#fb923c"></div>Central – 4 trucks</div>
       <div class="leg-row" style="margin-top:7px"><div class="line-swatch" style="background:var(--green)"></div>Short-haul pairable lanes</div>
@@ -267,7 +267,7 @@
 
     <div class="pane" id="pane-impact">
       <div class="card">
-        <div class="card-title">Texas April Business Case – Long Haul Only</div>
+        <div class="card-title">Texas April Business Case – Long Haul Only (Rebalanced to $12M Monthly Revenue)</div>
         <div class="grid2">
           <div class="impact-card">
             <div class="mini-title" style="color:var(--amber)">Before</div>
@@ -291,7 +291,7 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-title">Revenue / Profit By Office</div>
+        <div class="card-title">Revenue / Profit By Office (All Cross-Region To/From Lanes)</div>
         <table>
           <thead><tr><th>Office</th><th class="right">Truck-Days Gained</th><th class="right">Before Revenue</th><th class="right">After Revenue</th><th class="right">Before Profit</th><th class="right">After Profit</th></tr></thead>
           <tbody id="impactTable"></tbody>
@@ -351,6 +351,7 @@ const LOCAL_TRUCK_DAY_REVENUE = 2000;
 const BASE_MARGIN = 0.15;
 const GAINED_TRUCK_DAY_MARGIN = 0.25;
 const LONG_HAUL_NET_PER_LOAD = 1400;
+const TARGET_MONTHLY_REVENUE = 6000000;
 
 const SHORT_ROUTES = [
   {from:'austin', to:'pflugerville', dist:16, demand:1.0},
@@ -364,22 +365,119 @@ const SHORT_ROUTES = [
   {from:'houston', to:'katy', dist:31, demand:0.7},
   {from:'spring', to:'katy', dist:47, demand:0.4}
 ];
-const LONG_ROUTES = [
-  {from:'carrollton', to:'houston', dist:243, demand:1.55, leak:.22},
-  {from:'carrollton', to:'austin', dist:195, demand:1.35, leak:.18},
-  {from:'carrollton', to:'sanantonio', dist:276, demand:1.22, leak:.17},
-  {from:'fortworth', to:'houston', dist:267, demand:0.95, leak:.16},
-  {from:'mckinney', to:'austin', dist:215, demand:0.72, leak:.14},
-  {from:'waco', to:'austin', dist:101, demand:0.55, leak:.11},
-  {from:'austin', to:'houston', dist:165, demand:1.05, leak:.14},
-  {from:'houston', to:'austin', dist:165, demand:0.78, leak:.08},
-  {from:'houston', to:'carrollton', dist:243, demand:1.12, leak:.09},
-  {from:'houston', to:'sanantonio', dist:199, demand:0.75, leak:.10},
-  {from:'sanantonio', to:'carrollton', dist:276, demand:0.83, leak:.16},
-  {from:'sanantonio', to:'houston', dist:199, demand:0.58, leak:.07},
-  {from:'spring', to:'carrollton', dist:238, demand:0.48, leak:.08},
-  {from:'dallas', to:'houston', dist:239, demand:0.52, leak:.15}
-];
+
+const REGION_GROUP = {
+  dallas:'DFW',
+  carrollton:'DFW',
+  denton:'DFW',
+  mckinney:'DFW',
+  fortworth:'DFW',
+  waco:'Central',
+  pflugerville:'Hill',
+  austin:'Hill',
+  sanantonio:'Hill',
+  southsa:'Hill',
+  sanmarcos:'Hill',
+  spring:'Houston',
+  houston:'Houston',
+  katy:'Houston'
+};
+
+const REGION_OFFICES = {
+  DFW: ['dallas','carrollton','denton','mckinney','fortworth'],
+  Hill: ['pflugerville','austin','sanmarcos','sanantonio','southsa'],
+  Houston: ['houston','spring','katy'],
+  Central: ['waco']
+};
+
+const REGION_PAIR_BASE = {
+  'DFW|Hill':    { demand:1.28, leak:.18 },
+  'Hill|DFW':    { demand:0.98, leak:.15 },
+  'DFW|Houston': { demand:1.34, leak:.20 },
+  'Houston|DFW': { demand:1.02, leak:.12 },
+  'Hill|Houston':{ demand:0.96, leak:.13 },
+  'Houston|Hill':{ demand:0.82, leak:.10 },
+  'Central|Hill':{ demand:0.48, leak:.11 },
+  'Hill|Central':{ demand:0.38, leak:.09 },
+  'Central|DFW': { demand:0.42, leak:.10 },
+  'DFW|Central': { demand:0.52, leak:.11 },
+  'Central|Houston': { demand:0.28, leak:.09 },
+  'Houston|Central': { demand:0.24, leak:.08 }
+};
+
+function officeCoverageBoost(id){
+  if(id === 'pflugerville') return 1.55;
+  if(id === 'austin') return 1.18;
+  if(id === 'sanantonio') return 1.18;
+  if(id === 'southsa') return 1.05;
+  if(id === 'sanmarcos') return 0.92;
+  if(id === 'carrollton') return 1.20;
+  if(id === 'fortworth') return 1.10;
+  if(id === 'houston') return 1.18;
+  if(id === 'spring') return 1.02;
+  if(id === 'katy') return 0.90;
+  return 1.0;
+}
+
+function routeLabel(a,b){
+  return `${OFFICE[a].name} → ${OFFICE[b].name}`;
+}
+
+function buildLongRoutes(){
+  const routes = [];
+  const ids = OFFICES.map(o => o.id);
+
+  ids.forEach(from => {
+    ids.forEach(to => {
+      if(from === to) return;
+
+      const fromRegion = REGION_GROUP[from];
+      const toRegion = REGION_GROUP[to];
+      if(fromRegion === toRegion) return;
+
+      const pairBase = REGION_PAIR_BASE[`${fromRegion}|${toRegion}`];
+      if(!pairBase) return;
+
+      const fromOffice = OFFICE[from];
+      const toOffice = OFFICE[to];
+      const dist = Math.round(haversineMiles(fromOffice.lat, fromOffice.lng, toOffice.lat, toOffice.lng));
+
+      const fromRegionTrucks = REGION_OFFICES[fromRegion].reduce((s,id)=>s+OFFICE[id].trucks,0);
+      const toRegionTrucks = REGION_OFFICES[toRegion].reduce((s,id)=>s+OFFICE[id].trucks,0);
+
+      const fromShare = fromOffice.trucks / fromRegionTrucks;
+      const toShare = toOffice.trucks / toRegionTrucks;
+
+      const demand =
+        pairBase.demand *
+        (0.58 + 1.55 * fromShare) *
+        (0.74 + 0.55 * toShare) *
+        officeCoverageBoost(from) *
+        Math.sqrt(officeCoverageBoost(to));
+
+      const leak = Math.max(0.06, Math.min(0.24,
+        pairBase.leak +
+        ((fromRegion === 'DFW' && toRegion === 'Houston') ? 0.02 : 0) +
+        (from === 'pflugerville' ? 0.01 : 0) -
+        ((to === 'carrollton' || to === 'houston') ? 0.01 : 0)
+      ));
+
+      routes.push({
+        from,
+        to,
+        dist,
+        demand: Math.round(demand * 100) / 100,
+        leak: Math.round(leak * 100) / 100,
+        label: routeLabel(from,to)
+      });
+    });
+  });
+
+  return routes;
+}
+
+const LONG_ROUTES = buildLongRoutes();
+
 
 function fmtMoney(n){
   const abs=Math.abs(n); if(abs>=1e6) return `$${(abs/1e6).toFixed(2)}M`; if(abs>=1e3) return `$${Math.round(abs/1e3)}K`; return `$${Math.round(abs)}`;
@@ -532,30 +630,64 @@ function buildAprilModel(){
 const MODEL = buildAprilModel();
 
 function buildDailyFinancials(){
-  return APRIL_DAYS.map(d=>{
+  const rawDaily = APRIL_DAYS.map(d=>{
     const ds=dateStr(d);
     const dayLongRows = MODEL.laneDaily.filter(x=>x.date===ds && x.type==='long');
     const longLoads = dayLongRows.reduce((s,x)=>s + x.loads, 0);
     const gainedTruckDays = dayLongRows.reduce((s,x)=>s + x.recovered, 0);
-    const beforeRevenue = longLoads * AVG_MOVE_REVENUE;
-    const afterRevenue = beforeRevenue + (gainedTruckDays * LOCAL_TRUCK_DAY_REVENUE);
+    const rawBeforeRevenue = longLoads * AVG_MOVE_REVENUE;
+    return { date:ds, longLoads, gainedTruckDays, rawBeforeRevenue };
+  });
+
+  const totalRawBeforeRevenue = rawDaily.reduce((s,x)=>s+x.rawBeforeRevenue,0) || 1;
+  const revenueScale = TARGET_MONTHLY_REVENUE / totalRawBeforeRevenue;
+
+  return rawDaily.map(day=>{
+    const beforeRevenue = day.rawBeforeRevenue * revenueScale;
+    const afterRevenue = beforeRevenue + (day.gainedTruckDays * LOCAL_TRUCK_DAY_REVENUE);
     const beforeProfit = beforeRevenue * BASE_MARGIN;
-    const afterProfit = beforeProfit + (gainedTruckDays * LOCAL_TRUCK_DAY_REVENUE * GAINED_TRUCK_DAY_MARGIN);
-    return { date:ds, longLoads, gainedTruckDays, beforeRevenue, afterRevenue, beforeProfit, afterProfit, lift: afterProfit - beforeProfit };
+    const afterProfit = beforeProfit + (day.gainedTruckDays * LOCAL_TRUCK_DAY_REVENUE * GAINED_TRUCK_DAY_MARGIN);
+    return {
+      date: day.date,
+      longLoads: day.longLoads,
+      gainedTruckDays: day.gainedTruckDays,
+      beforeRevenue,
+      afterRevenue,
+      beforeProfit,
+      afterProfit,
+      lift: afterProfit - beforeProfit
+    };
   });
 }
 const DAILY_FINANCIALS = buildDailyFinancials();
 
 function buildOfficeFinancials(){
   const data = {};
+  const rawOffice = {};
   OFFICES.forEach(o => {
     const outboundLongLoads = MODEL.laneDaily.filter(x => x.type==='long' && x.from===o.id).reduce((s,x)=>s+x.loads,0);
     const truckDaysGained = MODEL.officeGain[o.id].recovered;
-    const beforeRevenue = outboundLongLoads * AVG_MOVE_REVENUE;
+    const rawBeforeRevenue = outboundLongLoads * AVG_MOVE_REVENUE;
+    rawOffice[o.id] = { outboundLongLoads, truckDaysGained, rawBeforeRevenue };
+  });
+
+  const totalRawBeforeRevenue = Object.values(rawOffice).reduce((s,x)=>s+x.rawBeforeRevenue,0) || 1;
+  const revenueScale = TARGET_MONTHLY_REVENUE / totalRawBeforeRevenue;
+
+  OFFICES.forEach(o => {
+    const truckDaysGained = rawOffice[o.id].truckDaysGained;
+    const beforeRevenue = rawOffice[o.id].rawBeforeRevenue * revenueScale;
     const afterRevenue = beforeRevenue + (truckDaysGained * LOCAL_TRUCK_DAY_REVENUE);
     const beforeProfit = beforeRevenue * BASE_MARGIN;
     const afterProfit = beforeProfit + (truckDaysGained * LOCAL_TRUCK_DAY_REVENUE * GAINED_TRUCK_DAY_MARGIN);
-    data[o.id] = { outboundLongLoads, truckDaysGained, beforeRevenue, afterRevenue, beforeProfit, afterProfit };
+    data[o.id] = {
+      outboundLongLoads: rawOffice[o.id].outboundLongLoads,
+      truckDaysGained,
+      beforeRevenue,
+      afterRevenue,
+      beforeProfit,
+      afterProfit
+    };
   });
   return data;
 }
