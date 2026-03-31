@@ -287,7 +287,7 @@
         <div class="grid3" style="margin-top:8px">
           <div class="stat"><div class="stat-v blue" id="base-deadhead">0</div><div class="stat-l">Deadhead Truck-Days</div></div>
           <div class="stat"><div class="stat-v green" id="opt-recovered">0</div><div class="stat-l">Truck-Days Gained</div></div>
-          <div class="stat"><div class="stat-v green" id="truckday-revenue">$0</div><div class="stat-l">Added Revenue From Gained Truck-Days</div></div>
+          <div class="stat"><div class="stat-v green" id="truckday-revenue">$0</div><div class="stat-l">Added Revenue From Gained Truck-Days ($1,400/Day)</div></div>
         </div>
       </div>
       <div class="card">
@@ -303,7 +303,7 @@
       </div>
       <div class="card">
         <div class="card-title">April Profit Calendar – Long Haul Only</div>
-        <div class="small" style="margin-bottom:10px">Before uses <strong style="color:var(--amber)">long-haul revenue at 15% margin</strong>. After adds <strong style="color:var(--green)">$2,000 per recovered truck-day</strong> with <strong style="color:var(--green)">25% margin</strong>.</div>
+        <div class="small" style="margin-bottom:10px">Before uses <strong style="color:var(--amber)">long-haul revenue at 15% margin</strong>. After adds <strong style="color:var(--green)">$1,400 per recovered truck-day</strong> with <strong style="color:var(--green)">25% margin</strong>.</div>
         <div id="profitCalendar" class="calendar-grid"></div>
       </div>
       <div class="card">
@@ -347,7 +347,7 @@ const AVG_MOVE_REVENUE = Object.entries(MOVE_SPECS).reduce((s,[k,v])=>s+v.share*
 const AVG_MOVE_TRUCK_DAYS = Object.entries(MOVE_SPECS).reduce((s,[k,v])=>s+v.share*v.trucks*v.days,0);
 const DAILY_TRUCK_COST = 2000;
 const OFFICE_SHARE = 0.20;
-const LOCAL_TRUCK_DAY_REVENUE = 2000;
+const LOCAL_TRUCK_DAY_REVENUE = 1400;
 const BASE_MARGIN = 0.15;
 const GAINED_TRUCK_DAY_MARGIN = 0.25;
 const LONG_HAUL_NET_PER_LOAD = 1400;
@@ -543,7 +543,7 @@ function buildAprilModel(){
       const deadheadTruckDays = round(deadheadLoads * 1.0, 1);
       const recovered = round(deadheadTruckDays * 0.70, 1);
       const avgNet = AVG_MOVE_REVENUE*(1-OFFICE_SHARE) - (AVG_MOVE_TRUCK_DAYS * DAILY_TRUCK_COST * 0.35);
-      const incrementalProfit = round(recovered * 2000, 0);
+      const incrementalProfit = round(recovered * LOCAL_TRUCK_DAY_REVENUE * GAINED_TRUCK_DAY_MARGIN, 0);
       longOutboundByOffice[r.from] += loads;
       longInboundByOffice[r.to] += loads;
       totalLongMoves += loads;
@@ -887,7 +887,7 @@ function runMatch(){
   const fallback=MODEL.laneDaily.filter(x=>x.type==='long' && officeOrAreaMatch(x.from,dest)).sort((a,b)=>b.loads-a.loads)[0];
   const best = candidates[0] || fallback;
   const avoidedDeadheadCost = spec.trucks * DAILY_TRUCK_COST * 0.15 * spec.days + (best ? best.recovered*400 : 0);
-  const netProfit = spec.revenue*(1-OFFICE_SHARE) + avoidedDeadheadCost;
+  const netProfit = spec.revenue*(1-OFFICE_SHARE) + (spec.trucks * LOCAL_TRUCK_DAY_REVENUE * GAINED_TRUCK_DAY_MARGIN) + avoidedDeadheadCost;
   const confidence = Math.max(56, Math.min(96, best && best.score ? best.score : 62));
   document.getElementById('matchBody').innerHTML = `
     <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--green);margin-bottom:8px">${OFFICE[origin].name} → ${OFFICE[dest].name}</div>
