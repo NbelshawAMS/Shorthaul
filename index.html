@@ -1851,11 +1851,176 @@ body.show-move-info #right-panel{padding-top:calc(var(--final-nav-h) + 18px)!imp
   .global-office-filterbar{grid-template-columns:1fr!important;}
 }
 
+
+/* ============================================================
+   FINAL SCROLL / NAV FIX
+   Keeps navigation locked cleanly below the header and prevents
+   content from sliding underneath it while scrolling.
+   ============================================================ */
+:root{
+  --app-header-height:76px!important;
+  --app-nav-height:68px!important;
+  --app-shell-offset:144px!important;
+}
+
+/* Header stays at the top */
+.final-app-header{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  height:var(--app-header-height)!important;
+  min-height:var(--app-header-height)!important;
+  z-index:1200!important;
+}
+
+/* Main body begins below fixed header */
+#body{
+  height:100vh!important;
+  padding-top:var(--app-header-height)!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+
+/* Toolbar becomes a true app navigation bar */
+#toolbar{
+  position:fixed!important;
+  top:var(--app-header-height)!important;
+  left:0!important;
+  right:0!important;
+  width:100vw!important;
+  height:var(--app-nav-height)!important;
+  min-height:var(--app-nav-height)!important;
+  box-sizing:border-box!important;
+  z-index:1100!important;
+  background:#fff!important;
+  border-bottom:1px solid #dfe9e1!important;
+  box-shadow:0 4px 14px rgba(16,25,19,.035)!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  padding:12px 24px!important;
+  overflow:visible!important;
+}
+
+/* Ensure nav content never shifts left/right or gets clipped */
+#toolbar .toolbar-primary{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  flex:0 1 auto!important;
+  width:auto!important;
+  min-width:0!important;
+  overflow:visible!important;
+}
+#toolbar .toolbar-brand-mini{
+  display:none!important;
+}
+#toolbar .tab-btn.primary-tab,
+#toolbar .more-tools-wrap,
+#toolbar .more-tools-menu > summary{
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+}
+.more-tools-wrap{
+  position:relative!important;
+  margin-left:0!important;
+}
+
+/* Content panes scroll below the fixed header + nav */
+#right-panel{
+  padding-top:calc(var(--app-header-height) + var(--app-nav-height) + 24px)!important;
+  height:100vh!important;
+  overflow:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* Notes/move-info side panel also starts below nav */
+#form-panel{
+  margin-top:calc(var(--app-header-height) + var(--app-nav-height) + 18px)!important;
+  height:calc(100vh - var(--app-header-height) - var(--app-nav-height) - 36px)!important;
+  max-height:calc(100vh - var(--app-header-height) - var(--app-nav-height) - 36px)!important;
+  overflow:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* When move-info side panel is hidden, content uses full width cleanly */
+body:not(.show-move-info) #right-panel{
+  padding-left:0!important;
+}
+
+/* When move-info side panel is visible, content clears the side panel */
+body.show-move-info #right-panel{
+  padding-left:310px!important;
+}
+body.show-move-info #form-panel{
+  position:fixed!important;
+  left:18px!important;
+  top:0!important;
+  margin-left:0!important;
+  z-index:1000!important;
+}
+
+/* Prevent old fixed-toolbar rules from adding duplicate offsets */
+body.show-move-info #toolbar,
+body.wide-pane #toolbar{
+  position:fixed!important;
+  top:var(--app-header-height)!important;
+  left:0!important;
+  right:0!important;
+  width:100vw!important;
+}
+
+/* Keep home/cards centered with fixed nav */
+#home-pane,
+.pane{
+  box-sizing:border-box!important;
+}
+
+/* Office lookup still sits above app shell */
+.global-office-sidebar{
+  z-index:1500!important;
+}
+.global-office-overlay{
+  z-index:1499!important;
+}
+
+/* Small screens: allow horizontal nav scroll instead of clipping tabs */
+@media(max-width:1180px){
+  #toolbar{
+    justify-content:flex-start!important;
+    overflow-x:auto!important;
+    overflow-y:visible!important;
+  }
+  #toolbar .toolbar-primary{
+    justify-content:flex-start!important;
+  }
+  body.show-move-info #right-panel{
+    padding-left:0!important;
+  }
+  body.show-move-info #form-panel{
+    display:none!important;
+  }
+}
+
 </style>
 <script>
 /* Password protection temporarily removed for testing.
    Add the original auth script back when you are ready to re-lock it. */
 </script>
+
+<style>
+.final-app-header{
+  overflow:visible!important;
+}
+.final-office-search-btn{
+  visibility:visible!important;
+  opacity:1!important;
+}
+</style>
+
 </head>
 <body>
 <header class="final-app-header">
