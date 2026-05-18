@@ -3849,123 +3849,6 @@ body{
   }
 }
 
-
-
-/* ============================================================
-   GITHUB PATCH — AMS LOCATIONS FULL-SCREEN MAP LIKE REFERENCE
-   Keeps branch count / selected branch / all branches on the right.
-   ============================================================ */
-body.ams-focus #right-panel{
-  padding-left:0!important;
-  padding-right:0!important;
-}
-body.ams-focus #ams-pane.active{
-  width:100vw!important;
-  max-width:none!important;
-  margin-left:calc(50% - 50vw)!important;
-  margin-right:calc(50% - 50vw)!important;
-  padding:0 0 46px!important;
-  box-sizing:border-box!important;
-}
-#ams-pane.active .ams-page{
-  width:100vw!important;
-  max-width:none!important;
-  height:calc(100vh - var(--app-header-height, 76px) - var(--app-tab-gap, 16px) - var(--app-nav-height, 68px) - 18px)!important;
-  min-height:760px!important;
-  display:grid!important;
-  grid-template-columns:minmax(0, 1fr) 360px!important;
-  gap:14px!important;
-  margin:0!important;
-  padding:0 14px!important;
-  box-sizing:border-box!important;
-}
-#ams-pane.active .ams-main,
-#ams-pane.active .ams-main-card,
-#ams-pane.active .ams-side{
-  min-height:0!important;
-  height:100%!important;
-}
-#ams-pane.active .ams-main-card{
-  width:100%!important;
-  max-width:none!important;
-  display:flex!important;
-  flex-direction:column!important;
-  overflow:hidden!important;
-  border-radius:18px!important;
-}
-#ams-pane.active .ams-headerbar{
-  flex:0 0 auto!important;
-  min-height:48px!important;
-  padding:10px 14px!important;
-}
-#ams-pane.active .ams-controlbar{
-  flex:0 0 auto!important;
-  min-height:48px!important;
-  padding:8px 14px!important;
-}
-#ams-pane.active .ams-map-viewport{
-  flex:1 1 auto!important;
-  min-height:0!important;
-  height:auto!important;
-  width:100%!important;
-  overflow:hidden!important;
-  background:radial-gradient(circle at center,#f4fbf5 0%,#eef8ef 58%,#e8f3e9 100%)!important;
-}
-#ams-pane.active #amsUsMap{
-  width:100%!important;
-  height:100%!important;
-  max-width:none!important;
-  display:block!important;
-}
-#ams-pane.active .ams-legend{
-  flex:0 0 auto!important;
-  min-height:42px!important;
-  padding:8px 14px 10px!important;
-}
-#ams-pane.active .ams-side{
-  width:360px!important;
-  max-width:360px!important;
-  overflow:auto!important;
-  padding:0 2px 0 0!important;
-  gap:10px!important;
-}
-#ams-pane.active .ams-side-card{
-  width:100%!important;
-  max-width:none!important;
-  border-radius:18px!important;
-  padding:12px!important;
-}
-#ams-pane.active .ams-list{
-  max-height:none!important;
-  min-height:0!important;
-  height:calc(100vh - var(--app-header-height, 76px) - var(--app-tab-gap, 16px) - var(--app-nav-height, 68px) - 390px)!important;
-  overflow:auto!important;
-}
-#ams-pane.active .ams-quick-jump,
-#ams-pane.active .app-section-jump,
-#ams-pane.active .markets-quick-jump,
-#ams-pane.active .calculator-quick-jump{
-  display:none!important;
-}
-@media(max-width:1050px){
-  #ams-pane.active .ams-page{
-    height:auto!important;
-    min-height:0!important;
-    grid-template-columns:1fr!important;
-    padding:0 12px!important;
-  }
-  #ams-pane.active .ams-map-viewport{
-    min-height:68vh!important;
-  }
-  #ams-pane.active .ams-side{
-    width:100%!important;
-    max-width:none!important;
-  }
-  #ams-pane.active .ams-list{
-    height:auto!important;
-    max-height:420px!important;
-  }
-}
 </style>
 <script>
 /* Password protection temporarily removed for testing.
@@ -3980,460 +3863,411 @@ body.ams-focus #ams-pane.active{
   visibility:visible!important;
   opacity:1!important;
 }
+</style>
 
+<style>
+/* CLEAN REBUILD PATCH — GitHub ready stable build */
+:root{--clean-green:#087b38;--clean-green-2:#0a8f43;--clean-dark:#06160f;--clean-card:#0b2b1d;--clean-line:#1f5b38;--clean-text:#edf8f0;--clean-muted:#a8c7b4;}
+.final-header-actions{position:absolute!important;right:190px!important;top:50%!important;transform:translateY(-50%)!important;display:flex!important;align-items:center!important;gap:10px!important;z-index:25!important;}
+.final-brand-toggle,.final-night-toggle{appearance:none!important;min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:9px 15px!important;border-radius:999px!important;border:1px solid #b9d7c0!important;background:#f8fbf8!important;color:#075f2d!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;font-size:13px!important;font-weight:900!important;cursor:pointer!important;box-shadow:none!important;white-space:nowrap!important;}
+.final-brand-toggle:hover,.final-night-toggle:hover{background:#fff!important;border-color:#087b38!important;}
+.tab-btn.active,.tab-btn.primary-tab.active,.reg-notes-open-btn,.jump-remarks-btn,.min-btn,#copy-btn,.global-office-actions button{background:var(--clean-green)!important;border-color:var(--clean-green)!important;color:#fff!important;}
+#offices-pane.active button,#offices-pane.active .office-grid button,#offices-pane.active .storage-grid button,#offices-pane.active .button-grid button,#offices-pane.active [class*="office"][class*="grid"] button,#offices-pane.active [class*="storage"][class*="grid"] button{background:var(--clean-green)!important;border:1px solid #168044!important;color:#fff!important;border-radius:10px!important;font-weight:850!important;}#offices-pane.active button:hover{background:var(--clean-green-2)!important;}
+body.show-move-info #form-panel{position:sticky!important;top:calc(var(--app-tab-gap,16px) + var(--app-nav-height,68px) + 14px)!important;align-self:flex-start!important;margin-top:calc(var(--app-tab-gap,16px) + var(--app-nav-height,68px) + 14px)!important;max-height:calc(100vh - var(--app-header-height,76px) - var(--app-tab-gap,16px) - var(--app-nav-height,68px) - 28px)!important;}
+body.show-move-info #right-panel{padding-left:24px!important;}body.show-move-info #body{gap:18px!important;align-items:flex-start!important;}
+#sop-pane.active,#buildquote-pane.active,#offices-pane.active,#commission-pane.active,#gunsafe-pane.active,#backhaul-pane.active{max-width:1180px!important;margin-left:auto!important;margin-right:auto!important;}#sop-pane.active>*,#buildquote-pane.active>*,#offices-pane.active>*,#commission-pane.active>*,#gunsafe-pane.active>*,#backhaul-pane.active>*{margin-left:auto!important;margin-right:auto!important;}
+body.night-mode,body.night-mode html{background:radial-gradient(circle at 50% -10%,rgba(12,132,63,.22),transparent 42%),#06160f!important;color:var(--clean-text)!important;}
+body.night-mode #body,body.night-mode #right-panel,body.night-mode .pane,body.night-mode #home-pane,body.night-mode #full-pane,body.night-mode #crew-pane,body.night-mode #calc-pane,body.night-mode #od-pane,body.night-mode #stor-pane,body.night-mode #reg-pane,body.night-mode #regmkt-pane,body.night-mode #ams-pane,body.night-mode #sop-pane,body.night-mode #buildquote-pane,body.night-mode #offices-pane,body.night-mode #commission-pane,body.night-mode #gunsafe-pane,body.night-mode #backhaul-pane{background:#06160f!important;color:var(--clean-text)!important;}
+body.night-mode .final-app-header,body.night-mode #toolbar{background:#071810!important;border-color:#174428!important;box-shadow:0 8px 28px rgba(0,0,0,.28)!important;}body.night-mode .final-title-copy strong,body.night-mode .final-title-copy small{color:var(--clean-text)!important;}body.night-mode .final-title-copy strong em{color:#18d366!important;}body.night-mode .final-lab-icon{background:#0b2a1d!important;border-color:#19b85a!important;color:#19d466!important;}
+body.night-mode .tab-btn,body.night-mode .tab-btn.primary-tab,body.night-mode .more-tools-menu>summary,body.night-mode .final-brand-toggle,body.night-mode .final-night-toggle,body.night-mode .final-office-search-btn,body.night-mode button:not(.final-ams-logo):not(.global-office-sidebar-head button){background:linear-gradient(180deg,#0c8f42,#087b38)!important;border:1px solid #1db45b!important;color:#fff!important;box-shadow:0 10px 24px rgba(0,0,0,.18)!important;}body.night-mode .tab-btn:hover,body.night-mode .more-tools-menu>summary:hover,body.night-mode button:not(.final-ams-logo):hover{background:linear-gradient(180deg,#12a64e,#08913f)!important;color:#fff!important;}body.night-mode .tab-btn.active,body.night-mode .tab-btn.primary-tab.active{background:linear-gradient(180deg,#0da64a,#078539)!important;border-color:#21cf68!important;color:#fff!important;}
+body.night-mode .home-hero,body.night-mode .home-card,body.night-mode .lab-card,body.night-mode .calc-card,body.night-mode .notes-box,body.night-mode .quote-section,body.night-mode .regulated-hub-card,body.night-mode .reg-notes-action-card,body.night-mode .reg-notes-title-card,body.night-mode .global-office-sidebar,body.night-mode .global-office-detail,body.night-mode .global-office-item,body.night-mode .ams-main-card,body.night-mode .ams-side-card,body.night-mode .ams-count-box,body.night-mode .ams-info-row,body.night-mode .result-chip,body.night-mode .customer-slot>div,body.night-mode #form-panel,body.night-mode .more-tools-panel,body.night-mode details,body.night-mode section,body.night-mode .card,body.night-mode [style*="background:#fff"],body.night-mode [style*="background: #fff"],body.night-mode [style*="background:#ffffff"],body.night-mode [style*="background: #ffffff"],body.night-mode [style*="background:white"],body.night-mode [style*="background: white"]{background:linear-gradient(180deg,#0b2a1d,#082116)!important;border-color:#1c5a37!important;color:var(--clean-text)!important;box-shadow:0 14px 32px rgba(0,0,0,.16)!important;}
+body.night-mode .home-card-icon,body.night-mode .brand-dot,body.night-mode .global-storage-badge.yes{background:#0f8f43!important;color:#fff!important;}body.night-mode h1,body.night-mode h2,body.night-mode h3,body.night-mode h4,body.night-mode strong,body.night-mode label,body.night-mode .field-label,body.night-mode .section-head,body.night-mode .calc-card-title,body.night-mode .quote-card-title,body.night-mode .home-card h2,body.night-mode .reg-notes-title-card h1,body.night-mode .reg-notes-action-card h3{color:var(--clean-text)!important;}body.night-mode p,body.night-mode small,body.night-mode span,body.night-mode .home-card p,body.night-mode .home-hero p,body.night-mode .global-office-empty,body.night-mode .global-office-row .v,body.night-mode .ams-subtitle,body.night-mode .ru,body.night-mode .sub{color:var(--clean-muted)!important;}body.night-mode .home-eyebrow,body.night-mode .home-card-kicker,body.night-mode .section-head,body.night-mode .calc-card-title,body.night-mode .global-market-line,body.night-mode .global-office-row .k,body.night-mode .rl,body.night-mode .reg-password strong{color:#21d86c!important;}
+body.night-mode input,body.night-mode select,body.night-mode textarea{background:#061a11!important;color:var(--clean-text)!important;border:1px solid #267444!important;box-shadow:none!important;}body.night-mode input::placeholder,body.night-mode textarea::placeholder{color:#87aa94!important;}body.night-mode input[type="checkbox"]{accent-color:#10a64b!important;}
+body.night-mode #customer-remarks-box,body.night-mode #preview-content,body.night-mode .preview-content,body.night-mode #crew-text,body.night-mode #reg-notes-output,body.night-mode pre{background:#061a11!important;color:#eaf8ee!important;border-color:#267444!important;}
+body.night-mode #offices-pane.active button,body.night-mode #offices-pane.active .office-grid button,body.night-mode #offices-pane.active .storage-grid button,body.night-mode #offices-pane.active .button-grid button,body.night-mode #offices-pane.active [class*="office"][class*="grid"] button,body.night-mode #offices-pane.active [class*="storage"][class*="grid"] button,body.night-mode .final-home-more-grid button,body.night-mode .home-card,body.night-mode .global-office-item{background:linear-gradient(180deg,#0d8d41,#087a37)!important;border:1px solid #20b65b!important;color:#fff!important;}body.night-mode .final-home-more-grid button strong,body.night-mode .global-office-item strong,body.night-mode .global-office-item span{color:#fff!important;}
+@media(max-width:1180px){.final-header-actions{position:static!important;transform:none!important;margin-left:auto!important;}.final-app-header{gap:10px!important;justify-content:flex-start!important;}.final-brand-toggle,.final-night-toggle{font-size:11px!important;padding:8px 10px!important;}}
+</style>
+<style>
 
 /* ============================================================
-   BRANCH COUNT FIX
-   The full-screen AMS grid selector was accidentally catching
-   .ams-count-grid and forcing a map/sidebar column layout inside
-   the Branch Count card. This restores the 2x2 count boxes.
+   FINAL CLEAN FIXES - MAP / BRANCH COUNT / STORAGE NOTES / BUTTONS
    ============================================================ */
-#ams-pane.active .ams-count-grid{
-  display:grid!important;
-  grid-template-columns:repeat(2, minmax(0, 1fr))!important;
-  gap:10px!important;
+
+/* Remove the Move Information context box from Customer + Crew Notes */
+#remarksMoveSetup{
+  display:none!important;
+}
+
+/* Remove any broken calculator selector / shortcut buttons */
+#calc-pane .calculator-quick-jump,
+#calc-pane .app-section-jump,
+#calc-pane [aria-label="Calculator quick navigation"],
+#od-pane .calculator-quick-jump,
+#od-pane .app-section-jump,
+#stor-pane .calculator-quick-jump,
+#stor-pane .app-section-jump,
+.calculator-quick-jump[data-generated="true"]{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+
+/* Remove Branch Count completely and level Selected Branch / All Branches */
+#ams-pane .ams-side-card:has(.ams-count-grid),
+#ams-pane .ams-side-card:has(#amsCountPacific),
+#ams-pane .ams-count-grid,
+#ams-pane .ams-count-box{
+  display:none!important;
+}
+
+/* AMS Locations: make the map dominant again while keeping branch info */
+#ams-pane.active{
+  width:100vw!important;
+  max-width:none!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:calc(50% - 50vw)!important;
+  padding-left:10px!important;
+  padding-right:10px!important;
+  box-sizing:border-box!important;
+}
+
+#ams-pane.active .ams-page{
   width:100%!important;
   max-width:none!important;
-  margin:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 380px!important;
+  gap:12px!important;
+  height:calc(100vh - 165px)!important;
+  min-height:760px!important;
   align-items:stretch!important;
 }
 
-#ams-pane.active .ams-count-box{
-  min-width:0!important;
+#ams-pane.active .ams-main,
+#ams-pane.active .ams-main-card{
   width:100%!important;
-  box-sizing:border-box!important;
-  padding:11px 12px!important;
-  overflow:hidden!important;
+  max-width:none!important;
+  height:100%!important;
+  min-height:0!important;
 }
 
-#ams-pane.active .ams-count-box .lbl{
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
+#ams-pane.active .ams-map-viewport{
+  flex:1 1 auto!important;
+  height:100%!important;
+  min-height:690px!important;
 }
 
-#ams-pane.active .ams-count-box .val{
+#ams-pane.active #amsUsMap{
+  width:100%!important;
+  height:100%!important;
   display:block!important;
-  line-height:1!important;
 }
 
-#ams-pane.active .ams-side-card{
-  overflow:hidden!important;
+#ams-pane.active .ams-side{
+  width:380px!important;
+  max-width:380px!important;
+  gap:12px!important;
+  height:100%!important;
+  overflow:auto!important;
 }
 
-@media(max-width:760px){
-  #ams-pane.active .ams-count-grid{
-    grid-template-columns:1fr 1fr!important;
+#ams-pane.active .ams-list{
+  max-height:calc(100vh - 355px)!important;
+  min-height:420px!important;
+}
+
+/* Storage Offices: bigger instruction bar and green office bubbles */
+#offices-pane.active > div,
+#offices-pane.active section,
+#offices-pane.active .lab-card,
+#offices-pane.active .card{
+  max-width:1180px!important;
+  width:100%!important;
+}
+
+#offices-pane.active .storage-note-banner{
+  background:#e8f5e9!important;
+  border:2px solid #a5d6a7!important;
+  border-radius:12px!important;
+  padding:20px 24px!important;
+  margin-bottom:24px!important;
+  font-size:16px!important;
+  color:#0b5a2a!important;
+  line-height:1.6!important;
+  font-weight:800!important;
+  text-align:left!important;
+}
+
+#storageOfficeGrid{
+  gap:10px!important;
+}
+
+#storageOfficeGrid button,
+#offices-pane.active button.storage-office-btn,
+#offices-pane.active .office-grid button,
+#offices-pane.active .storage-grid button,
+#offices-pane.active .button-grid button{
+  background:#2e7d32!important;
+  color:#fff!important;
+  border:1px solid #3b9b44!important;
+  border-radius:9px!important;
+  min-height:42px!important;
+  font-weight:900!important;
+  box-shadow:none!important;
+}
+
+#storageOfficeGrid button:hover,
+#storageOfficeGrid button.active,
+#offices-pane.active button.storage-office-btn:hover,
+#offices-pane.active button.storage-office-btn.active{
+  background:#0b7a38!important;
+  color:#fff!important;
+  border-color:#0b7a38!important;
+}
+
+/* Night mode keeps all page pills/buttons green instead of white */
+body.night-mode .tab-btn,
+body.night-mode #toolbar .tab-btn.primary-tab,
+body.night-mode .more-tools-menu > summary,
+body.night-mode .final-brand-toggle,
+body.night-mode .final-night-toggle,
+body.night-mode .final-office-search-btn,
+body.night-mode .home-card,
+body.night-mode .final-home-more-grid button,
+body.night-mode #storageOfficeGrid button{
+  background:#0b7a38!important;
+  color:#fff!important;
+  border-color:#1db954!important;
+}
+
+body.night-mode .tab-btn:hover,
+body.night-mode #toolbar .tab-btn.primary-tab:hover,
+body.night-mode .more-tools-menu > summary:hover,
+body.night-mode .final-brand-toggle:hover,
+body.night-mode .final-night-toggle:hover,
+body.night-mode .final-office-search-btn:hover,
+body.night-mode .home-card:hover,
+body.night-mode .final-home-more-grid button:hover,
+body.night-mode #storageOfficeGrid button:hover{
+  background:#118b43!important;
+  color:#fff!important;
+}
+
+body.night-mode #toolbar .tab-btn.primary-tab.active,
+body.night-mode .tab-btn.active{
+  background:#119447!important;
+  color:#fff!important;
+  border-color:#1db954!important;
+}
+
+body.night-mode #offices-pane.active .storage-note-banner{
+  background:#123d28!important;
+  border-color:#1db954!important;
+  color:#e6f4ea!important;
+}
+
+@media(max-width:1050px){
+  #ams-pane.active{
+    width:100%!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  #ams-pane.active .ams-page{
+    grid-template-columns:1fr!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+  #ams-pane.active .ams-side{
+    width:100%!important;
+    max-width:none!important;
+  }
+  #ams-pane.active .ams-map-viewport{
+    min-height:560px!important;
+    height:68vh!important;
   }
 }
-
 </style>
 
 <style>
-
 /* ============================================================
-   FINAL AMS SIDEBAR CLEANUP
-   Removes Branch Count card and levels Selected Branch + All Branches.
+   FINAL PRODUCTION VERIFY PATCH
+   - Defaults to Day Mode + All My Sons
+   - AMS Locations always stays AMS
+   - AMS map layout restored and Branch Count removed
+   - Regulated Markets / Storage Offices / Commission / Gun Safe centered
    ============================================================ */
-#ams-pane.active .ams-count-grid,
-#ams-pane.active .ams-count-box{
-  display:none!important;
+
+html, body{background:#f7f9f7!important;}
+body:not(.night-mode) #body,
+body:not(.night-mode) #right-panel,
+body:not(.night-mode) .pane{background:#f7f9f7!important;}
+
+/* Inactive panes never leak into other tabs */
+.pane:not(.active){display:none!important;visibility:hidden!important;}
+.pane.active{display:block!important;visibility:visible!important;}
+
+/* AMS LOCATIONS: full width map + clean sidebar */
+#ams-pane.active{
+  width:100vw!important;
+  max-width:none!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:calc(50% - 50vw)!important;
+  padding:10px 14px 80px!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+}
+#ams-pane.active .ams-page{
+  width:100%!important;
+  max-width:none!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 360px!important;
+  gap:14px!important;
+  height:calc(100vh - 170px)!important;
+  min-height:720px!important;
+  align-items:stretch!important;
+}
+#ams-pane.active .ams-main,
+#ams-pane.active .ams-main-card{
+  width:100%!important;
+  max-width:none!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+#ams-pane.active .ams-main-card{display:flex!important;flex-direction:column!important;}
+#ams-pane.active .ams-map-viewport{
+  flex:1 1 auto!important;
+  height:auto!important;
+  min-height:600px!important;
+  overflow:hidden!important;
+}
+#ams-pane.active #amsUsMap{
+  width:100%!important;
+  height:100%!important;
+  min-height:600px!important;
+  display:block!important;
 }
 #ams-pane.active .ams-side{
-  display:grid!important;
-  grid-template-rows:auto minmax(0, 1fr)!important;
-  gap:16px!important;
-  align-content:start!important;
-  height:calc(100vh - 150px)!important;
-  max-height:calc(100vh - 150px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:12px!important;
+  width:360px!important;
+  max-width:360px!important;
+  height:100%!important;
+  min-height:0!important;
   overflow:hidden!important;
 }
 #ams-pane.active .ams-side-card{
   width:100%!important;
-  margin:0!important;
+  max-width:100%!important;
   box-sizing:border-box!important;
 }
-#ams-pane.active .ams-side-card:nth-child(1){
-  min-height:112px!important;
-}
-#ams-pane.active .ams-side-card:nth-child(2){
-  min-height:0!important;
-  display:flex!important;
-  flex-direction:column!important;
-  overflow:hidden!important;
-}
+#ams-pane.active .ams-side-card:first-child{flex:0 0 auto!important;}
+#ams-pane.active .ams-side-card:last-child{flex:1 1 auto!important;min-height:0!important;display:flex!important;flex-direction:column!important;}
 #ams-pane.active .ams-list{
-  max-height:none!important;
-  min-height:0!important;
   flex:1 1 auto!important;
+  min-height:0!important;
+  max-height:none!important;
   overflow:auto!important;
 }
-@media(max-width:1050px){
-  #ams-pane.active .ams-side{
-    height:auto!important;
-    max-height:none!important;
-    overflow:visible!important;
-  }
-}
+/* Remove branch count no matter which markup/version exists */
+#ams-pane .ams-count-grid,
+#ams-pane .ams-count-box,
+#ams-pane [id^="amsCount"],
+#ams-pane .ams-side-card:has(.ams-count-grid),
+#ams-pane .ams-side-card:has([id^="amsCount"]){display:none!important;}
 
-</style>
+/* Keep AMS labels locked even in NCM brand mode */
+#tab-ams::after{content:"";}
+body.brand-ncm #tab-ams{font-size:0!important;}
+body.brand-ncm #tab-ams::before{content:"AMS Locations";font-size:13px!important;}
+body.brand-ncm .home-card[data-tab="ams"] h2,
+body.brand-ncm .final-home-more-grid button[data-tab="ams"] strong{font-size:0!important;}
+body.brand-ncm .home-card[data-tab="ams"] h2::before,
+body.brand-ncm .final-home-more-grid button[data-tab="ams"] strong::before{content:"AMS Locations";font-size:inherit!important;}
 
-
-<style>
-/* ============================================================
-   FINAL REQUEST PATCH — Move Details alignment + More Tools centering
-   - Move Details sidebar lines up with main content cards on Customer/Crew
-     Notes and Regulated Move Notes.
-   - More Tools pages are centered in the page content lane.
-   ============================================================ */
-:root{
-  --move-details-align-extra:86px;
-}
-
-/* Move Details sidebar: lower it so the top aligns with the first main card
-   instead of starting up by the page title/nav area. */
-body.show-move-info #form-panel{
-  top:var(--app-header-height,76px)!important;
-  margin-top:calc(var(--app-tab-gap,16px) + var(--app-nav-height,68px) + var(--app-content-gap,14px) + var(--move-details-align-extra))!important;
-  height:calc(100vh - var(--app-header-height,76px) - var(--app-tab-gap,16px) - var(--app-nav-height,68px) - var(--app-content-gap,14px) - var(--move-details-align-extra) - 18px)!important;
-  max-height:calc(100vh - var(--app-header-height,76px) - var(--app-tab-gap,16px) - var(--app-nav-height,68px) - var(--app-content-gap,14px) - var(--move-details-align-extra) - 18px)!important;
-  align-self:flex-start!important;
-}
-
-/* Regulated Move Notes does not have the same page-title block as Customer + Crew,
-   so give it the matching top breathing room to stay level with the sidebar. */
-body.show-move-info #reg-pane.active{
-  padding-top:calc(10px + var(--move-details-align-extra))!important;
-}
-
-/* Keep Customer + Crew Notes as-is; its page title naturally creates the offset. */
-body.show-move-info #full-pane.active{
-  padding-top:10px!important;
-}
-
-/* MORE TOOLS: center every dropdown tool page in a consistent content lane. */
-#backhaul-pane.active,
-#sop-pane.active,
-#buildquote-pane.active,
+/* Tool pages verified centered */
+#regmkt-pane.active,
 #offices-pane.active,
 #commission-pane.active,
-#gunsafe-pane.active{
-  width:100%!important;
-  max-width:1280px!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-  padding-left:28px!important;
-  padding-right:28px!important;
-  box-sizing:border-box!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
-}
-
-#backhaul-pane.active > *,
-#sop-pane.active > *,
-#buildquote-pane.active > *,
-#offices-pane.active > *,
-#commission-pane.active > *,
-#gunsafe-pane.active > *{
-  width:100%!important;
-  max-width:1080px!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-  box-sizing:border-box!important;
-}
-
-/* Override inline wrappers inside More Tools pages so they do not sit left. */
-#backhaul-pane.active div[style*="max-width"],
-#sop-pane.active div[style*="max-width"],
-#buildquote-pane.active div[style*="max-width"],
-#offices-pane.active div[style*="max-width"],
-#commission-pane.active div[style*="max-width"],
-#gunsafe-pane.active div[style*="max-width"]{
-  margin-left:auto!important;
-  margin-right:auto!important;
-}
-
-/* Cards, tables, and sections fill the centered lane cleanly. */
-#backhaul-pane.active .lab-card,
-#sop-pane.active .lab-card,
-#buildquote-pane.active .lab-card,
-#offices-pane.active .lab-card,
-#commission-pane.active .lab-card,
-#gunsafe-pane.active .lab-card,
-#backhaul-pane.active .card,
-#sop-pane.active .card,
-#buildquote-pane.active .card,
-#offices-pane.active .card,
-#commission-pane.active .card,
-#gunsafe-pane.active .card,
-#backhaul-pane.active section,
-#sop-pane.active section,
-#buildquote-pane.active section,
-#offices-pane.active section,
-#commission-pane.active section,
-#gunsafe-pane.active section{
-  width:100%!important;
-  max-width:1080px!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-  box-sizing:border-box!important;
-}
-
-/* Center internal flex/grid rows that were previously hugging the left edge. */
-#backhaul-pane.active [style*="display:flex"],
-#sop-pane.active [style*="display:flex"],
-#buildquote-pane.active [style*="display:flex"],
-#offices-pane.active [style*="display:flex"],
-#commission-pane.active [style*="display:flex"],
-#gunsafe-pane.active [style*="display:flex"]{
-  justify-content:center!important;
-}
-
-#offices-pane.active #storageOfficeGrid,
-#offices-pane.active .office-grid,
-#offices-pane.active .storage-grid,
-#offices-pane.active .button-grid{
-  margin-left:auto!important;
-  margin-right:auto!important;
-  justify-content:center!important;
-}
-
-/* Commission can use a wider lane for tables while staying centered. */
-#commission-pane.active{
-  max-width:1400px!important;
-}
-#commission-pane.active > *,
-#commission-pane.active .lab-card,
-#commission-pane.active .card,
-#commission-pane.active table,
-#commission-pane.active .table-wrap,
-#commission-pane.active .grid{
-  max-width:1240px!important;
-  width:100%!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-}
-
-@media(max-width:1180px){
-  :root{--move-details-align-extra:0px;}
-  body.show-move-info #reg-pane.active{padding-top:10px!important;}
-  #backhaul-pane.active,
-  #sop-pane.active,
-  #buildquote-pane.active,
-  #offices-pane.active,
-  #commission-pane.active,
-  #gunsafe-pane.active{
-    padding-left:16px!important;
-    padding-right:16px!important;
-  }
-}
-</style>
-
-
-
-<style>
-/* ============================================================
-   READY-UPLOAD FINAL PATCH — Sticky Move Details + centered tools
-   - Move Details stays visible while the notes page scrolls.
-   - Top of Move Details aligns with Move Information on Customer Notes
-     and Regulated Move Notes.
-   - More Tools pages are centered on the page.
-   ============================================================ */
-:root{
-  --notes-sidebar-top: calc(var(--app-header-height, 76px) + var(--app-tab-gap, 16px) + var(--app-nav-height, 68px) + 32px);
-  --notes-sidebar-gap: 18px;
-}
-
-/* Make the app use normal page scrolling, so sticky can work correctly. */
-html,
-body{
-  min-height:100%!important;
-  height:auto!important;
-  overflow-x:hidden!important;
-  overflow-y:auto!important;
-}
-
-#body{
-  min-height:100vh!important;
-  height:auto!important;
-  overflow:visible!important;
-  padding-top:var(--app-header-height, 76px)!important;
-  box-sizing:border-box!important;
-}
-
-#right-panel{
-  height:auto!important;
-  max-height:none!important;
-  min-height:calc(100vh - var(--app-header-height, 76px))!important;
-  overflow:visible!important;
-  padding-top:calc(var(--app-tab-gap, 16px) + var(--app-nav-height, 68px) + 14px)!important;
-  padding-bottom:120px!important;
-  box-sizing:border-box!important;
-}
-
-/* Sticky Move Details sidebar: visible while scrolling, but not aggressively fixed. */
-body.show-move-info #form-panel{
-  display:block!important;
-  position:sticky!important;
-  top:var(--notes-sidebar-top)!important;
-  align-self:flex-start!important;
-  margin-top:calc(var(--app-tab-gap, 16px) + var(--app-nav-height, 68px) + 28px)!important;
-  margin-left:18px!important;
-  margin-bottom:24px!important;
-  height:auto!important;
-  max-height:calc(100vh - var(--notes-sidebar-top) - var(--notes-sidebar-gap))!important;
-  overflow:auto!important;
-  border-radius:22px!important;
-  box-shadow:0 14px 32px rgba(16,25,19,.055)!important;
-  z-index:25!important;
-}
-
-/* Keep notes content cleared from the sidebar and level with it. */
-body.show-move-info #right-panel{
-  padding-left:24px!important;
-  padding-right:24px!important;
-  padding-top:calc(var(--app-tab-gap, 16px) + var(--app-nav-height, 68px) + 28px)!important;
-}
-
-body.show-move-info #full-pane.active,
-body.show-move-info #reg-pane.active{
-  padding-top:0!important;
-}
-
-/* Inactive panes never leak onto another page. */
-.pane:not(.active){
-  display:none!important;
-  visibility:hidden!important;
-}
-.pane.active{
-  display:block!important;
-  visibility:visible!important;
-  height:auto!important;
-  max-height:none!important;
-  overflow:visible!important;
-}
-
-/* Center More Tools pages inside a consistent content lane. */
-#backhaul-pane.active,
-#sop-pane.active,
+#gunsafe-pane.active,
 #buildquote-pane.active,
-#offices-pane.active,
-#commission-pane.active,
-#gunsafe-pane.active{
+#sop-pane.active,
+#backhaul-pane.active{
   width:100%!important;
-  max-width:1280px!important;
+  max-width:1260px!important;
   margin-left:auto!important;
   margin-right:auto!important;
-  padding-left:28px!important;
-  padding-right:28px!important;
   box-sizing:border-box!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
+  padding:14px 22px 90px!important;
 }
-
-#backhaul-pane.active > *,
-#sop-pane.active > *,
-#buildquote-pane.active > *,
+#regmkt-pane.active > *,
 #offices-pane.active > *,
 #commission-pane.active > *,
 #gunsafe-pane.active > *,
-#backhaul-pane.active .lab-card,
-#sop-pane.active .lab-card,
-#buildquote-pane.active .lab-card,
+#buildquote-pane.active > *,
+#sop-pane.active > *,
+#backhaul-pane.active > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+#regmkt-pane.active .lab-card,
 #offices-pane.active .lab-card,
 #commission-pane.active .lab-card,
 #gunsafe-pane.active .lab-card,
-#backhaul-pane.active .card,
-#sop-pane.active .card,
-#buildquote-pane.active .card,
-#offices-pane.active .card,
-#commission-pane.active .card,
-#gunsafe-pane.active .card,
-#backhaul-pane.active section,
-#sop-pane.active section,
-#buildquote-pane.active section,
+#buildquote-pane.active .lab-card,
+#sop-pane.active .lab-card,
+#backhaul-pane.active .lab-card,
+#regmkt-pane.active section,
 #offices-pane.active section,
 #commission-pane.active section,
 #gunsafe-pane.active section{
   width:100%!important;
-  max-width:1080px!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
+  max-width:1120px!important;
   box-sizing:border-box!important;
 }
-
-#commission-pane.active{
-  max-width:1400px!important;
-}
-#commission-pane.active > *,
 #commission-pane.active .lab-card,
-#commission-pane.active .card,
 #commission-pane.active table,
-#commission-pane.active .table-wrap,
-#commission-pane.active .grid{
-  max-width:1240px!important;
-  width:100%!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-}
+#commission-pane.active .table-wrap{max-width:1220px!important;width:100%!important;}
 
-@media(max-width:1180px){
-  body.show-move-info #form-panel{
-    display:none!important;
-  }
-  body.show-move-info #right-panel{
-    padding-left:16px!important;
-    padding-right:16px!important;
-  }
-  #backhaul-pane.active,
-  #sop-pane.active,
-  #buildquote-pane.active,
-  #offices-pane.active,
-  #commission-pane.active,
-  #gunsafe-pane.active{
-    padding-left:16px!important;
-    padding-right:16px!important;
-  }
+/* Storage offices note + green office buttons */
+#offices-pane.active .storage-note-banner{
+  background:#e8f5e9!important;
+  border:2px solid #a5d6a7!important;
+  border-radius:12px!important;
+  padding:22px 26px!important;
+  margin-bottom:24px!important;
+  font-size:18px!important;
+  line-height:1.5!important;
+  color:#0b5a2a!important;
+  font-weight:900!important;
+}
+#offices-pane.active .storage-note-banner::before{content:""!important;}
+#storageOfficeGrid{gap:10px!important;}
+#storageOfficeGrid button,
+#offices-pane.active button.storage-office-btn,
+#offices-pane.active .office-grid button,
+#offices-pane.active .storage-grid button,
+#offices-pane.active .button-grid button{
+  background:#2e7d32!important;
+  color:#fff!important;
+  border:1px solid #3b9b44!important;
+  border-radius:9px!important;
+  min-height:42px!important;
+  font-weight:900!important;
+}
+#storageOfficeGrid button:hover,
+#storageOfficeGrid button.active{background:#0b7a38!important;color:#fff!important;border-color:#0b7a38!important;}
+
+@media(max-width:1050px){
+  #ams-pane.active .ams-page{grid-template-columns:1fr!important;height:auto!important;min-height:0!important;}
+  #ams-pane.active .ams-side{width:100%!important;max-width:none!important;overflow:visible!important;}
+  #ams-pane.active .ams-map-viewport,#ams-pane.active #amsUsMap{min-height:560px!important;height:65vh!important;}
 }
 </style>
-
-<script>
-/* Final pane-state correction: Move Details should show on Customer Notes and Regulated Move Notes. */
-(function(){
-  const tabsWithMoveDetails = new Set(['full','reg']);
-  function normalizeMoveDetailsState(tab){
-    const normalized = String(tab || '').toLowerCase();
-    document.body.classList.toggle('show-move-info', tabsWithMoveDetails.has(normalized));
-    document.body.classList.toggle('wide-pane', !tabsWithMoveDetails.has(normalized));
-  }
-
-  const previousSwitchTab = window.switchTab;
-  window.switchTab = function(tab){
-    let result;
-    if(typeof previousSwitchTab === 'function'){
-      result = previousSwitchTab.apply(this, arguments);
-    }
-    normalizeMoveDetailsState(tab);
-    return result;
-  };
-
-  document.addEventListener('click', function(e){
-    const btn = e.target.closest('.tab-btn');
-    if(!btn || !btn.id) return;
-    const id = btn.id.replace(/^tab-/, '');
-    setTimeout(function(){ normalizeMoveDetailsState(id); }, 0);
-  });
-
-  document.addEventListener('DOMContentLoaded', function(){
-    const activePane = document.querySelector('.pane.active');
-    if(activePane && activePane.id){
-      normalizeMoveDetailsState(activePane.id.replace(/-pane$/, ''));
-    }
-  });
-})();
-</script>
 
 </head>
 <body>
@@ -4459,6 +4293,11 @@ body.show-move-info #reg-pane.active{
     </span>
   </div>
 
+
+  <div class="final-header-actions">
+    <button class="final-brand-toggle" id="brand-toggle-top" type="button" onclick="toggleBrand()">New City Moving</button>
+    <button class="final-night-toggle" id="nightModeBtn" type="button" onclick="toggleNightMode()">Night Mode</button>
+  </div>
   <button class="final-office-search-btn" type="button" onclick="toggleGlobalOfficeLookup()" aria-label="Open office lookup">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <circle cx="11" cy="11" r="7"></circle>
@@ -5013,7 +4852,7 @@ body.show-move-info #reg-pane.active{
 <div class="result-chip">
 <div class="rl">Fuel Charge</div>
 <div class="rv" id="calcFuel">—</div>
-<div class="ru" id="calcFuelSub">Miles × $0.75 × trucks</div>
+<div class="ru" id="calcFuelSub">Miles × $1.25 × trucks</div>
 </div>
 <div class="result-chip">
 <div class="rl">Travel Charge</div>
@@ -5813,8 +5652,8 @@ body.show-move-info #reg-pane.active{
 <div style="max-width:960px;">
 <h2 style="font-size:15px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2e7d32;border-bottom:2px solid #c8e6c9;padding-bottom:8px;margin-bottom:12px;">🏢 Offices with Storage</h2>
 <!-- Instructions -->
-<div style="background:#e8f5e9;border:1.5px solid #a5d6a7;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:12.5px;color:#1b5e20;line-height:1.6;">
-<strong>📋 How to use:</strong> Click an office below to generate storage note wording.
+<div class="storage-note-banner">
+📋 Select an office to generate AMS storage notes
         </div>
 <div style="display:flex;gap:24px;flex-wrap:wrap;">
 <!-- LEFT: Office Buttons -->
@@ -8899,7 +8738,7 @@ async function initAmsMap() {
 
     const width = 1200, height = 760;
     amsSvg.selectAll('*').remove();
-    amsSvg.attr('viewBox', [0, 0, width, height]).attr('preserveAspectRatio', 'xMidYMid meet');
+    amsSvg.attr('viewBox', [0, 0, width, height]);
 
     const defs = amsSvg.append('defs');
     const shadow = defs.append('filter').attr('id', 'amsDrop');
@@ -9013,7 +8852,7 @@ async function initAmsMap() {
       });
 
     amsSvg.call(amsZoomBehavior)
-      .call(amsZoomBehavior.transform, d3.zoomIdentity.translate(-68, -78).scale(1.16));
+      .call(amsZoomBehavior.transform, d3.zoomIdentity.translate(-118, -66).scale(1.34));
 
     amsMapInitialized = true;
     applyAmsFilters();
@@ -9040,7 +8879,7 @@ window.amsZoomOut = function() {
 };
 
 window.amsZoomReset = function() {
-  if (amsSvg && amsZoomBehavior) amsSvg.transition().duration(250).call(amsZoomBehavior.transform, d3.zoomIdentity.translate(-68, -78).scale(1.16));
+  if (amsSvg && amsZoomBehavior) amsSvg.transition().duration(250).call(amsZoomBehavior.transform, d3.zoomIdentity.translate(-118, -66).scale(1.34));
 };
 
 function filterAmsLocations() {
@@ -9653,7 +9492,7 @@ function switchTab(tab) {
     }
   });
 
-  if (tab === "ams") { initAmsMap(); setTimeout(() => { if (typeof amsZoomReset === "function") amsZoomReset(); }, 180); }
+  if (tab === "ams") initAmsMap();
 }
 
 /* ── LONG DISTANCE CALCULATOR ── */
@@ -9680,7 +9519,7 @@ function calcUpdate() {
   if (!miles || miles <= 0) {
     $$("calcTravelTime").textContent        = "—";
     $$("calcFuel").textContent              = "—";
-    $$("calcFuelSub").textContent           = "Miles × $0.75 × trucks";
+    $$("calcFuelSub").textContent           = "Miles × $1.25 × trucks";
     $$("calcTravelCharge").textContent      = "—";
     $$("calcTravelChargeSub").textContent   = "Travel hrs × $139 × trucks";
     updateGrandTotal();
@@ -9699,10 +9538,10 @@ function calcUpdate() {
     perdiemUpdate();
   }
 
-  const fuel          = miles * 0.75 * calcTrucks;
+  const fuel          = miles * 1.25 * calcTrucks;
   const travelCharge  = rounded * CALC_RATE * calcTrucks;
   $$("calcFuel").textContent            = fmt$(fuel);
-  $$("calcFuelSub").textContent         = `${miles} mi × $0.75 × ${calcTrucks} truck${calcTrucks !== 1 ? "s" : ""}`;
+  $$("calcFuelSub").textContent         = `${miles} mi × $1.25 × ${calcTrucks} truck${calcTrucks !== 1 ? "s" : ""}`;
   $$("calcTravelCharge").textContent    = fmt$(travelCharge);
   $$("calcTravelChargeSub").textContent = `${rounded}h × $${CALC_RATE} × ${calcTrucks} truck${calcTrucks !== 1 ? "s" : ""}`;
   updateGrandTotal();
@@ -9735,7 +9574,7 @@ function perdiemUpdate() {
 function updateGrandTotal() {
   const miles     = parseFloat($$("calcMiles")?.value) || 0;
   const rawHours  = miles > 0 ? Math.round((miles / 55) * 2) / 2 : 0;
-  const fuel      = miles > 0 ? miles * 0.75 * calcTrucks : 0;
+  const fuel      = miles > 0 ? miles * 1.25 * calcTrucks : 0;
   const travelCharge = rawHours * CALC_RATE * calcTrucks;
 
   const labor   = parseFloat($$("perdiemLabor")?.value);
@@ -12311,5 +12150,171 @@ document.addEventListener("DOMContentLoaded", () => setTimeout(setCalcQuickButto
 <div style="position:fixed;bottom:14px;left:14px;z-index:9999;">
 <button id="brand-toggle-btn" onclick="toggleBrand()" style="background:#333;color:#ccc;border:none;border-radius:6px;padding:5px 10px;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;font-family:inherit;opacity:0.75;transition:all 0.2s;">🔄 AMS</button>
 </div>
+
+<script>
+(function(){
+  const GAS_RATE = 1.25;
+
+  // Always load in day mode / All My Sons by default.
+  try { localStorage.removeItem('estimatorLabNightMode'); } catch(e) {}
+  document.body.classList.remove('night-mode');
+
+  window.toggleNightMode = function(){
+    document.body.classList.toggle('night-mode');
+  };
+
+  function brandIsNCM(){
+    try { return (typeof applyBrand === 'function') && applyBrand('AMS') === 'NCM'; } catch(e) {}
+    return false;
+  }
+
+  function refreshBrandLabels(){
+    const isNCM = brandIsNCM();
+    document.body.classList.toggle('brand-ncm', isNCM);
+    const topBtn = document.getElementById('brand-toggle-top');
+    if(topBtn){
+      topBtn.classList.toggle('ncm-active', isNCM);
+      topBtn.textContent = isNCM ? 'All My Sons' : 'New City Moving';
+    }
+
+    // IMPORTANT: AMS Locations stays AMS no matter what brand mode is selected.
+    const amsTab = document.getElementById('tab-ams');
+    if(amsTab) amsTab.textContent = 'AMS Locations';
+    document.querySelectorAll('[data-ams-lock="true"]').forEach(el => { el.textContent = 'AMS Locations'; });
+  }
+
+  const originalToggleBrand = window.toggleBrand;
+  window.toggleBrand = function(){
+    if(typeof originalToggleBrand === 'function') originalToggleBrand.apply(this, arguments);
+    refreshBrandLabels();
+    try { if(typeof render === 'function') render(); } catch(e) {}
+    try { if(typeof regUpdate === 'function') regUpdate(); } catch(e) {}
+  };
+
+  const originalCalcUpdate = window.calcUpdate;
+  window.calcUpdate = function(){
+    if(typeof originalCalcUpdate === 'function') originalCalcUpdate.apply(this, arguments);
+    const milesEl=document.getElementById('calcMiles'), fuelEl=document.getElementById('calcFuel'), sub=document.getElementById('calcFuelSub');
+    const trucks=(typeof calcTrucks !== 'undefined') ? calcTrucks : 1;
+    const miles=milesEl ? parseFloat(milesEl.value) : NaN;
+    if(!fuelEl || !sub) return;
+    if(!miles || miles<=0){ sub.textContent='Miles × $1.25 × trucks'; return; }
+    const fuel=miles*GAS_RATE*trucks;
+    fuelEl.textContent=(typeof fmt$==='function') ? fmt$(fuel) : ('$' + Math.round(fuel).toLocaleString());
+    sub.textContent = miles + ' mi × $1.25 × ' + trucks + ' truck' + (trucks !== 1 ? 's' : '');
+  };
+
+  const paneMap={home:'home-pane',full:'full-pane',crew:'crew-pane',calc:'calc-pane',od:'od-pane',stor:'stor-pane',reg:'reg-pane',regmkt:'regmkt-pane',ams:'ams-pane',sop:'sop-pane',buildquote:'buildquote-pane',offices:'offices-pane',commission:'commission-pane',gunsafe:'gunsafe-pane',backhaul:'backhaul-pane'};
+  const originalSwitch=window.switchTab;
+  window.switchTab=function(tab){
+    tab=paneMap[tab]?tab:'home';
+    if(typeof originalSwitch==='function'){
+      try{ originalSwitch.apply(this, [tab]); }catch(e){}
+    }
+    Object.entries(paneMap).forEach(([key,id])=>{
+      const pane=document.getElementById(id); if(!pane)return;
+      const active=key===tab;
+      pane.classList.toggle('active',active);
+      pane.style.display=active?'block':'none';
+      pane.style.visibility=active?'visible':'hidden';
+    });
+    document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.remove('active'));
+    const btn=document.getElementById('tab-'+tab); if(btn) btn.classList.add('active');
+    const usesMoveInfo=tab==='full'||tab==='reg';
+    document.body.classList.toggle('show-move-info',usesMoveInfo);
+    document.body.classList.toggle('wide-pane',!usesMoveInfo);
+    document.body.classList.toggle('home-active',tab==='home');
+    document.body.classList.toggle('ams-focus',tab==='ams');
+    if(tab==='ams'){
+      if(typeof initAmsMap==='function') setTimeout(initAmsMap,80);
+      setTimeout(function(){ try { if(typeof amsZoomReset==='function') amsZoomReset(); } catch(e){} }, 140);
+    }
+    window.activeTab=tab;
+    refreshBrandLabels();
+  };
+
+  document.addEventListener('DOMContentLoaded',function(){
+    document.body.classList.remove('night-mode');
+    refreshBrandLabels();
+    document.querySelectorAll('*').forEach(el=>{
+      if(el.childNodes && el.childNodes.length===1 && el.textContent && el.textContent.includes('$0.75')) el.textContent=el.textContent.replaceAll('$0.75','$1.25');
+    });
+    window.switchTab('home');
+  });
+})();
+</script>
+
+
+
+<style id="final-ams-lock-dedupe-patch">
+/* FINAL AMS LOCK PATCH: prevent NCM toggle from duplicating AMS Locations */
+body.brand-ncm #tab-ams,
+#tab-ams{
+  font-size:13px!important;
+}
+body.brand-ncm #tab-ams::before,
+#tab-ams::before,
+body.brand-ncm .home-card[data-tab="ams"] h2::before,
+body.brand-ncm .final-home-more-grid button[data-tab="ams"] strong::before{
+  content:none!important;
+  display:none!important;
+}
+body.brand-ncm .home-card[data-tab="ams"] h2,
+body.brand-ncm .final-home-more-grid button[data-tab="ams"] strong{
+  font-size:inherit!important;
+}
+</style>
+
+<script id="final-safe-brand-toggle-patch">
+(function(){
+  function cleanAmsLocationsText(value){
+    return String(value || '')
+      .replace(/(?:AMS Locations){2,}/g, 'AMS Locations')
+      .replace(/(?:NCM Locations){1,}/g, 'AMS Locations')
+      .replace(/AMS LocationsNCM Locations/g, 'AMS Locations')
+      .replace(/NCM LocationsAMS Locations/g, 'AMS Locations');
+  }
+
+  function lockAmsLocationsLabels(){
+    var amsTab = document.getElementById('tab-ams');
+    if (amsTab) {
+      amsTab.textContent = 'AMS Locations';
+      amsTab.style.fontSize = '13px';
+    }
+
+    document.querySelectorAll('[data-tab="ams"], [data-ams-lock="true"]').forEach(function(el){
+      if (el.tagName === 'BUTTON' && el.id !== 'tab-ams') {
+        var strong = el.querySelector('strong');
+        if (strong) strong.textContent = 'AMS Locations';
+      } else if (el.getAttribute('data-ams-lock') === 'true') {
+        el.textContent = 'AMS Locations';
+      }
+    });
+
+    document.querySelectorAll('button, a, h2, strong, span').forEach(function(el){
+      if (!el || !el.textContent) return;
+      if (/AMS LocationsAMS Locations|NCM Locations|AMS LocationsNCM Locations|NCM LocationsAMS Locations/.test(el.textContent)) {
+        el.textContent = cleanAmsLocationsText(el.textContent);
+      }
+    });
+  }
+
+  var priorToggleBrand = window.toggleBrand;
+  window.toggleBrand = function(){
+    if (typeof priorToggleBrand === 'function') {
+      priorToggleBrand.apply(this, arguments);
+    }
+    lockAmsLocationsLabels();
+    setTimeout(lockAmsLocationsLabels, 0);
+  };
+
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.remove('night-mode');
+    lockAmsLocationsLabels();
+  });
+
+  window.lockAmsLocationsLabels = lockAmsLocationsLabels;
+})();
+</script>
 </body>
 </html>
