@@ -4077,6 +4077,364 @@ body.ams-focus #ams-pane.active{
 }
 
 </style>
+
+
+<style>
+/* ============================================================
+   FINAL REQUEST PATCH — Move Details alignment + More Tools centering
+   - Move Details sidebar lines up with main content cards on Customer/Crew
+     Notes and Regulated Move Notes.
+   - More Tools pages are centered in the page content lane.
+   ============================================================ */
+:root{
+  --move-details-align-extra:86px;
+}
+
+/* Move Details sidebar: lower it so the top aligns with the first main card
+   instead of starting up by the page title/nav area. */
+body.show-move-info #form-panel{
+  top:var(--app-header-height,76px)!important;
+  margin-top:calc(var(--app-tab-gap,16px) + var(--app-nav-height,68px) + var(--app-content-gap,14px) + var(--move-details-align-extra))!important;
+  height:calc(100vh - var(--app-header-height,76px) - var(--app-tab-gap,16px) - var(--app-nav-height,68px) - var(--app-content-gap,14px) - var(--move-details-align-extra) - 18px)!important;
+  max-height:calc(100vh - var(--app-header-height,76px) - var(--app-tab-gap,16px) - var(--app-nav-height,68px) - var(--app-content-gap,14px) - var(--move-details-align-extra) - 18px)!important;
+  align-self:flex-start!important;
+}
+
+/* Regulated Move Notes does not have the same page-title block as Customer + Crew,
+   so give it the matching top breathing room to stay level with the sidebar. */
+body.show-move-info #reg-pane.active{
+  padding-top:calc(10px + var(--move-details-align-extra))!important;
+}
+
+/* Keep Customer + Crew Notes as-is; its page title naturally creates the offset. */
+body.show-move-info #full-pane.active{
+  padding-top:10px!important;
+}
+
+/* MORE TOOLS: center every dropdown tool page in a consistent content lane. */
+#backhaul-pane.active,
+#sop-pane.active,
+#buildquote-pane.active,
+#offices-pane.active,
+#commission-pane.active,
+#gunsafe-pane.active{
+  width:100%!important;
+  max-width:1280px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:28px!important;
+  padding-right:28px!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+}
+
+#backhaul-pane.active > *,
+#sop-pane.active > *,
+#buildquote-pane.active > *,
+#offices-pane.active > *,
+#commission-pane.active > *,
+#gunsafe-pane.active > *{
+  width:100%!important;
+  max-width:1080px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* Override inline wrappers inside More Tools pages so they do not sit left. */
+#backhaul-pane.active div[style*="max-width"],
+#sop-pane.active div[style*="max-width"],
+#buildquote-pane.active div[style*="max-width"],
+#offices-pane.active div[style*="max-width"],
+#commission-pane.active div[style*="max-width"],
+#gunsafe-pane.active div[style*="max-width"]{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+/* Cards, tables, and sections fill the centered lane cleanly. */
+#backhaul-pane.active .lab-card,
+#sop-pane.active .lab-card,
+#buildquote-pane.active .lab-card,
+#offices-pane.active .lab-card,
+#commission-pane.active .lab-card,
+#gunsafe-pane.active .lab-card,
+#backhaul-pane.active .card,
+#sop-pane.active .card,
+#buildquote-pane.active .card,
+#offices-pane.active .card,
+#commission-pane.active .card,
+#gunsafe-pane.active .card,
+#backhaul-pane.active section,
+#sop-pane.active section,
+#buildquote-pane.active section,
+#offices-pane.active section,
+#commission-pane.active section,
+#gunsafe-pane.active section{
+  width:100%!important;
+  max-width:1080px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* Center internal flex/grid rows that were previously hugging the left edge. */
+#backhaul-pane.active [style*="display:flex"],
+#sop-pane.active [style*="display:flex"],
+#buildquote-pane.active [style*="display:flex"],
+#offices-pane.active [style*="display:flex"],
+#commission-pane.active [style*="display:flex"],
+#gunsafe-pane.active [style*="display:flex"]{
+  justify-content:center!important;
+}
+
+#offices-pane.active #storageOfficeGrid,
+#offices-pane.active .office-grid,
+#offices-pane.active .storage-grid,
+#offices-pane.active .button-grid{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  justify-content:center!important;
+}
+
+/* Commission can use a wider lane for tables while staying centered. */
+#commission-pane.active{
+  max-width:1400px!important;
+}
+#commission-pane.active > *,
+#commission-pane.active .lab-card,
+#commission-pane.active .card,
+#commission-pane.active table,
+#commission-pane.active .table-wrap,
+#commission-pane.active .grid{
+  max-width:1240px!important;
+  width:100%!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+@media(max-width:1180px){
+  :root{--move-details-align-extra:0px;}
+  body.show-move-info #reg-pane.active{padding-top:10px!important;}
+  #backhaul-pane.active,
+  #sop-pane.active,
+  #buildquote-pane.active,
+  #offices-pane.active,
+  #commission-pane.active,
+  #gunsafe-pane.active{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+}
+</style>
+
+
+
+<style>
+/* ============================================================
+   READY-UPLOAD FINAL PATCH — Sticky Move Details + centered tools
+   - Move Details stays visible while the notes page scrolls.
+   - Top of Move Details aligns with Move Information on Customer Notes
+     and Regulated Move Notes.
+   - More Tools pages are centered on the page.
+   ============================================================ */
+:root{
+  --notes-sidebar-top: calc(var(--app-header-height, 76px) + var(--app-tab-gap, 16px) + var(--app-nav-height, 68px) + 32px);
+  --notes-sidebar-gap: 18px;
+}
+
+/* Make the app use normal page scrolling, so sticky can work correctly. */
+html,
+body{
+  min-height:100%!important;
+  height:auto!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+
+#body{
+  min-height:100vh!important;
+  height:auto!important;
+  overflow:visible!important;
+  padding-top:var(--app-header-height, 76px)!important;
+  box-sizing:border-box!important;
+}
+
+#right-panel{
+  height:auto!important;
+  max-height:none!important;
+  min-height:calc(100vh - var(--app-header-height, 76px))!important;
+  overflow:visible!important;
+  padding-top:calc(var(--app-tab-gap, 16px) + var(--app-nav-height, 68px) + 14px)!important;
+  padding-bottom:120px!important;
+  box-sizing:border-box!important;
+}
+
+/* Sticky Move Details sidebar: visible while scrolling, but not aggressively fixed. */
+body.show-move-info #form-panel{
+  display:block!important;
+  position:sticky!important;
+  top:var(--notes-sidebar-top)!important;
+  align-self:flex-start!important;
+  margin-top:calc(var(--app-tab-gap, 16px) + var(--app-nav-height, 68px) + 28px)!important;
+  margin-left:18px!important;
+  margin-bottom:24px!important;
+  height:auto!important;
+  max-height:calc(100vh - var(--notes-sidebar-top) - var(--notes-sidebar-gap))!important;
+  overflow:auto!important;
+  border-radius:22px!important;
+  box-shadow:0 14px 32px rgba(16,25,19,.055)!important;
+  z-index:25!important;
+}
+
+/* Keep notes content cleared from the sidebar and level with it. */
+body.show-move-info #right-panel{
+  padding-left:24px!important;
+  padding-right:24px!important;
+  padding-top:calc(var(--app-tab-gap, 16px) + var(--app-nav-height, 68px) + 28px)!important;
+}
+
+body.show-move-info #full-pane.active,
+body.show-move-info #reg-pane.active{
+  padding-top:0!important;
+}
+
+/* Inactive panes never leak onto another page. */
+.pane:not(.active){
+  display:none!important;
+  visibility:hidden!important;
+}
+.pane.active{
+  display:block!important;
+  visibility:visible!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+
+/* Center More Tools pages inside a consistent content lane. */
+#backhaul-pane.active,
+#sop-pane.active,
+#buildquote-pane.active,
+#offices-pane.active,
+#commission-pane.active,
+#gunsafe-pane.active{
+  width:100%!important;
+  max-width:1280px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:28px!important;
+  padding-right:28px!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+}
+
+#backhaul-pane.active > *,
+#sop-pane.active > *,
+#buildquote-pane.active > *,
+#offices-pane.active > *,
+#commission-pane.active > *,
+#gunsafe-pane.active > *,
+#backhaul-pane.active .lab-card,
+#sop-pane.active .lab-card,
+#buildquote-pane.active .lab-card,
+#offices-pane.active .lab-card,
+#commission-pane.active .lab-card,
+#gunsafe-pane.active .lab-card,
+#backhaul-pane.active .card,
+#sop-pane.active .card,
+#buildquote-pane.active .card,
+#offices-pane.active .card,
+#commission-pane.active .card,
+#gunsafe-pane.active .card,
+#backhaul-pane.active section,
+#sop-pane.active section,
+#buildquote-pane.active section,
+#offices-pane.active section,
+#commission-pane.active section,
+#gunsafe-pane.active section{
+  width:100%!important;
+  max-width:1080px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+#commission-pane.active{
+  max-width:1400px!important;
+}
+#commission-pane.active > *,
+#commission-pane.active .lab-card,
+#commission-pane.active .card,
+#commission-pane.active table,
+#commission-pane.active .table-wrap,
+#commission-pane.active .grid{
+  max-width:1240px!important;
+  width:100%!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+@media(max-width:1180px){
+  body.show-move-info #form-panel{
+    display:none!important;
+  }
+  body.show-move-info #right-panel{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+  #backhaul-pane.active,
+  #sop-pane.active,
+  #buildquote-pane.active,
+  #offices-pane.active,
+  #commission-pane.active,
+  #gunsafe-pane.active{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+}
+</style>
+
+<script>
+/* Final pane-state correction: Move Details should show on Customer Notes and Regulated Move Notes. */
+(function(){
+  const tabsWithMoveDetails = new Set(['full','reg']);
+  function normalizeMoveDetailsState(tab){
+    const normalized = String(tab || '').toLowerCase();
+    document.body.classList.toggle('show-move-info', tabsWithMoveDetails.has(normalized));
+    document.body.classList.toggle('wide-pane', !tabsWithMoveDetails.has(normalized));
+  }
+
+  const previousSwitchTab = window.switchTab;
+  window.switchTab = function(tab){
+    let result;
+    if(typeof previousSwitchTab === 'function'){
+      result = previousSwitchTab.apply(this, arguments);
+    }
+    normalizeMoveDetailsState(tab);
+    return result;
+  };
+
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.tab-btn');
+    if(!btn || !btn.id) return;
+    const id = btn.id.replace(/^tab-/, '');
+    setTimeout(function(){ normalizeMoveDetailsState(id); }, 0);
+  });
+
+  document.addEventListener('DOMContentLoaded', function(){
+    const activePane = document.querySelector('.pane.active');
+    if(activePane && activePane.id){
+      normalizeMoveDetailsState(activePane.id.replace(/-pane$/, ''));
+    }
+  });
+})();
+</script>
+
 </head>
 <body>
 <header class="final-app-header">
