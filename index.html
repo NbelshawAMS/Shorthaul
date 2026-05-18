@@ -2005,6 +2005,1967 @@ body.wide-pane #toolbar{
   }
 }
 
+
+/* ============================================================
+   CALCULATOR PAGE LAYOUT UPDATE
+   Three top buttons + centered calculator workspace.
+   ============================================================ */
+#calculator-pane,
+#calculators-pane{
+  max-width:1180px!important;
+  margin:0 auto!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+
+#calculator-pane > *,
+#calculators-pane > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#calculator-pane .tool-card,
+#calculator-pane .calc-card,
+#calculator-pane .section,
+#calculator-pane .calculator-card,
+#calculator-pane [class*="calculator"],
+#calculators-pane .tool-card,
+#calculators-pane .calc-card,
+#calculators-pane .section,
+#calculators-pane .calculator-card,
+#calculators-pane [class*="calculator"]{
+  max-width:1050px;
+}
+
+.calculator-quick-jump{
+  width:100%;
+  max-width:720px;
+  margin:0 auto 22px!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:10px;
+  background:#fff;
+  border:1px solid #dfe9e1;
+  border-radius:999px;
+  box-shadow:0 12px 28px rgba(16,25,19,.055);
+}
+.calculator-quick-jump button{
+  appearance:none;
+  border:1px solid #d5e4d8;
+  background:#f8fbf8;
+  color:#0b5a2a;
+  border-radius:999px;
+  min-height:40px;
+  padding:10px 18px;
+  cursor:pointer;
+  font-size:13px;
+  font-weight:850;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  transition:background .14s ease, border-color .14s ease, transform .14s ease, box-shadow .14s ease;
+}
+.calculator-quick-jump button:hover{
+  background:#fff;
+  border-color:#9cc8a7;
+  transform:translateY(-1px);
+  box-shadow:0 10px 22px rgba(16,25,19,.08);
+}
+.calculator-quick-jump button.primary{
+  background:#0b5a2a;
+  border-color:#0b5a2a;
+  color:#fff;
+}
+.calculator-jump-highlight{
+  outline:3px solid rgba(11,90,42,.18)!important;
+  box-shadow:0 0 0 6px rgba(11,90,42,.08)!important;
+  transition:outline .2s ease, box-shadow .2s ease!important;
+}
+#calculator-pane > h1,
+#calculator-pane > h2,
+#calculator-pane > p,
+#calculators-pane > h1,
+#calculators-pane > h2,
+#calculators-pane > p{
+  max-width:1050px!important;
+}
+#calculator-pane > div,
+#calculators-pane > div{
+  max-width:1050px;
+}
+@media(max-width:760px){
+  .calculator-quick-jump{
+    border-radius:22px;
+    flex-direction:column;
+    align-items:stretch;
+    max-width:420px;
+  }
+  .calculator-quick-jump button{
+    width:100%;
+  }
+}
+
+
+/* ============================================================
+   FINAL CENTERING + QUICK JUMP UI
+   Hard override for calculator/regulated page layout.
+   ============================================================ */
+#calculator-pane,
+#calculators-pane,
+#regulated-pane,
+#markets-pane,
+#regulated-markets-pane{
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* Make calculator page content centered instead of left pinned */
+#calculator-pane > *,
+#calculators-pane > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#calculator-pane > div:not(.calculator-quick-jump),
+#calculators-pane > div:not(.calculator-quick-jump){
+  max-width:1050px!important;
+}
+
+/* If any calculator card has inline widths, bring it into the centered lane */
+#calculator-pane [style*="max-width"],
+#calculators-pane [style*="max-width"]{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#calculator-pane .calculator-quick-jump,
+#calculators-pane .calculator-quick-jump,
+.app-section-jump{
+  width:fit-content!important;
+  max-width:100%!important;
+  margin:0 auto 24px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  padding:10px!important;
+  background:#fff!important;
+  border:1px solid #dfe9e1!important;
+  border-radius:999px!important;
+  box-shadow:0 12px 28px rgba(16,25,19,.055)!important;
+  position:relative!important;
+  z-index:5!important;
+}
+
+.app-section-jump button{
+  appearance:none!important;
+  border:1px solid #d5e4d8!important;
+  background:#f8fbf8!important;
+  color:#0b5a2a!important;
+  border-radius:999px!important;
+  min-height:40px!important;
+  padding:10px 18px!important;
+  cursor:pointer!important;
+  font-size:13px!important;
+  font-weight:850!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+  white-space:nowrap!important;
+  transition:background .14s ease, border-color .14s ease, transform .14s ease, box-shadow .14s ease!important;
+}
+
+.app-section-jump button:hover{
+  background:#fff!important;
+  border-color:#9cc8a7!important;
+  transform:translateY(-1px)!important;
+  box-shadow:0 10px 22px rgba(16,25,19,.08)!important;
+}
+
+.app-section-jump button.primary{
+  background:#0b5a2a!important;
+  border-color:#0b5a2a!important;
+  color:#fff!important;
+}
+
+.app-jump-highlight,
+.calculator-jump-highlight{
+  outline:3px solid rgba(11,90,42,.18)!important;
+  box-shadow:0 0 0 6px rgba(11,90,42,.08)!important;
+  transition:outline .2s ease, box-shadow .2s ease!important;
+}
+
+/* Center page headings in the content lane while keeping text readable */
+#calculator-pane > h1,
+#calculator-pane > h2,
+#calculator-pane > p,
+#calculators-pane > h1,
+#calculators-pane > h2,
+#calculators-pane > p{
+  max-width:1050px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+/* Keep the right panel from forcing content left */
+body:not(.show-move-info) #right-panel{
+  padding-left:24px!important;
+  padding-right:24px!important;
+}
+
+/* Notes page still has move panel spacing when needed */
+body.show-move-info #right-panel{
+  padding-right:24px!important;
+}
+
+/* Mobile */
+@media(max-width:760px){
+  .app-section-jump{
+    border-radius:22px!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    width:100%!important;
+    max-width:420px!important;
+  }
+  .app-section-jump button{
+    width:100%!important;
+  }
+}
+
+
+/* ============================================================
+   ACTUAL PANE CENTERING + BUTTONS
+   Correct IDs: calc-pane, od-pane, stor-pane, regmkt-pane.
+   ============================================================ */
+#calc-pane,
+#od-pane,
+#stor-pane,
+#reg-pane,
+#regmkt-pane,
+#ams-pane{
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+#calc-pane > *,
+#od-pane > *,
+#stor-pane > *,
+#reg-pane > *,
+#regmkt-pane > *,
+#ams-pane > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#calc-pane > div:not(.app-section-jump),
+#od-pane > div:not(.app-section-jump),
+#stor-pane > div:not(.app-section-jump),
+#reg-pane > div:not(.app-section-jump),
+#regmkt-pane > div:not(.app-section-jump),
+#ams-pane > div:not(.app-section-jump){
+  max-width:1050px!important;
+}
+
+.app-section-jump{
+  width:fit-content!important;
+  max-width:100%!important;
+  margin:0 auto 24px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  padding:10px!important;
+  background:#fff!important;
+  border:1px solid #dfe9e1!important;
+  border-radius:999px!important;
+  box-shadow:0 12px 28px rgba(16,25,19,.055)!important;
+  position:relative!important;
+  z-index:25!important;
+}
+
+.app-section-jump button{
+  appearance:none!important;
+  border:1px solid #d5e4d8!important;
+  background:#f8fbf8!important;
+  color:#0b5a2a!important;
+  border-radius:999px!important;
+  min-height:40px!important;
+  padding:10px 18px!important;
+  cursor:pointer!important;
+  font-size:13px!important;
+  font-weight:850!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+  white-space:nowrap!important;
+}
+
+.app-section-jump button:hover{
+  background:#fff!important;
+  border-color:#9cc8a7!important;
+  transform:translateY(-1px)!important;
+  box-shadow:0 10px 22px rgba(16,25,19,.08)!important;
+}
+
+.app-section-jump button.primary{
+  background:#0b5a2a!important;
+  border-color:#0b5a2a!important;
+  color:#fff!important;
+}
+
+.app-jump-highlight{
+  outline:3px solid rgba(11,90,42,.18)!important;
+  box-shadow:0 0 0 6px rgba(11,90,42,.08)!important;
+}
+
+body:not(.show-move-info) #right-panel{
+  padding-left:24px!important;
+  padding-right:24px!important;
+}
+
+@media(max-width:760px){
+  .app-section-jump{
+    width:100%!important;
+    max-width:420px!important;
+    border-radius:22px!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+  }
+  .app-section-jump button{
+    width:100%!important;
+  }
+}
+
+
+/* ============================================================
+   FINAL REGULATED CLEANUP — NO REVERT
+   Keeps last stable app build; removes weird stacked rows only.
+   ============================================================ */
+
+/* Hide any leftover wrong calculator row only if it appears in Regulated */
+#reg-pane .calculator-quick-jump,
+#reg-pane .regulated-quick-jump,
+#reg-pane .regulated-top-strip,
+#reg-pane .reg-page-actions,
+#regmkt-pane .markets-quick-jump,
+#regmkt-pane .regmkt-page-actions{
+  display:none!important;
+}
+
+/* Clean, light inline actions under page headings */
+#reg-pane .reg-clean-actions,
+#regmkt-pane .regmkt-clean-actions{
+  width:100%;
+  max-width:1050px;
+  margin:10px auto 22px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:10px!important;
+  flex-wrap:wrap!important;
+  padding:0!important;
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+}
+
+#reg-pane .reg-clean-actions button,
+#regmkt-pane .regmkt-clean-actions button{
+  appearance:none!important;
+  border:1px solid #d5e4d8!important;
+  background:#f8fbf8!important;
+  color:#0b5a2a!important;
+  border-radius:999px!important;
+  min-height:36px!important;
+  padding:8px 15px!important;
+  cursor:pointer!important;
+  font-size:13px!important;
+  font-weight:850!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+  white-space:nowrap!important;
+}
+
+#reg-pane .reg-clean-actions button:hover,
+#regmkt-pane .regmkt-clean-actions button:hover{
+  background:#fff!important;
+  border-color:#9cc8a7!important;
+  box-shadow:0 8px 18px rgba(16,25,19,.07)!important;
+}
+
+/* Keep Regulated pages aligned with the content lane */
+#reg-pane,
+#regmkt-pane{
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+#reg-pane > h1,
+#reg-pane > h2,
+#reg-pane > p,
+#regmkt-pane > h1,
+#regmkt-pane > h2,
+#regmkt-pane > p{
+  max-width:1050px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+/* Do not allow home hero/card to appear on non-home panes */
+body:not(.home-active) #home-pane{
+  display:none;
+}
+
+
+
+
+
+/* ============================================================
+   REGULATED MOVE NOTES PAGE — CLEAN SCREENSHOT UI
+   Built from uploaded base. Only #reg-pane is restyled.
+   ============================================================ */
+
+#tab-reg{
+  min-width:190px!important;
+}
+
+#reg-pane{
+  width:100%!important;
+  max-width:1260px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-top:24px!important;
+}
+
+/* Hide any old Regulated hero/actions that may remain from base CSS/markup */
+#reg-pane .reg-header-row,
+#reg-pane .reg-hero-grid,
+#reg-pane .reg-clean-actions,
+#reg-pane .regulated-quick-jump,
+#reg-pane .regulated-top-strip,
+#reg-pane .calculator-quick-jump,
+#reg-pane > h1,
+#reg-pane > h2,
+#reg-pane > p{
+  display:none!important;
+}
+
+#reg-pane .reg-notes-ui{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto 18px!important;
+}
+
+#reg-pane .reg-notes-top-cards{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:18px!important;
+  margin:0 0 16px!important;
+}
+
+#reg-pane .reg-notes-action-card{
+  background:#fff!important;
+  border:1px solid #dfe9e1!important;
+  border-radius:22px!important;
+  box-shadow:0 14px 32px rgba(16,25,19,.055)!important;
+  min-height:124px!important;
+  padding:22px 26px!important;
+  box-sizing:border-box!important;
+}
+
+#reg-pane .reg-notes-action-card h3{
+  margin:0 0 22px!important;
+  color:#111!important;
+  font-size:21px!important;
+  font-weight:900!important;
+  line-height:1.1!important;
+  letter-spacing:-.035em!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+}
+
+#reg-pane .reg-notes-action-line{
+  display:flex!important;
+  align-items:center!important;
+  gap:22px!important;
+  flex-wrap:wrap!important;
+}
+
+#reg-pane .reg-notes-open-btn{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:42px!important;
+  padding:10px 18px!important;
+  border-radius:999px!important;
+  background:#0b7a38!important;
+  color:#fff!important;
+  border:none!important;
+  text-decoration:none!important;
+  font-size:13px!important;
+  font-weight:850!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+  cursor:pointer!important;
+  box-shadow:none!important;
+}
+
+#reg-pane .reg-notes-open-btn:hover{
+  background:#096b31!important;
+}
+
+#reg-pane .reg-password{
+  display:inline-flex!important;
+  align-items:center!important;
+  font-size:13px!important;
+  font-weight:800!important;
+  color:#111!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+}
+
+#reg-pane .reg-password strong{
+  color:#0b7a38!important;
+  margin-left:4px!important;
+}
+
+#reg-pane .reg-notes-title-card{
+  background:#fff!important;
+  border:1px solid #dfe9e1!important;
+  border-radius:22px!important;
+  box-shadow:0 14px 32px rgba(16,25,19,.045)!important;
+  padding:28px 30px!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+  margin:0 0 18px!important;
+}
+
+#reg-pane .reg-notes-title-card h1{
+  display:block!important;
+  margin:0 0 12px!important;
+  color:#111!important;
+  font-size:28px!important;
+  font-weight:900!important;
+  line-height:1.1!important;
+  letter-spacing:-.04em!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+}
+
+#reg-pane .reg-notes-title-card p{
+  display:block!important;
+  margin:0!important;
+  color:#3f4b43!important;
+  font-size:17px!important;
+  line-height:1.4!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+}
+
+/* Do not alter generated notes font */
+#reg-pane .preview-content,
+#reg-pane .note,
+#reg-pane pre{
+  font-family:Georgia,'Times New Roman',serif;
+}
+
+@media(max-width:900px){
+  #reg-pane .reg-notes-top-cards{
+    grid-template-columns:1fr!important;
+  }
+}
+
+@media(max-width:640px){
+  #tab-reg{
+    min-width:0!important;
+  }
+  #reg-pane .reg-notes-action-card,
+  #reg-pane .reg-notes-title-card{
+    padding:20px!important;
+  }
+}
+
+
+/* ============================================================
+   FINAL PATCH — REMOVE DUPLICATE REGULATED BLOCK + LOWER TAB BAR
+   ============================================================ */
+
+/* Hard-hide duplicate old calculator/instructions if any inline copy remains */
+#reg-pane section.regulated-card a[href="https://amsmovingandstorage.web.app/"],
+#reg-pane section.regulated-card a[href="https://amsmovingandstorage.web.app/"] + span,
+#reg-pane section.regulated-card div[style*="background:#fffde7"][style*="border:1.5px solid #f9a825"]{
+  display:none!important;
+}
+
+/* Lower nav so the tab bar feels like part of the app content */
+:root{
+  --app-header-height:76px!important;
+  --app-nav-height:68px!important;
+  --app-tab-gap:16px!important;
+}
+
+.final-app-header{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  height:var(--app-header-height)!important;
+  min-height:var(--app-header-height)!important;
+  z-index:1200!important;
+}
+
+#body{
+  height:100vh!important;
+  padding-top:var(--app-header-height)!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  background:#f7f9f7!important;
+}
+
+#toolbar{
+  position:fixed!important;
+  top:calc(var(--app-header-height) + var(--app-tab-gap))!important;
+  left:0!important;
+  right:0!important;
+  width:100vw!important;
+  height:var(--app-nav-height)!important;
+  min-height:var(--app-nav-height)!important;
+  box-sizing:border-box!important;
+  z-index:1100!important;
+  background:#f7f9f7!important;
+  border-bottom:none!important;
+  box-shadow:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  padding:12px 24px!important;
+  overflow:visible!important;
+}
+
+#toolbar .tab-btn.primary-tab{
+  background:#fff!important;
+  border:1px solid #dfe9e1!important;
+  box-shadow:0 10px 22px rgba(16,25,19,.04)!important;
+}
+
+#toolbar .tab-btn.primary-tab.active{
+  background:#0b7a38!important;
+  color:#fff!important;
+  border-color:#0b7a38!important;
+  box-shadow:0 12px 26px rgba(11,122,56,.18)!important;
+}
+
+.more-tools-menu > summary{
+  background:#fff!important;
+  box-shadow:0 10px 22px rgba(16,25,19,.04)!important;
+}
+
+#right-panel{
+  padding-top:calc(var(--app-header-height) + var(--app-tab-gap) + var(--app-nav-height) + 18px)!important;
+  height:100vh!important;
+  overflow:auto!important;
+  box-sizing:border-box!important;
+}
+
+#form-panel{
+  margin-top:calc(var(--app-header-height) + var(--app-tab-gap) + var(--app-nav-height) + 18px)!important;
+  height:calc(100vh - var(--app-header-height) - var(--app-tab-gap) - var(--app-nav-height) - 36px)!important;
+  max-height:calc(100vh - var(--app-header-height) - var(--app-tab-gap) - var(--app-nav-height) - 36px)!important;
+  overflow:auto!important;
+  box-sizing:border-box!important;
+}
+
+body.show-move-info #toolbar,
+body.wide-pane #toolbar{
+  position:fixed!important;
+  top:calc(var(--app-header-height) + var(--app-tab-gap))!important;
+  left:0!important;
+  right:0!important;
+  width:100vw!important;
+}
+
+body.show-move-info #right-panel{
+  padding-left:310px!important;
+  padding-top:calc(var(--app-header-height) + var(--app-tab-gap) + var(--app-nav-height) + 18px)!important;
+}
+
+body.show-move-info #form-panel{
+  position:fixed!important;
+  left:18px!important;
+  top:0!important;
+  margin-left:0!important;
+  z-index:1000!important;
+}
+
+#reg-pane,
+#home-pane,
+#calc-pane,
+#od-pane,
+#stor-pane,
+#regmkt-pane,
+#ams-pane{
+  padding-top:12px!important;
+}
+
+@media(max-width:1180px){
+  #toolbar{
+    justify-content:flex-start!important;
+    overflow-x:auto!important;
+    overflow-y:visible!important;
+  }
+  body.show-move-info #right-panel{
+    padding-left:0!important;
+  }
+  body.show-move-info #form-panel{
+    display:none!important;
+  }
+}
+
+
+/* ============================================================
+   FINAL SPACING FIX — NOTES SIDEBAR + REMOVE TOP BLANK SPACE
+   Header is already accounted for by #body padding, so content only
+   needs to clear the lowered tab bar, not the header twice.
+   ============================================================ */
+:root{
+  --app-header-height:76px!important;
+  --app-nav-height:68px!important;
+  --app-tab-gap:16px!important;
+  --app-content-gap:14px!important;
+}
+
+/* Fixed header remains at top */
+.final-app-header{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  height:var(--app-header-height)!important;
+  min-height:var(--app-header-height)!important;
+  z-index:1200!important;
+}
+
+/* Body starts below the fixed header once */
+#body{
+  height:100vh!important;
+  padding-top:var(--app-header-height)!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+
+/* Nav sits slightly below the header */
+#toolbar{
+  position:fixed!important;
+  top:calc(var(--app-header-height) + var(--app-tab-gap))!important;
+  left:0!important;
+  right:0!important;
+  width:100vw!important;
+  height:var(--app-nav-height)!important;
+  min-height:var(--app-nav-height)!important;
+  z-index:1100!important;
+  background:#f7f9f7!important;
+  border-bottom:none!important;
+  box-shadow:none!important;
+}
+
+/* Main content clears ONLY the tab bar inside the already header-offset body */
+#right-panel{
+  padding-top:calc(var(--app-tab-gap) + var(--app-nav-height) + var(--app-content-gap))!important;
+  height:calc(100vh - var(--app-header-height))!important;
+  overflow:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* Left move sidebar now starts under the tab bar instead of at the very top */
+#form-panel{
+  margin-top:calc(var(--app-tab-gap) + var(--app-nav-height) + var(--app-content-gap))!important;
+  height:calc(100vh - var(--app-header-height) - var(--app-tab-gap) - var(--app-nav-height) - (var(--app-content-gap) * 2))!important;
+  max-height:calc(100vh - var(--app-header-height) - var(--app-tab-gap) - var(--app-nav-height) - (var(--app-content-gap) * 2))!important;
+  overflow:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* Move-info pages: sidebar stays fixed but starts lower; content clears sidebar */
+body.show-move-info #form-panel{
+  position:fixed!important;
+  left:18px!important;
+  top:var(--app-header-height)!important;
+  margin-left:0!important;
+  margin-top:calc(var(--app-tab-gap) + var(--app-nav-height) + var(--app-content-gap))!important;
+  z-index:1000!important;
+}
+
+body.show-move-info #right-panel{
+  padding-left:310px!important;
+  padding-top:calc(var(--app-tab-gap) + var(--app-nav-height) + var(--app-content-gap))!important;
+  height:calc(100vh - var(--app-header-height))!important;
+}
+
+body.show-move-info #toolbar,
+body.wide-pane #toolbar{
+  top:calc(var(--app-header-height) + var(--app-tab-gap))!important;
+}
+
+/* Reduce first-pane dead space now that the panel padding is corrected */
+#full-pane,
+#crew-pane,
+#reg-pane,
+#home-pane,
+#calc-pane,
+#od-pane,
+#stor-pane,
+#regmkt-pane,
+#ams-pane{
+  padding-top:10px!important;
+}
+
+/* Keep nav looking attached to the page */
+#toolbar .tab-btn.primary-tab{
+  background:#fff!important;
+  border:1px solid #dfe9e1!important;
+  box-shadow:0 10px 22px rgba(16,25,19,.04)!important;
+}
+
+#toolbar .tab-btn.primary-tab.active{
+  background:#0b7a38!important;
+  color:#fff!important;
+  border-color:#0b7a38!important;
+  box-shadow:0 12px 26px rgba(11,122,56,.18)!important;
+}
+
+.more-tools-menu > summary{
+  background:#fff!important;
+  box-shadow:0 10px 22px rgba(16,25,19,.04)!important;
+}
+
+@media(max-width:1180px){
+  body.show-move-info #right-panel{
+    padding-left:0!important;
+  }
+  body.show-move-info #form-panel{
+    display:none!important;
+  }
+  #toolbar{
+    justify-content:flex-start!important;
+    overflow-x:auto!important;
+  }
+}
+
+
+/* ============================================================
+   FINAL PAGE LAYOUT PATCH
+   - AMS map full-size while keeping branch info
+   - Remove AMS mini buttons: Map / Directory / Office Lookup
+   - Center More Tools pages like Regulated Move Notes
+   ============================================================ */
+
+/* Remove AMS mini quick buttons only */
+#ams-pane .ams-quick-jump,
+#ams-pane .app-section-jump,
+#ams-pane .markets-quick-jump,
+#ams-pane .calculator-quick-jump{
+  display:none!important;
+}
+
+/* AMS Locations: full-width page with large map + branch info retained */
+#ams-pane{
+  width:100%!important;
+  max-width:1500px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+#ams-pane > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+/* Make AMS main content use the screen instead of card-width shrinking */
+#ams-pane .lab-card,
+#ams-pane .ams-map-card,
+#ams-pane .map-card,
+#ams-pane .location-card,
+#ams-pane .ams-card{
+  max-width:1500px!important;
+  width:100%!important;
+}
+
+/* Large map targets */
+#ams-pane svg,
+#ams-pane .map,
+#ams-pane .map-wrap,
+#ams-pane .map-container,
+#ams-pane #ams-map,
+#ams-pane #map,
+#ams-pane iframe{
+  width:100%!important;
+  max-width:100%!important;
+}
+
+/* Keep the map big but leave room for branch count/info */
+#ams-pane svg,
+#ams-pane .map,
+#ams-pane .map-wrap,
+#ams-pane .map-container,
+#ams-pane #ams-map,
+#ams-pane #map{
+  min-height:560px!important;
+  height:min(72vh,760px)!important;
+}
+
+/* If the AMS page uses a grid with branch count, keep it but favor map width */
+#ams-pane .ams-grid,
+#ams-pane .locations-grid,
+#ams-pane .map-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.65fr) minmax(320px,.65fr)!important;
+  gap:18px!important;
+  width:100%!important;
+  max-width:1500px!important;
+}
+
+/* Branch count/info stays visible and clean */
+#ams-pane [class*="branch"],
+#ams-pane [class*="count"],
+#ams-pane [class*="directory"]{
+  box-sizing:border-box!important;
+}
+
+/* Center and widen More Tools pages to match Regulated Move Notes style */
+#sop-pane,
+#buildquote-pane,
+#offices-pane,
+#commission-pane,
+#gunsafe-pane,
+#backhaul-pane{
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+  padding-top:12px!important;
+}
+
+#sop-pane > *,
+#buildquote-pane > *,
+#offices-pane > *,
+#commission-pane > *,
+#gunsafe-pane > *,
+#backhaul-pane > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+/* Fill the screen better with card width, but keep centered */
+#sop-pane .lab-card,
+#buildquote-pane .lab-card,
+#offices-pane .lab-card,
+#commission-pane .lab-card,
+#gunsafe-pane .lab-card,
+#backhaul-pane .lab-card,
+#sop-pane .card,
+#buildquote-pane .card,
+#offices-pane .card,
+#commission-pane .card,
+#gunsafe-pane .card,
+#backhaul-pane .card{
+  width:100%!important;
+  max-width:1050px!important;
+  box-sizing:border-box!important;
+}
+
+/* Commission should use more width if it has tables/grids */
+#commission-pane{
+  max-width:1320px!important;
+}
+
+#commission-pane .lab-card,
+#commission-pane .card,
+#commission-pane table,
+#commission-pane .table-wrap,
+#commission-pane .grid{
+  max-width:1220px!important;
+  width:100%!important;
+}
+
+/* GunSafe DB centered */
+#gunsafe-pane{
+  display:block!important;
+  text-align:left!important;
+}
+
+#gunsafe-pane .lab-card,
+#gunsafe-pane .card{
+  max-width:1050px!important;
+}
+
+/* Storage Offices centered and wider */
+#offices-pane .lab-card,
+#offices-pane .card{
+  max-width:1050px!important;
+}
+
+/* FAQ/SOP + Build Quote centered and readable */
+#sop-pane .lab-card,
+#buildquote-pane .lab-card{
+  max-width:1050px!important;
+}
+
+/* Responsive AMS map/info */
+@media(max-width:1050px){
+  #ams-pane .ams-grid,
+  #ams-pane .locations-grid,
+  #ams-pane .map-grid{
+    grid-template-columns:1fr!important;
+  }
+
+  #ams-pane svg,
+  #ams-pane .map,
+  #ams-pane .map-wrap,
+  #ams-pane .map-container,
+  #ams-pane #ams-map,
+  #ams-pane #map{
+    min-height:460px!important;
+    height:60vh!important;
+  }
+}
+
+
+/* ============================================================
+   FINAL FIX — RESTORE PANE VISIBILITY
+   Prevents GunSafe / tools from showing on Home.
+   Layout rules now only affect active panes.
+   ============================================================ */
+
+/* The most important rule: inactive panes are hidden no matter what */
+.pane:not(.active){
+  display:none!important;
+  visibility:hidden!important;
+}
+
+/* Active pane displays normally */
+.pane.active{
+  display:block!important;
+  visibility:visible!important;
+}
+
+/* Remove AMS mini buttons only when AMS pane is active */
+#ams-pane.active .ams-quick-jump,
+#ams-pane.active .app-section-jump,
+#ams-pane.active .markets-quick-jump,
+#ams-pane.active .calculator-quick-jump{
+  display:none!important;
+}
+
+/* AMS Locations active page: keep branch info, make map area large */
+#ams-pane.active{
+  width:100%!important;
+  max-width:1500px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+#ams-pane.active > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#ams-pane.active .lab-card,
+#ams-pane.active .ams-map-card,
+#ams-pane.active .map-card,
+#ams-pane.active .location-card,
+#ams-pane.active .ams-card{
+  max-width:1500px!important;
+  width:100%!important;
+}
+
+/* Large map targets only when AMS pane is active */
+#ams-pane.active svg,
+#ams-pane.active .map,
+#ams-pane.active .map-wrap,
+#ams-pane.active .map-container,
+#ams-pane.active #ams-map,
+#ams-pane.active #map,
+#ams-pane.active iframe{
+  width:100%!important;
+  max-width:100%!important;
+}
+
+#ams-pane.active svg,
+#ams-pane.active .map,
+#ams-pane.active .map-wrap,
+#ams-pane.active .map-container,
+#ams-pane.active #ams-map,
+#ams-pane.active #map{
+  min-height:560px!important;
+  height:min(72vh,760px)!important;
+}
+
+/* If AMS has a map + branch info grid, keep both */
+#ams-pane.active .ams-grid,
+#ams-pane.active .locations-grid,
+#ams-pane.active .map-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.65fr) minmax(320px,.65fr)!important;
+  gap:18px!important;
+  width:100%!important;
+  max-width:1500px!important;
+}
+
+/* Center/widen More Tools pages ONLY when active */
+#sop-pane.active,
+#buildquote-pane.active,
+#offices-pane.active,
+#commission-pane.active,
+#gunsafe-pane.active,
+#backhaul-pane.active{
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+  padding-top:12px!important;
+}
+
+#sop-pane.active > *,
+#buildquote-pane.active > *,
+#offices-pane.active > *,
+#commission-pane.active > *,
+#gunsafe-pane.active > *,
+#backhaul-pane.active > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#sop-pane.active .lab-card,
+#buildquote-pane.active .lab-card,
+#offices-pane.active .lab-card,
+#commission-pane.active .lab-card,
+#gunsafe-pane.active .lab-card,
+#backhaul-pane.active .lab-card,
+#sop-pane.active .card,
+#buildquote-pane.active .card,
+#offices-pane.active .card,
+#commission-pane.active .card,
+#gunsafe-pane.active .card,
+#backhaul-pane.active .card{
+  width:100%!important;
+  max-width:1050px!important;
+  box-sizing:border-box!important;
+}
+
+/* Commission gets extra width only when active */
+#commission-pane.active{
+  max-width:1320px!important;
+}
+
+#commission-pane.active .lab-card,
+#commission-pane.active .card,
+#commission-pane.active table,
+#commission-pane.active .table-wrap,
+#commission-pane.active .grid{
+  max-width:1220px!important;
+  width:100%!important;
+}
+
+/* GunSafe centered only when active */
+#gunsafe-pane.active .lab-card,
+#gunsafe-pane.active .card{
+  max-width:1050px!important;
+}
+
+/* Responsive AMS */
+@media(max-width:1050px){
+  #ams-pane.active .ams-grid,
+  #ams-pane.active .locations-grid,
+  #ams-pane.active .map-grid{
+    grid-template-columns:1fr!important;
+  }
+
+  #ams-pane.active svg,
+  #ams-pane.active .map,
+  #ams-pane.active .map-wrap,
+  #ams-pane.active .map-container,
+  #ams-pane.active #ams-map,
+  #ams-pane.active #map{
+    min-height:460px!important;
+    height:60vh!important;
+  }
+}
+
+
+/* ============================================================
+   HOME VISIBILITY + PANE SAFETY FIX
+   ============================================================ */
+
+/* Hide inactive panes */
+.pane:not(.active){
+  display:none!important;
+  visibility:hidden!important;
+}
+
+/* Show active pane */
+.pane.active{
+  display:block!important;
+  visibility:visible!important;
+}
+
+/* Home pane should keep its dashboard layout and not collapse into blank space */
+#home-pane.active{
+  display:block!important;
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  min-height:calc(100vh - 190px)!important;
+  padding-bottom:80px!important;
+}
+
+/* Keep Home cards fully visible */
+#home-pane.active .home-grid,
+#home-pane.active .workflow-grid,
+#home-pane.active .home-cards,
+#home-pane.active [class*="grid"]{
+  overflow:visible!important;
+}
+
+/* Do not let non-home panes leak over the Home page */
+body.home-active .pane:not(#home-pane){
+  display:none!important;
+  visibility:hidden!important;
+}
+
+/* If JS loads slowly, Home is the visual fallback only when body has home-active */
+body.home-active #home-pane{
+  display:block!important;
+  visibility:visible!important;
+}
+
+/* Preserve active-page layout behavior */
+#ams-pane.active,
+#sop-pane.active,
+#buildquote-pane.active,
+#offices-pane.active,
+#commission-pane.active,
+#gunsafe-pane.active,
+#backhaul-pane.active{
+  display:block!important;
+}
+
+
+/* ============================================================
+   FINAL SCREEN CUT-OFF FIX
+   Lets all pages scroll naturally instead of being clipped inside
+   a short internal viewport.
+   ============================================================ */
+
+/* Page-level scroll instead of clipped body */
+html,
+body{
+  min-height:100%!important;
+  height:auto!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+
+/* Keep header fixed, but do not clip the app body */
+#body{
+  min-height:100vh!important;
+  height:auto!important;
+  overflow:visible!important;
+  padding-top:var(--app-header-height, 76px)!important;
+  box-sizing:border-box!important;
+}
+
+/* Main content should not be capped to viewport height */
+#right-panel{
+  min-height:calc(100vh - var(--app-header-height, 76px))!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+  padding-bottom:120px!important;
+}
+
+/* Active panes should expand to their content */
+.pane.active{
+  display:block!important;
+  visibility:visible!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+
+/* Regulated page should not have its own clipped viewport */
+#reg-pane.active,
+#home-pane.active,
+#calc-pane.active,
+#od-pane.active,
+#stor-pane.active,
+#regmkt-pane.active,
+#ams-pane.active,
+#sop-pane.active,
+#buildquote-pane.active,
+#offices-pane.active,
+#commission-pane.active,
+#gunsafe-pane.active,
+#backhaul-pane.active{
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  padding-bottom:80px!important;
+}
+
+/* Notes side panel stays scrollable independently only on notes pages */
+body.show-move-info #form-panel{
+  overflow:auto!important;
+}
+
+/* If move-info pages have large content, let right side still scroll with page */
+body.show-move-info #right-panel{
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  min-height:calc(100vh - var(--app-header-height, 76px))!important;
+  padding-bottom:120px!important;
+}
+
+/* Remove accidental internal scrollbars from content cards unless explicitly needed */
+#right-panel > .pane,
+#right-panel .lab-card,
+#right-panel .card{
+  max-height:none!important;
+}
+
+/* Keep actual textarea/previews usable */
+textarea,
+.preview-content,
+.generated-notes,
+.notes-output{
+  max-height:none;
+}
+
+/* Keep fixed toolbar above content */
+#toolbar{
+  position:fixed!important;
+  z-index:1100!important;
+}
+
+/* Ensure content begins below lowered nav */
+#right-panel{
+  padding-top:calc(var(--app-tab-gap, 16px) + var(--app-nav-height, 68px) + var(--app-content-gap, 14px))!important;
+}
+
+
+/* ============================================================
+   FINAL GITHUB BUILD FIXES
+   Offices With Storage centered + AMS Locations map expanded.
+   ============================================================ */
+
+.pane:not(.active){
+  display:none!important;
+  visibility:hidden!important;
+}
+.pane.active{
+  display:block!important;
+  visibility:visible!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+
+/* OFFICES WITH STORAGE — centered */
+#offices-pane.active{
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+  padding-top:12px!important;
+}
+
+#offices-pane.active > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#offices-pane.active .lab-card,
+#offices-pane.active .card,
+#offices-pane.active section{
+  width:100%!important;
+  max-width:1050px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+#offices-pane.active .office-grid,
+#offices-pane.active .storage-grid,
+#offices-pane.active .button-grid,
+#offices-pane.active [class*="office"][class*="grid"],
+#offices-pane.active [class*="storage"][class*="grid"]{
+  display:grid!important;
+  grid-template-columns:repeat(3, minmax(180px, 1fr))!important;
+  gap:12px!important;
+  justify-content:center!important;
+  width:100%!important;
+  max-width:780px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#offices-pane.active .office-grid button,
+#offices-pane.active .storage-grid button,
+#offices-pane.active .button-grid button,
+#offices-pane.active [class*="office"][class*="grid"] button,
+#offices-pane.active [class*="storage"][class*="grid"] button{
+  width:100%!important;
+}
+
+/* AMS LOCATIONS — large map, branch info kept */
+#ams-pane.active{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+  padding-left:22px!important;
+  padding-right:22px!important;
+  padding-top:12px!important;
+}
+
+#ams-pane.active .ams-quick-jump,
+#ams-pane.active .app-section-jump,
+#ams-pane.active .markets-quick-jump,
+#ams-pane.active .calculator-quick-jump{
+  display:none!important;
+}
+
+#ams-pane.active .lab-card,
+#ams-pane.active .card,
+#ams-pane.active .ams-map-card,
+#ams-pane.active .map-card,
+#ams-pane.active .location-card,
+#ams-pane.active .ams-card{
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+}
+
+#ams-pane.active .ams-grid,
+#ams-pane.active .locations-grid,
+#ams-pane.active .map-grid,
+#ams-pane.active [class*="ams"][class*="grid"],
+#ams-pane.active [class*="location"][class*="grid"],
+#ams-pane.active [class*="map"][class*="grid"]{
+  display:grid!important;
+  grid-template-columns:minmax(0, 1fr) 380px!important;
+  gap:18px!important;
+  width:100%!important;
+  max-width:none!important;
+  align-items:start!important;
+}
+
+#ams-pane.active svg,
+#ams-pane.active .map,
+#ams-pane.active .map-wrap,
+#ams-pane.active .map-container,
+#ams-pane.active #ams-map,
+#ams-pane.active #map,
+#ams-pane.active iframe{
+  width:100%!important;
+  max-width:100%!important;
+}
+
+#ams-pane.active svg,
+#ams-pane.active .map,
+#ams-pane.active .map-wrap,
+#ams-pane.active .map-container,
+#ams-pane.active #ams-map,
+#ams-pane.active #map{
+  min-height:680px!important;
+  height:calc(100vh - 190px)!important;
+  max-height:none!important;
+}
+
+#ams-pane.active .map-card,
+#ams-pane.active .ams-map-card{
+  padding:0!important;
+  overflow:hidden!important;
+  border-radius:18px!important;
+}
+
+#ams-pane.active .branch-panel,
+#ams-pane.active .right-panel,
+#ams-pane.active .directory-panel,
+#ams-pane.active [class*="branch-list"],
+#ams-pane.active [class*="directory-list"]{
+  max-height:calc(100vh - 190px)!important;
+  overflow:auto!important;
+}
+
+/* More tools pages centered/widened */
+#sop-pane.active,
+#buildquote-pane.active,
+#commission-pane.active,
+#gunsafe-pane.active,
+#backhaul-pane.active{
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+  padding-top:12px!important;
+}
+
+#sop-pane.active > *,
+#buildquote-pane.active > *,
+#commission-pane.active > *,
+#gunsafe-pane.active > *,
+#backhaul-pane.active > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#sop-pane.active .lab-card,
+#buildquote-pane.active .lab-card,
+#commission-pane.active .lab-card,
+#gunsafe-pane.active .lab-card,
+#backhaul-pane.active .lab-card,
+#sop-pane.active .card,
+#buildquote-pane.active .card,
+#commission-pane.active .card,
+#gunsafe-pane.active .card,
+#backhaul-pane.active .card{
+  width:100%!important;
+  max-width:1050px!important;
+  box-sizing:border-box!important;
+}
+
+#commission-pane.active{
+  max-width:1320px!important;
+}
+#commission-pane.active .lab-card,
+#commission-pane.active .card,
+#commission-pane.active table,
+#commission-pane.active .table-wrap,
+#commission-pane.active .grid{
+  max-width:1220px!important;
+  width:100%!important;
+}
+
+/* Natural page scroll: no cutoffs */
+html,
+body{
+  min-height:100%!important;
+  height:auto!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+
+#body{
+  min-height:100vh!important;
+  height:auto!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+
+#right-panel{
+  min-height:calc(100vh - var(--app-header-height, 76px))!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+  padding-bottom:120px!important;
+}
+
+/* Responsive */
+@media(max-width:1050px){
+  #ams-pane.active .ams-grid,
+  #ams-pane.active .locations-grid,
+  #ams-pane.active .map-grid,
+  #ams-pane.active [class*="ams"][class*="grid"],
+  #ams-pane.active [class*="location"][class*="grid"],
+  #ams-pane.active [class*="map"][class*="grid"]{
+    grid-template-columns:1fr!important;
+  }
+
+  #ams-pane.active svg,
+  #ams-pane.active .map,
+  #ams-pane.active .map-wrap,
+  #ams-pane.active .map-container,
+  #ams-pane.active #ams-map,
+  #ams-pane.active #map{
+    min-height:520px!important;
+    height:64vh!important;
+  }
+
+  #offices-pane.active .office-grid,
+  #offices-pane.active .storage-grid,
+  #offices-pane.active .button-grid,
+  #offices-pane.active [class*="office"][class*="grid"],
+  #offices-pane.active [class*="storage"][class*="grid"]{
+    grid-template-columns:repeat(2, minmax(180px, 1fr))!important;
+  }
+}
+
+@media(max-width:640px){
+  #offices-pane.active .office-grid,
+  #offices-pane.active .storage-grid,
+  #offices-pane.active .button-grid,
+  #offices-pane.active [class*="office"][class*="grid"],
+  #offices-pane.active [class*="storage"][class*="grid"]{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+/* ============================================================
+   FINAL USER REQUEST FIXES
+   - Remove calculator selector buttons
+   - Remove Regulated Markets state shortcut buttons
+   - Larger AMS map with branch info kept
+   - Center Offices With Storage
+   ============================================================ */
+
+.pane:not(.active){
+  display:none!important;
+  visibility:hidden!important;
+}
+.pane.active{
+  display:block!important;
+  visibility:visible!important;
+}
+
+/* Remove broken calculator selector buttons */
+#calc-pane .calculator-quick-jump,
+#od-pane .calculator-quick-jump,
+#stor-pane .calculator-quick-jump,
+#calc-pane .app-section-jump,
+#od-pane .app-section-jump,
+#stor-pane .app-section-jump,
+#calc-pane [aria-label="Calculator quick navigation"],
+#od-pane [aria-label="Calculator quick navigation"],
+#stor-pane [aria-label="Calculator quick navigation"]{
+  display:none!important;
+}
+
+/* Remove Regulated Markets state shortcuts only */
+#regmkt-pane .regmkt-clean-actions,
+#regmkt-pane .markets-quick-jump,
+#regmkt-pane .app-section-jump,
+#regmkt-pane [aria-label="Regulated Markets quick navigation"]{
+  display:none!important;
+}
+
+/* AMS Locations: larger map while keeping branch info */
+#ams-pane.active{
+  width:100%!important;
+  max-width:none!important;
+  padding-left:18px!important;
+  padding-right:18px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+#ams-pane.active .ams-quick-jump,
+#ams-pane.active .app-section-jump{
+  display:none!important;
+}
+
+#ams-pane.active .lab-card,
+#ams-pane.active .card,
+#ams-pane.active .ams-card,
+#ams-pane.active .ams-map-card,
+#ams-pane.active .map-card,
+#ams-pane.active .location-card{
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+}
+
+#ams-pane.active .ams-grid,
+#ams-pane.active .locations-grid,
+#ams-pane.active .map-grid,
+#ams-pane.active [class*="ams"][class*="grid"],
+#ams-pane.active [class*="location"][class*="grid"],
+#ams-pane.active [class*="map"][class*="grid"]{
+  display:grid!important;
+  grid-template-columns:minmax(0, 1fr) 330px!important;
+  gap:16px!important;
+  width:100%!important;
+  max-width:none!important;
+  align-items:start!important;
+}
+
+#ams-pane.active svg,
+#ams-pane.active .map,
+#ams-pane.active .map-wrap,
+#ams-pane.active .map-container,
+#ams-pane.active #ams-map,
+#ams-pane.active #map,
+#ams-pane.active iframe{
+  width:100%!important;
+  max-width:100%!important;
+}
+
+#ams-pane.active svg,
+#ams-pane.active .map,
+#ams-pane.active .map-wrap,
+#ams-pane.active .map-container,
+#ams-pane.active #ams-map,
+#ams-pane.active #map{
+  min-height:760px!important;
+  height:calc(100vh - 150px)!important;
+  max-height:none!important;
+}
+
+#ams-pane.active .map-card,
+#ams-pane.active .ams-map-card{
+  padding:0!important;
+  overflow:hidden!important;
+  border-radius:18px!important;
+}
+
+#ams-pane.active .branch-panel,
+#ams-pane.active .right-panel,
+#ams-pane.active .directory-panel,
+#ams-pane.active [class*="branch-list"],
+#ams-pane.active [class*="directory-list"]{
+  max-height:calc(100vh - 160px)!important;
+  overflow:auto!important;
+}
+
+/* Offices With Storage centered */
+#offices-pane.active{
+  width:100%!important;
+  max-width:1180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-top:12px!important;
+  box-sizing:border-box!important;
+}
+
+#offices-pane.active > *{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#offices-pane.active .lab-card,
+#offices-pane.active .card,
+#offices-pane.active section{
+  width:100%!important;
+  max-width:1050px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+#offices-pane.active .office-grid,
+#offices-pane.active .storage-grid,
+#offices-pane.active .button-grid,
+#offices-pane.active [class*="office"][class*="grid"],
+#offices-pane.active [class*="storage"][class*="grid"]{
+  display:grid!important;
+  grid-template-columns:repeat(3, minmax(180px, 1fr))!important;
+  gap:12px!important;
+  justify-content:center!important;
+  width:100%!important;
+  max-width:780px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#offices-pane.active .office-grid button,
+#offices-pane.active .storage-grid button,
+#offices-pane.active .button-grid button,
+#offices-pane.active [class*="office"][class*="grid"] button,
+#offices-pane.active [class*="storage"][class*="grid"] button{
+  width:100%!important;
+}
+
+/* Natural page scroll */
+html,
+body{
+  min-height:100%!important;
+  height:auto!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+#body{
+  min-height:100vh!important;
+  height:auto!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+#right-panel{
+  min-height:calc(100vh - var(--app-header-height, 76px))!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+  padding-bottom:120px!important;
+}
+
+@media(max-width:1050px){
+  #ams-pane.active .ams-grid,
+  #ams-pane.active .locations-grid,
+  #ams-pane.active .map-grid,
+  #ams-pane.active [class*="ams"][class*="grid"],
+  #ams-pane.active [class*="location"][class*="grid"],
+  #ams-pane.active [class*="map"][class*="grid"]{
+    grid-template-columns:1fr!important;
+  }
+
+  #ams-pane.active svg,
+  #ams-pane.active .map,
+  #ams-pane.active .map-wrap,
+  #ams-pane.active .map-container,
+  #ams-pane.active #ams-map,
+  #ams-pane.active #map{
+    min-height:560px!important;
+    height:68vh!important;
+  }
+
+  #offices-pane.active .office-grid,
+  #offices-pane.active .storage-grid,
+  #offices-pane.active .button-grid,
+  #offices-pane.active [class*="office"][class*="grid"],
+  #offices-pane.active [class*="storage"][class*="grid"]{
+    grid-template-columns:repeat(2, minmax(180px, 1fr))!important;
+  }
+}
+
+@media(max-width:640px){
+  #offices-pane.active .office-grid,
+  #offices-pane.active .storage-grid,
+  #offices-pane.active .button-grid,
+  #offices-pane.active [class*="office"][class*="grid"],
+  #offices-pane.active [class*="storage"][class*="grid"]{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+
+/* ============================================================
+   GITHUB PATCH — AMS LOCATIONS FULL-SCREEN MAP LIKE REFERENCE
+   Keeps branch count / selected branch / all branches on the right.
+   ============================================================ */
+body.ams-focus #right-panel{
+  padding-left:0!important;
+  padding-right:0!important;
+}
+body.ams-focus #ams-pane.active{
+  width:100vw!important;
+  max-width:none!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:calc(50% - 50vw)!important;
+  padding:0 0 46px!important;
+  box-sizing:border-box!important;
+}
+#ams-pane.active .ams-page{
+  width:100vw!important;
+  max-width:none!important;
+  height:calc(100vh - var(--app-header-height, 76px) - var(--app-tab-gap, 16px) - var(--app-nav-height, 68px) - 18px)!important;
+  min-height:760px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0, 1fr) 360px!important;
+  gap:14px!important;
+  margin:0!important;
+  padding:0 14px!important;
+  box-sizing:border-box!important;
+}
+#ams-pane.active .ams-main,
+#ams-pane.active .ams-main-card,
+#ams-pane.active .ams-side{
+  min-height:0!important;
+  height:100%!important;
+}
+#ams-pane.active .ams-main-card{
+  width:100%!important;
+  max-width:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  border-radius:18px!important;
+}
+#ams-pane.active .ams-headerbar{
+  flex:0 0 auto!important;
+  min-height:48px!important;
+  padding:10px 14px!important;
+}
+#ams-pane.active .ams-controlbar{
+  flex:0 0 auto!important;
+  min-height:48px!important;
+  padding:8px 14px!important;
+}
+#ams-pane.active .ams-map-viewport{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  height:auto!important;
+  width:100%!important;
+  overflow:hidden!important;
+  background:radial-gradient(circle at center,#f4fbf5 0%,#eef8ef 58%,#e8f3e9 100%)!important;
+}
+#ams-pane.active #amsUsMap{
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  display:block!important;
+}
+#ams-pane.active .ams-legend{
+  flex:0 0 auto!important;
+  min-height:42px!important;
+  padding:8px 14px 10px!important;
+}
+#ams-pane.active .ams-side{
+  width:360px!important;
+  max-width:360px!important;
+  overflow:auto!important;
+  padding:0 2px 0 0!important;
+  gap:10px!important;
+}
+#ams-pane.active .ams-side-card{
+  width:100%!important;
+  max-width:none!important;
+  border-radius:18px!important;
+  padding:12px!important;
+}
+#ams-pane.active .ams-list{
+  max-height:none!important;
+  min-height:0!important;
+  height:calc(100vh - var(--app-header-height, 76px) - var(--app-tab-gap, 16px) - var(--app-nav-height, 68px) - 390px)!important;
+  overflow:auto!important;
+}
+#ams-pane.active .ams-quick-jump,
+#ams-pane.active .app-section-jump,
+#ams-pane.active .markets-quick-jump,
+#ams-pane.active .calculator-quick-jump{
+  display:none!important;
+}
+@media(max-width:1050px){
+  #ams-pane.active .ams-page{
+    height:auto!important;
+    min-height:0!important;
+    grid-template-columns:1fr!important;
+    padding:0 12px!important;
+  }
+  #ams-pane.active .ams-map-viewport{
+    min-height:68vh!important;
+  }
+  #ams-pane.active .ams-side{
+    width:100%!important;
+    max-width:none!important;
+  }
+  #ams-pane.active .ams-list{
+    height:auto!important;
+    max-height:420px!important;
+  }
+}
 </style>
 <script>
 /* Password protection temporarily removed for testing.
@@ -2019,8 +3980,103 @@ body.wide-pane #toolbar{
   visibility:visible!important;
   opacity:1!important;
 }
+
+
+/* ============================================================
+   BRANCH COUNT FIX
+   The full-screen AMS grid selector was accidentally catching
+   .ams-count-grid and forcing a map/sidebar column layout inside
+   the Branch Count card. This restores the 2x2 count boxes.
+   ============================================================ */
+#ams-pane.active .ams-count-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2, minmax(0, 1fr))!important;
+  gap:10px!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  align-items:stretch!important;
+}
+
+#ams-pane.active .ams-count-box{
+  min-width:0!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+  padding:11px 12px!important;
+  overflow:hidden!important;
+}
+
+#ams-pane.active .ams-count-box .lbl{
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+#ams-pane.active .ams-count-box .val{
+  display:block!important;
+  line-height:1!important;
+}
+
+#ams-pane.active .ams-side-card{
+  overflow:hidden!important;
+}
+
+@media(max-width:760px){
+  #ams-pane.active .ams-count-grid{
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+
 </style>
 
+<style>
+
+/* ============================================================
+   FINAL AMS SIDEBAR CLEANUP
+   Removes Branch Count card and levels Selected Branch + All Branches.
+   ============================================================ */
+#ams-pane.active .ams-count-grid,
+#ams-pane.active .ams-count-box{
+  display:none!important;
+}
+#ams-pane.active .ams-side{
+  display:grid!important;
+  grid-template-rows:auto minmax(0, 1fr)!important;
+  gap:16px!important;
+  align-content:start!important;
+  height:calc(100vh - 150px)!important;
+  max-height:calc(100vh - 150px)!important;
+  overflow:hidden!important;
+}
+#ams-pane.active .ams-side-card{
+  width:100%!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+#ams-pane.active .ams-side-card:nth-child(1){
+  min-height:112px!important;
+}
+#ams-pane.active .ams-side-card:nth-child(2){
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+#ams-pane.active .ams-list{
+  max-height:none!important;
+  min-height:0!important;
+  flex:1 1 auto!important;
+  overflow:auto!important;
+}
+@media(max-width:1050px){
+  #ams-pane.active .ams-side{
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+  }
+}
+
+</style>
 </head>
 <body>
 <header class="final-app-header">
@@ -2296,7 +4352,7 @@ body.wide-pane #toolbar{
 <button class="tab-btn active primary-tab" id="tab-home" onclick="switchTab('home')">Home</button>
 <button class="tab-btn primary-tab" id="tab-full" onclick="switchTab('full')">Customer + Crew Notes</button>
 <button class="tab-btn primary-tab" id="tab-calc" onclick="switchTab('calc')">Calculators</button>
-<button class="tab-btn primary-tab" id="tab-reg" onclick="switchTab('reg')">Regulated</button>
+<button class="tab-btn primary-tab" id="tab-reg" onclick="switchTab('reg')">Regulated Move Notes</button>
 <button class="tab-btn primary-tab" id="tab-regmkt" onclick="switchTab('regmkt')">Regulated Markets</button>
 <button class="tab-btn primary-tab" id="tab-ams" onclick="switchTab('ams')">AMS Locations</button>
 </div>
@@ -2563,7 +4619,8 @@ body.wide-pane #toolbar{
 <div class="pane" id="crew-pane" style="display:none;"></div>
 <!-- Long Distance Calculator -->
 <div class="pane" id="calc-pane" style="display:none;">
-<div class="lab-page-title"><div><h1>Calculator</h1><p>Long Distance, Old Dominion, and Storage calculators grouped into one workspace.</p></div></div>
+<div class="lab-page-title"><div><h1>Calculator</h1><p>Long Distance, Old Dominion, and Storage calculators grouped into one workspace.</p>
+</div></div>
 <div class="calculator-stack">
 <section class="lab-card calc-section calc-ld"><div class="lab-card-head"><h2>Long Distance Calculator</h2><span>Primary</span></div><div class="ld-slot">
 <div style="max-width:800px;">
@@ -2773,22 +4830,32 @@ body.wide-pane #toolbar{
 <!-- Old Dominion Calculator -->
 <div class="pane" id="od-pane" style="display:none;"></div><!-- /od-pane -->
 <!-- Regulated Move Pane -->
-<div class="pane" id="reg-pane" style="display:none;"><div class="lab-page-title"><div><h1>Regulated Move Notes</h1><p>Move Type: Regulated. Use this workflow for regulated move notes and compliance-specific estimate language.</p></div></div>
-<div class="regulated-hub">
-<div class="regulated-hub-card"><h3>Regulated Move Calculator</h3><p>Use this for regulated move pricing and W&amp;M guidance.</p><a href="https://amsmovingandstorage.web.app/" rel="noopener" target="_blank">Open Calculator</a></div>
-<div class="regulated-hub-card"><h3>Regulated Markets</h3><p>Market notes now live on a separate screen to keep this page focused.</p><button onclick="switchTab('regmkt')" type="button">Open Regulated Markets</button></div>
-</div>
-<section class="lab-card regulated-card"><div class="reg-slot">
-<!-- top buttons -->
-<div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap;">
-<a href="https://amsmovingandstorage.web.app/" rel="noopener" style="display:inline-block;background:#2e7d32;color:#fff;text-decoration:none;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;font-family:Georgia,serif;" target="_blank">🧮 Regulated Move Calculator</a>
-<span style="font-size:12px;color:#555;font-weight:700;">Password: <span style="color:#1b5e20;font-family:monospace;font-size:13px;">allmysons500</span></span>
-</div>
-<!-- instructions -->
-<div style="background:#fffde7;border:1.5px solid #f9a825;border-radius:8px;padding:13px 18px;margin-bottom:16px;font-size:14px;color:#333;max-width:760px;line-height:1.7;">
-<strong style="color:#e65100;font-size:15px;">Instructions</strong> – Above is the link to the regulated move calculator, the password is <strong style="font-family:monospace;color:#1b5e20;">allmysons500</strong><br/>
-        If any field does not apply just leave it blank.
+<div class="pane" id="reg-pane" style="display:none;">
+<div class="reg-notes-ui">
+  <div class="reg-notes-top-cards">
+    <div class="reg-notes-action-card reg-notes-calc-card">
+      <h3>Regulated Move Calculator</h3>
+      <div class="reg-notes-action-line">
+        <a class="reg-notes-open-btn" href="https://amsmovingandstorage.web.app/" target="_blank" rel="noopener">Open Calculator</a>
+        <span class="reg-password">Password: <strong>allmysons500</strong></span>
       </div>
+    </div>
+
+    <div class="reg-notes-action-card reg-notes-market-card">
+      <h3>Regulated Markets</h3>
+      <div class="reg-notes-action-line">
+        <button class="reg-notes-open-btn" onclick="switchTab('regmkt')" type="button">Open Regulated Markets</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="reg-notes-title-card">
+    <h1>Regulated Move Notes Template</h1>
+    <p>Only fill where it's applicable.</p>
+  </div>
+</div>
+
+<section class="lab-card regulated-card"><div class="reg-slot">
 <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;max-width:940px;">
 <!-- INPUTS -->
 <div style="flex:0 0 265px;">
@@ -3351,15 +5418,6 @@ body.wide-pane #toolbar{
 </div>
 </div>
 <div class="ams-side">
-<div class="ams-side-card">
-<div class="ams-sidebar-title">Branch Count</div>
-<div class="ams-count-grid">
-<div class="ams-count-box"><div class="lbl">Pacific</div><div class="val" id="amsCountPacific">0</div></div>
-<div class="ams-count-box"><div class="lbl">Mountain</div><div class="val" id="amsCountMountain">0</div></div>
-<div class="ams-count-box"><div class="lbl">Central</div><div class="val" id="amsCountCentral">0</div></div>
-<div class="ams-count-box"><div class="lbl">Eastern</div><div class="val" id="amsCountEastern">0</div></div>
-</div>
-</div>
 <div class="ams-side-card">
 <div class="ams-sidebar-title">Selected Branch</div>
 <div class="ams-location-empty" id="amsLocationEmpty">Select a branch pin or click a branch from the list to load the details here.</div>
@@ -6483,7 +8541,7 @@ async function initAmsMap() {
 
     const width = 1200, height = 760;
     amsSvg.selectAll('*').remove();
-    amsSvg.attr('viewBox', [0, 0, width, height]);
+    amsSvg.attr('viewBox', [0, 0, width, height]).attr('preserveAspectRatio', 'xMidYMid meet');
 
     const defs = amsSvg.append('defs');
     const shadow = defs.append('filter').attr('id', 'amsDrop');
@@ -6597,7 +8655,7 @@ async function initAmsMap() {
       });
 
     amsSvg.call(amsZoomBehavior)
-      .call(amsZoomBehavior.transform, d3.zoomIdentity.translate(-118, -66).scale(1.34));
+      .call(amsZoomBehavior.transform, d3.zoomIdentity.translate(-68, -78).scale(1.16));
 
     amsMapInitialized = true;
     applyAmsFilters();
@@ -6624,7 +8682,7 @@ window.amsZoomOut = function() {
 };
 
 window.amsZoomReset = function() {
-  if (amsSvg && amsZoomBehavior) amsSvg.transition().duration(250).call(amsZoomBehavior.transform, d3.zoomIdentity.translate(-118, -66).scale(1.34));
+  if (amsSvg && amsZoomBehavior) amsSvg.transition().duration(250).call(amsZoomBehavior.transform, d3.zoomIdentity.translate(-68, -78).scale(1.16));
 };
 
 function filterAmsLocations() {
@@ -6897,7 +8955,8 @@ function downloadCommission(key) {
 </script>
 <!-- Regulated Markets Tab -->
 <div class="pane" id="regmkt-pane" style="display:none;">
-<div class="lab-page-title"><div><h1>Regulated Markets</h1><p>Market rules and regulated-state reference live on their own screen.</p></div></div>
+<div class="lab-page-title"><div><h1>Regulated Markets</h1><p>Market rules and regulated-state reference live on their own screen.</p>
+</div></div>
 <section class="lab-card regulated-markets-page">
 <div class="lab-card-head"><h2>Regulated Markets Reference</h2><span>Standalone</span></div>
 <div class="embedded-reg-body">
@@ -7092,7 +9151,8 @@ function downloadCommission(key) {
 </div>
 </div><!-- /backhaul-pane -->
 <!-- Storage Weight Calculator -->
-<div class="pane" id="stor-pane" style="display:none;"></div><!-- /stor-pane -->
+<div class="pane" id="stor-pane" style="display:none;">
+</div><!-- /stor-pane -->
 </div><!-- /right-panel -->
 </div><!-- /body -->
 <script>
@@ -7235,7 +9295,7 @@ function switchTab(tab) {
     }
   });
 
-  if (tab === "ams") initAmsMap();
+  if (tab === "ams") { initAmsMap(); setTimeout(() => { if (typeof amsZoomReset === "function") amsZoomReset(); }, 180); }
 }
 
 /* ── LONG DISTANCE CALCULATOR ── */
@@ -9725,6 +11785,166 @@ function copyGlobalOfficeInfo(name){
 }
 
 document.addEventListener("DOMContentLoaded", () => renderGlobalAmsOffices());
+
+
+
+
+
+
+
+/* ============================================================
+   Real Pane Quick Buttons
+   Uses actual pane IDs: calc-pane, od-pane, stor-pane, regmkt-pane.
+   ============================================================ */
+function setCalcQuickButtonActive(){
+  const activePane = document.querySelector(".pane.active");
+  const activeId = activePane ? activePane.id : "";
+  document.querySelectorAll("[data-calc-jump]").forEach(btn => {
+    const target = btn.getAttribute("data-calc-jump");
+    const targetPane = target === "calc" ? "calc-pane" : target === "od" ? "od-pane" : "stor-pane";
+    btn.classList.toggle("primary", targetPane === activeId);
+  });
+}
+
+function findTextElementInPane(text, paneId){
+  const pane = document.getElementById(paneId);
+  if(!pane) return null;
+  const q = String(text || "").toLowerCase();
+  const nodes = Array.from(pane.querySelectorAll("h1,h2,h3,h4,section,.section,.card,.tool-card,.calc-card,.panel,div"));
+  return nodes.find(el => (el.textContent || "").toLowerCase().includes(q));
+}
+
+function jumpWithinPane(text, paneId){
+  const el = findTextElementInPane(text, paneId);
+  if(el){
+    el.scrollIntoView({behavior:"smooth", block:"start"});
+    el.classList.add("app-jump-highlight");
+    setTimeout(() => el.classList.remove("app-jump-highlight"), 900);
+  }
+}
+
+document.addEventListener("click", () => setTimeout(setCalcQuickButtonActive, 50));
+document.addEventListener("DOMContentLoaded", () => setTimeout(setCalcQuickButtonActive, 150));
+
+
+
+/* Home active helper for preventing home content bleed */
+(function(){
+  const originalSwitchTab = window.switchTab;
+  if(typeof originalSwitchTab === "function" && !window.__homeActivePatched){
+    window.switchTab = function(tab){
+      const result = originalSwitchTab.apply(this, arguments);
+      document.body.classList.toggle("home-active", tab === "home");
+      return result;
+    };
+    window.__homeActivePatched = true;
+  }
+  document.addEventListener("DOMContentLoaded", function(){
+    const homePane = document.getElementById("home-pane");
+    document.body.classList.toggle("home-active", !!homePane && homePane.classList.contains("active"));
+  });
+})();
+
+
+
+
+
+
+
+
+
+/* ============================================================
+   FINAL GITHUB PANE GUARD
+   Keeps one active pane visible and prevents page bleed.
+   ============================================================ */
+(function(){
+  if(window.__estimatorFinalGithubPaneGuard) return;
+  window.__estimatorFinalGithubPaneGuard = true;
+
+  const tabToPane = {
+    home:"home-pane",
+    full:"full-pane",
+    crew:"crew-pane",
+    calc:"calc-pane",
+    od:"od-pane",
+    stor:"stor-pane",
+    reg:"reg-pane",
+    regmkt:"regmkt-pane",
+    ams:"ams-pane",
+    sop:"sop-pane",
+    buildquote:"buildquote-pane",
+    offices:"offices-pane",
+    commission:"commission-pane",
+    gunsafe:"gunsafe-pane",
+    backhaul:"backhaul-pane"
+  };
+
+  const tabToButton = {
+    home:"tab-home",
+    full:"tab-full",
+    crew:"tab-crew",
+    calc:"tab-calc",
+    od:"tab-od",
+    stor:"tab-stor",
+    reg:"tab-reg",
+    regmkt:"tab-regmkt",
+    ams:"tab-ams",
+    sop:"tab-sop",
+    buildquote:"tab-buildquote",
+    offices:"tab-offices",
+    commission:"tab-commission",
+    gunsafe:"tab-gunsafe",
+    backhaul:"tab-backhaul"
+  };
+
+  function enforcePane(tab){
+    tab = tabToPane[tab] ? tab : "home";
+    const activePaneId = tabToPane[tab];
+
+    document.querySelectorAll(".pane").forEach(pane => {
+      const active = pane.id === activePaneId;
+      pane.classList.toggle("active", active);
+      pane.style.display = active ? "block" : "none";
+      pane.style.visibility = active ? "visible" : "hidden";
+      pane.setAttribute("aria-hidden", active ? "false" : "true");
+    });
+
+    document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+    const activeBtn = document.getElementById(tabToButton[tab]);
+    if(activeBtn) activeBtn.classList.add("active");
+
+    document.body.classList.toggle("home-active", tab === "home");
+    document.body.classList.toggle("show-move-info", tab === "full" || tab === "crew");
+    document.body.classList.toggle("wide-pane", !(tab === "full" || tab === "crew"));
+  }
+
+  const originalSwitchTab = window.switchTab;
+  window.switchTab = function(tab){
+    if(typeof originalSwitchTab === "function"){
+      try { originalSwitchTab.apply(this, arguments); } catch(e) {}
+    }
+    enforcePane(tab);
+  };
+
+  document.addEventListener("click", function(e){
+    const btn = e.target.closest(".tab-btn");
+    if(!btn || !btn.id) return;
+    const tab = Object.keys(tabToButton).find(key => tabToButton[key] === btn.id);
+    if(tab) setTimeout(() => enforcePane(tab), 0);
+  });
+
+  document.addEventListener("DOMContentLoaded", function(){
+    const activePane = document.querySelector(".pane.active");
+    let tab = "home";
+    if(activePane && activePane.id){
+      const found = Object.entries(tabToPane).find(([key, paneId]) => paneId === activePane.id);
+      if(found) tab = found[0];
+    }
+    enforcePane(tab);
+  });
+
+  window.enforceEstimatorLabPane = enforcePane;
+})();
 
 </script>
 <div style="position:fixed;bottom:14px;right:18px;pointer-events:none;z-index:9999;background:#111;border-radius:8px;padding:6px 10px;">
