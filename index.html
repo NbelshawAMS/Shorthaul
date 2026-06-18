@@ -4532,137 +4532,6 @@ body.show-move-info #right-panel{
   #full-pane.active .remarks-workspace{grid-template-columns:1fr!important;}
 }
 </style>
-<style id="final-pinned-topbar-no-sidebar-jump">
-#toolbar,
-body.show-move-info #toolbar,
-body.wide-pane #toolbar{
-  position:sticky!important;
-  top:0!important;
-  left:auto!important;
-  right:auto!important;
-  width:100%!important;
-  z-index:1200!important;
-  background:#f7f9f7!important;
-  border-bottom:none!important;
-  box-shadow:none!important;
-}
-
-#toolbar .toolbar-primary{
-  justify-content:center!important;
-}
-
-body.show-move-info #form-panel{
-  position:relative!important;
-  top:auto!important;
-  left:auto!important;
-  transform:none!important;
-  align-self:flex-start!important;
-}
-
-.pane:not(.active){
-  display:none!important;
-  visibility:hidden!important;
-}
-.pane.active{
-  display:block!important;
-  visibility:visible!important;
-}
-
-body.night-mode #toolbar{
-  background:#06160f!important;
-}
-</style>
-<style id="nav-pills-only-fixed-final">
-#toolbar,
-body.show-move-info #toolbar,
-body.wide-pane #toolbar{
-  position:fixed!important;
-  top:0!important;
-  left:0!important;
-  right:0!important;
-  width:100vw!important;
-  min-height:68px!important;
-  height:68px!important;
-  z-index:99999!important;
-  display:flex!important;
-  flex-direction:row!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:10px!important;
-  padding:10px 24px!important;
-  box-sizing:border-box!important;
-  background:#f7f9f7!important;
-  border-bottom:1px solid #dfe9e1!important;
-  box-shadow:0 6px 18px rgba(16,25,19,.045)!important;
-  overflow:visible!important;
-}
-
-#toolbar .toolbar-primary{
-  width:auto!important;
-  flex:0 0 auto!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:10px!important;
-  min-width:0!important;
-  overflow:visible!important;
-}
-
-#toolbar .toolbar-brand-mini,
-#toolbar #copy-btn{
-  display:none!important;
-}
-
-#toolbar .tab-btn.primary-tab,
-#toolbar .more-tools-wrap,
-#toolbar .more-tools-menu > summary{
-  flex:0 0 auto!important;
-  white-space:nowrap!important;
-}
-
-.more-tools-wrap{
-  margin-left:0!important;
-  position:relative!important;
-}
-
-body{
-  padding-top:68px!important;
-}
-
-.final-app-header{
-  position:relative!important;
-  top:auto!important;
-  left:auto!important;
-  right:auto!important;
-}
-
-body.show-move-info #form-panel{
-  position:relative!important;
-  top:auto!important;
-  left:auto!important;
-  transform:none!important;
-  align-self:flex-start!important;
-}
-
-body.night-mode #toolbar{
-  background:#06160f!important;
-  border-bottom-color:#174428!important;
-  box-shadow:0 6px 18px rgba(0,0,0,.28)!important;
-}
-
-@media(max-width:1180px){
-  #toolbar,
-  body.show-move-info #toolbar,
-  body.wide-pane #toolbar{
-    justify-content:flex-start!important;
-    overflow-x:auto!important;
-    overflow-y:visible!important;
-  }
-  #toolbar .toolbar-primary{
-    justify-content:flex-start!important;
-  }
-}
-</style>
 <style id="ams-map-replacement-fit">
 body.ams-focus #ams-pane,
 #ams-pane.active {
@@ -4834,6 +4703,239 @@ body.show-move-info #full-pane.active .remarks-customer-card #preview-content{
   body.show-move-info #full-pane.active .remarks-workspace{grid-template-columns:1fr!important;}
 }
 </style>
+
+<style id="doorbell-sidebar-patch">
+.final-doorbell-btn{
+  appearance:none!important;
+  min-height:40px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  padding:9px 15px!important;
+  border-radius:999px!important;
+  border:1px solid #b9d7c0!important;
+  background:#f8fbf8!important;
+  color:#075f2d!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+  font-size:13px!important;
+  font-weight:900!important;
+  cursor:pointer!important;
+  box-shadow:none!important;
+  white-space:nowrap!important;
+}
+.final-doorbell-btn:hover{background:#fff!important;border-color:#087b38!important;}
+.final-doorbell-btn svg{width:17px!important;height:17px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.5!important;stroke-linecap:round!important;stroke-linejoin:round!important;}
+.global-doorbell-sidebar{
+  position:fixed!important;
+  top:0!important;
+  right:-480px!important;
+  width:460px!important;
+  max-width:calc(100vw - 28px)!important;
+  height:100vh!important;
+  z-index:1100!important;
+  background:#fff!important;
+  border-left:1px solid #dfe9e1!important;
+  box-shadow:-24px 0 60px rgba(16,25,19,.20)!important;
+  padding:18px!important;
+  transition:right .22s ease!important;
+  overflow:auto!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+}
+.global-doorbell-sidebar.open{right:0!important;}
+.global-doorbell-overlay{position:fixed!important;inset:0!important;background:rgba(9,18,13,.30)!important;z-index:1099!important;display:none!important;}
+.global-doorbell-overlay.open{display:block!important;}
+.doorbell-card{border:1px solid #dfe9e1!important;border-radius:18px!important;background:#fff!important;padding:14px!important;margin-bottom:14px!important;}
+.doorbell-card h3{margin:0 0 8px!important;color:#111!important;font-size:18px!important;letter-spacing:-.03em!important;}
+.doorbell-card p,.doorbell-card li{color:#506053!important;font-size:13px!important;line-height:1.55!important;}
+.doorbell-card ul{margin:0!important;padding-left:18px!important;}
+.doorbell-script-box{white-space:pre-wrap!important;border:1px dashed #b9d7c0!important;background:#fbfdfb!important;border-radius:14px!important;padding:12px!important;color:#111!important;font-size:13px!important;line-height:1.55!important;}
+.doorbell-actions{display:flex!important;gap:8px!important;margin-top:12px!important;}
+.doorbell-actions button{flex:1!important;border:none!important;border-radius:999px!important;padding:10px 12px!important;font-size:12px!important;font-weight:850!important;cursor:pointer!important;background:#0b5a2a!important;color:#fff!important;}
+body.night-mode .final-doorbell-btn{background:#0b7a38!important;color:#fff!important;border-color:#1db954!important;}
+body.night-mode .final-doorbell-btn:hover{background:#119447!important;color:#fff!important;}
+body.night-mode .global-doorbell-sidebar,
+body.night-mode .doorbell-card,
+body.night-mode .doorbell-script-box{background:#0b2a1d!important;border-color:#1c5a37!important;color:#fff!important;box-shadow:0 14px 32px rgba(0,0,0,.16)!important;}
+body.night-mode .doorbell-card h3{color:#fff!important;}
+body.night-mode .doorbell-card p,body.night-mode .doorbell-card li{color:#a8c7b4!important;}
+body.night-mode .doorbell-script-box{background:#061a11!important;color:#fff!important;border-color:#267444!important;}
+@media(max-width:1180px){.final-doorbell-btn{font-size:11px!important;padding:8px 10px!important;}.final-doorbell-btn svg{display:none!important;}}
+</style>
+
+
+<style id="doorbell-sidebar-size-and-zindex-fix">
+/* Make Doorbell drawer behave like Office Lookup, but about 30% wider. */
+.global-doorbell-sidebar{
+  position:fixed!important;
+  top:0!important;
+  right:-640px!important;
+  width:598px!important;
+  max-width:calc(100vw - 28px)!important;
+  height:100vh!important;
+  z-index:1500!important;
+  background:#fff!important;
+  border-left:1px solid #dfe9e1!important;
+  box-shadow:-24px 0 60px rgba(16,25,19,.20)!important;
+  padding:22px!important;
+  transition:right .22s ease!important;
+  overflow:auto!important;
+}
+.global-doorbell-sidebar.open{right:0!important;}
+.global-doorbell-overlay{
+  position:fixed!important;
+  inset:0!important;
+  background:rgba(9,18,13,.30)!important;
+  z-index:1499!important;
+  display:none!important;
+}
+.global-doorbell-overlay.open{display:block!important;}
+.global-doorbell-sidebar .global-office-sidebar-head h2{font-size:26px!important;}
+.global-doorbell-sidebar .global-office-sidebar-head p{font-size:13px!important;line-height:1.45!important;}
+.global-doorbell-sidebar .doorbell-card{padding:18px!important;border-radius:20px!important;margin-bottom:16px!important;}
+.global-doorbell-sidebar .doorbell-card h3{font-size:20px!important;}
+.global-doorbell-sidebar .doorbell-card p,
+.global-doorbell-sidebar .doorbell-card li,
+.global-doorbell-sidebar .doorbell-script-box{font-size:14px!important;line-height:1.6!important;}
+@media(max-width:760px){
+  .global-doorbell-sidebar{
+    width:calc(100vw - 28px)!important;
+    right:calc(-100vw + 14px)!important;
+    padding:18px!important;
+  }
+  .global-doorbell-sidebar.open{right:0!important;}
+}
+
+
+/* Doorbell qualification journey layout */
+.global-doorbell-sidebar{width:598px!important;right:-660px!important;max-width:calc(100vw - 28px)!important;}
+.global-doorbell-sidebar.open{right:0!important;}
+.doorbell-head{position:sticky!important;top:0!important;background:#fff!important;z-index:5!important;}
+.doorbell-alert{
+  border:2px solid #0b7a38!important;
+  background:linear-gradient(135deg,#e8f5ec,#ffffff)!important;
+  border-radius:22px!important;
+  padding:20px 22px!important;
+  margin:0 0 18px!important;
+  color:#0b5a2a!important;
+  box-shadow:0 14px 32px rgba(11,122,56,.10)!important;
+}
+.doorbell-alert strong{display:block!important;font-size:15px!important;font-weight:950!important;letter-spacing:.10em!important;text-transform:uppercase!important;margin-bottom:8px!important;color:#0b5a2a!important;}
+.doorbell-alert span{display:block!important;font-size:17px!important;line-height:1.45!important;color:#173d25!important;font-weight:750!important;}
+.doorbell-step-card{border-left:5px solid #0b7a38!important;}
+.doorbell-hidden{display:none!important;}
+.doorbell-choice-row{display:flex!important;gap:10px!important;flex-wrap:wrap!important;margin-top:12px!important;}
+.doorbell-choice-row.two-col{display:grid!important;grid-template-columns:1fr 1fr!important;}
+.doorbell-choice-row button,
+.doorbell-response-actions button{
+  appearance:none!important;
+  border:none!important;
+  border-radius:999px!important;
+  min-height:42px!important;
+  padding:10px 16px!important;
+  background:#0b7a38!important;
+  color:#fff!important;
+  font-size:13px!important;
+  font-weight:900!important;
+  cursor:pointer!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+}
+.doorbell-choice-row button.secondary{background:#f4f7f5!important;color:#0b5a2a!important;border:1px solid #cfe0d2!important;}
+.doorbell-choice-row button:hover,
+.doorbell-response-actions button:hover{filter:brightness(1.06)!important;}
+.doorbell-response-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;margin-top:14px!important;}
+.doorbell-response-actions button.accepted{background:#0b7a38!important;}
+.doorbell-response-actions button.declined{background:#202522!important;}
+.doorbell-status{margin-top:10px!important;border:1px solid #dfe9e1!important;border-radius:14px!important;background:#fbfdfb!important;padding:10px 12px!important;color:#506053!important;font-size:13px!important;font-weight:850!important;}
+.doorbell-divider{height:1px!important;background:#dfe9e1!important;margin:16px 0!important;}
+.doorbell-placeholder-box{white-space:pre-wrap!important;border:1px dashed #b9d7c0!important;background:#fbfdfb!important;border-radius:14px!important;padding:14px!important;color:#506053!important;font-size:14px!important;line-height:1.6!important;min-height:90px!important;}
+body.night-mode .doorbell-head{background:#0b2a1d!important;}
+body.night-mode .doorbell-alert{background:linear-gradient(135deg,#123d28,#0b2a1d)!important;border-color:#1db954!important;color:#fff!important;}
+body.night-mode .doorbell-alert strong,body.night-mode .doorbell-alert span,body.night-mode .doorbell-alert b{color:#fff!important;}
+body.night-mode .doorbell-status,body.night-mode .doorbell-placeholder-box{background:#061a11!important;border-color:#267444!important;color:#a8c7b4!important;}
+body.night-mode .doorbell-choice-row button.secondary{background:#061a11!important;color:#fff!important;border-color:#267444!important;}
+@media(max-width:760px){.doorbell-choice-row.two-col,.doorbell-response-actions{grid-template-columns:1fr!important;}.doorbell-alert span{font-size:15px!important;}}
+
+
+/* Doorbell refined qualifier journey */
+.global-doorbell-sidebar .doorbell-card{padding:14px!important;border-radius:18px!important;margin-bottom:12px!important;}
+.global-doorbell-sidebar .doorbell-card h3{font-size:16px!important;margin-bottom:6px!important;}
+.global-doorbell-sidebar .doorbell-card p,
+.global-doorbell-sidebar .doorbell-card li,
+.global-doorbell-sidebar .doorbell-script-box,
+.global-doorbell-sidebar .doorbell-placeholder-box{font-size:12px!important;line-height:1.45!important;}
+.global-doorbell-sidebar .doorbell-script-box{padding:11px!important;min-height:58px!important;}
+.global-doorbell-sidebar .doorbell-placeholder-box{padding:11px!important;min-height:58px!important;}
+.global-doorbell-sidebar .doorbell-alert-red{border:2px solid #c62828!important;background:#fff5f5!important;color:#7f1010!important;box-shadow:none!important;padding:14px 16px!important;border-radius:16px!important;}
+.global-doorbell-sidebar .doorbell-alert-red strong{color:#b71c1c!important;font-size:13px!important;margin-bottom:5px!important;letter-spacing:.08em!important;}
+.global-doorbell-sidebar .doorbell-alert-red span{color:#7f1010!important;font-size:13px!important;line-height:1.4!important;font-weight:800!important;}
+.global-doorbell-sidebar .doorbell-alert-red b{color:#b71c1c!important;}
+.global-doorbell-sidebar .doorbell-choice-row button,
+.global-doorbell-sidebar .doorbell-response-actions button{background:#f4f7f5!important;color:#0b5a2a!important;border:1px solid #cfe0d2!important;min-height:38px!important;font-size:12px!important;padding:8px 13px!important;}
+.global-doorbell-sidebar .doorbell-choice-row button.active,
+.global-doorbell-sidebar .doorbell-response-actions button.active{background:#0b7a38!important;color:#fff!important;border-color:#0b7a38!important;}
+.global-doorbell-sidebar .doorbell-response-actions button.declined.active{background:#202522!important;color:#fff!important;border-color:#202522!important;}
+.global-doorbell-sidebar .doorbell-actions{display:none!important;}
+.global-doorbell-sidebar .doorbell-response-script{margin-top:12px!important;margin-bottom:0!important;background:#fbfdfb!important;}
+body.night-mode .global-doorbell-sidebar .doorbell-alert-red{background:#3a1010!important;border-color:#ef5350!important;color:#fff!important;}
+body.night-mode .global-doorbell-sidebar .doorbell-alert-red strong,
+body.night-mode .global-doorbell-sidebar .doorbell-alert-red span,
+body.night-mode .global-doorbell-sidebar .doorbell-alert-red b{color:#fff!important;}
+body.night-mode .global-doorbell-sidebar .doorbell-choice-row button,
+body.night-mode .global-doorbell-sidebar .doorbell-response-actions button{background:#061a11!important;color:#fff!important;border-color:#267444!important;}
+body.night-mode .global-doorbell-sidebar .doorbell-choice-row button.active,
+body.night-mode .global-doorbell-sidebar .doorbell-response-actions button.active{background:#0b7a38!important;color:#fff!important;border-color:#1db954!important;}
+
+/* Doorbell final scripts + scroll/header cleanup */
+.global-doorbell-sidebar{overflow-y:auto!important;}
+.doorbell-head{position:relative!important;top:auto!important;background:transparent!important;z-index:auto!important;padding-bottom:12px!important;margin-bottom:10px!important;border-bottom:1px solid #dfe9e1!important;}
+body.night-mode .doorbell-head{background:transparent!important;border-bottom-color:#267444!important;}
+.global-doorbell-sidebar .doorbell-alert-red{padding:18px 18px!important;border-radius:18px!important;border-width:2.5px!important;background:#fff2f2!important;}
+.global-doorbell-sidebar .doorbell-alert-red strong{font-size:17px!important;letter-spacing:.10em!important;margin-bottom:8px!important;}
+.global-doorbell-sidebar .doorbell-alert-red span{font-size:15px!important;line-height:1.45!important;font-weight:900!important;}
+.global-doorbell-sidebar .doorbell-card h3{font-size:15px!important;line-height:1.2!important;}
+.global-doorbell-sidebar .doorbell-card p,
+.global-doorbell-sidebar .doorbell-card li,
+.global-doorbell-sidebar .doorbell-script-box,
+.global-doorbell-sidebar .doorbell-placeholder-box{font-size:11.5px!important;line-height:1.42!important;}
+.global-doorbell-sidebar .doorbell-script-box,
+.global-doorbell-sidebar .doorbell-placeholder-box{white-space:pre-wrap!important;}
+.doorbell-tip-list{display:grid!important;gap:9px!important;}
+.doorbell-tip{display:grid!important;grid-template-columns:28px 1fr!important;gap:9px!important;align-items:start!important;border:1px solid #dfe9e1!important;border-radius:14px!important;padding:10px!important;background:#fbfdfb!important;}
+.doorbell-tip-icon{font-size:20px!important;line-height:1!important;}
+.doorbell-tip strong{display:block!important;font-size:12px!important;color:#0b5a2a!important;margin-bottom:3px!important;}
+.doorbell-tip span{display:block!important;font-size:11.5px!important;color:#506053!important;line-height:1.35!important;}
+body.night-mode .doorbell-tip{background:#061a11!important;border-color:#267444!important;}
+body.night-mode .doorbell-tip strong, body.night-mode .doorbell-tip span{color:#fff!important;}
+</style>
+
+<style id="doorbell-script-font-size-tune">
+.global-doorbell-sidebar .doorbell-script-box{
+  font-size:13.5px!important;
+  line-height:1.55!important;
+}
+body.night-mode .global-doorbell-sidebar .doorbell-script-box{
+  color:#fff!important;
+}
+</style>
+
+<style id="doorbell-accepted-important-note-style">
+.doorbell-important-note{
+  margin-top:10px!important;
+  border:1.5px solid #f2b8b5!important;
+  background:#fff5f5!important;
+  color:#7f1010!important;
+  border-radius:14px!important;
+  padding:11px 12px!important;
+  font-size:14px!important;
+  line-height:1.45!important;
+  font-weight:750!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+}
+.doorbell-important-note strong{color:#b71c1c!important;font-weight:950!important;}
+body.night-mode .doorbell-important-note{background:#3a1010!important;border-color:#ef5350!important;color:#fff!important;}
+body.night-mode .doorbell-important-note strong{color:#fff!important;}
+</style>
 </head>
 <body>
 <header class="final-app-header">
@@ -4859,6 +4961,13 @@ body.show-move-info #full-pane.active .remarks-customer-card #preview-content{
 <div class="final-header-actions">
 <button class="final-brand-toggle" id="brand-toggle-top" onclick="toggleBrand()" type="button">New City Moving</button>
 <button class="final-night-toggle" id="nightModeBtn" onclick="toggleNightMode()" type="button">Night Mode</button>
+<button aria-label="Open doorbell info" class="final-doorbell-btn" onclick="toggleDoorbellLookup()" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M6 10a6 6 0 0 1 12 0v5l2 3H4l2-3v-5"></path>
+<path d="M9.5 20a3 3 0 0 0 5 0"></path>
+</svg>
+<span>Doorbell</span>
+</button>
 </div>
 <button aria-label="Open office lookup" class="final-office-search-btn" onclick="toggleGlobalOfficeLookup()" type="button">
 <svg aria-hidden="true" viewbox="0 0 24 24">
@@ -4891,6 +5000,95 @@ body.show-move-info #full-pane.active .remarks-customer-card #preview-content{
 </div>
 </aside>
 <div class="global-office-overlay" id="globalOfficeOverlay" onclick="toggleGlobalOfficeLookup()"></div>
+
+<aside aria-label="Doorbell" class="global-doorbell-sidebar" id="globalDoorbellLookup">
+<div class="global-office-sidebar-head doorbell-head">
+<div>
+<h2>Doorbell</h2>
+<p>Qualification journey for the free Google Nest doorbell offer.</p>
+</div>
+<button aria-label="Close doorbell" onclick="toggleDoorbellLookup()" type="button">×</button>
+</div>
+
+<div class="doorbell-alert doorbell-alert-red">
+<strong>QUALIFIERS</strong>
+<span>Only offer if the <b>destination home is over 2,500 sq. ft.</b> and they <b>own / are buying</b> the destination home.</span>
+</div>
+
+<div class="doorbell-card doorbell-step-card">
+<h3>Step 1 — Destination Size</h3>
+<p>Only continue if the destination home is over 2,500 sq. ft.</p>
+<div class="doorbell-choice-row">
+<button id="doorbellSizeBtn" type="button" onclick="doorbellShowSizeScript()">Destination is over 2,500 sq. ft.</button>
+</div>
+</div>
+
+<div class="doorbell-card doorbell-step-card doorbell-hidden" id="doorbellSizeScriptCard">
+<h3>Size Script</h3>
+<div class="doorbell-script-box" id="doorbellSizeScriptText">Excellent, I've got everything reserved for you and here shortly you'll receive your confirmation email along with a copy of your estimate. Here's what happens next: One of our operations managers will be giving you a call in the next day or two to personally introduce themselves and answer any additional questions that may have come up between now and then. And one last question before we wrap up — are we moving you into a home you've purchased or a rental property?</div>
+<div class="doorbell-divider"></div>
+<h3>Step 2 — Ownership</h3>
+<p>Choose the option that matches the destination home.</p>
+<div class="doorbell-choice-row two-col">
+<button id="doorbellOwnerBtn" type="button" onclick="doorbellShowOwnerScript()">Buying / already owns</button>
+<button id="doorbellRenterBtn" type="button" onclick="doorbellShowRenterScript()">Renting</button>
+</div>
+</div>
+
+<div class="doorbell-card doorbell-step-card doorbell-hidden" id="doorbellOwnerScriptCard">
+<h3>Homeowner Script</h3>
+<div class="doorbell-script-box" id="doorbellOwnerScriptText">Great. Because we're moving into a home you're going to own, you're eligible for one of our homeowner welcome gifts. Right now that's a complimentary Google Nest Doorbell — a $400 value — professionally installed on your new home by our partners at SafeHaven. Would you like me to go ahead and mark you down for the free doorbell?</div>
+<div class="doorbell-response-actions">
+<button id="doorbellAcceptedBtn" type="button" class="accepted" onclick="doorbellSetStatus('accepted')">Accepted Doorbell</button>
+<button id="doorbellDeclinedBtn" type="button" class="declined" onclick="doorbellSetStatus('declined')">Declined Doorbell</button>
+</div>
+<div class="doorbell-card doorbell-response-script doorbell-hidden" id="doorbellAcceptedScriptCard">
+<h3>Accepted Doorbell Script</h3>
+<div class="doorbell-script-box" id="doorbellAcceptedScriptText">I went ahead and notated that. You're all set for the move and the doorbell. Keep a look out for that call from operations I mentioned, and thanks again for your business!</div>
+<div class="doorbell-important-note"><strong>Important:</strong> If they accept, be sure to mark the Door Bell Promotion button and <strong>CONFIRM</strong> the destination address is correct and grammatically correct.</div>
+</div>
+<div class="doorbell-card doorbell-response-script doorbell-hidden" id="doorbellDeclinedScriptCard">
+<h3>Declined Doorbell Script</h3>
+<div class="doorbell-script-box" id="doorbellDeclinedScriptText">No problem. If you change your mind at any time let us know — it's a totally complimentary gift from All My Sons to you. Otherwise you're all set, look out for the call from operations, and thanks again for your business!</div>
+</div>
+</div>
+
+<div class="doorbell-card doorbell-step-card doorbell-hidden" id="doorbellRenterScriptCard">
+<h3>Renter Script</h3>
+<div class="doorbell-script-box" id="doorbellRenterScriptText">Okay, great. If the property owner has any special requests regarding the move-in, please let us know. Otherwise you're all set, look out for the call from operations, and thanks again for your business!</div>
+</div>
+
+<div class="doorbell-card doorbell-helper-card doorbell-hidden" id="doorbellObjectionsCard">
+<h3>Objections</h3>
+<div class="doorbell-placeholder-box">Objection:
+"I don't want to deal with setup."
+Your Response:
+"Completely understand — that's the best part. Our partners at SafeHaven handle the full professional install for you, so there's nothing for you to set up."
+
+Objection:
+"Is there a catch?"
+Your Response:
+"No catch at all — it's a complimentary welcome gift from All My Sons through our partnership with ADT. No obligation and no contract required for the doorbell."
+
+Objection:
+"I need to talk to my spouse."
+Your Response:
+"Of course — no rush at all. It's a standing complimentary gift, so just let us know whenever you're ready and we'll get you marked down for it."</div>
+</div>
+
+<div class="doorbell-card doorbell-helper-card doorbell-hidden" id="doorbellProTipsCard">
+<h3>Pro Tips</h3>
+<div class="doorbell-placeholder-box"><div class="doorbell-tip-list">
+  <div class="doorbell-tip"><div class="doorbell-tip-icon">🎯</div><div><strong>Book First, Offer Second</strong><span>Only bring up the doorbell once the move is fully booked and scheduled — never use it to win the booking.</span></div></div>
+  <div class="doorbell-tip"><div class="doorbell-tip-icon">🏠</div><div><strong>Homeowner = Trigger</strong><span>Saying 'because you're moving into a home you own' creates exclusivity and makes the gift feel earned, not random.</span></div></div>
+  <div class="doorbell-tip"><div class="doorbell-tip-icon">🤝</div><div><strong>It's a Welcome Gift</strong><span>Frame it as appreciation, not a sale. 'A welcome gift from All My Sons' lands better than 'an offer.'</span></div></div>
+  <div class="doorbell-tip"><div class="doorbell-tip-icon">🔒</div><div><strong>ADT Partnership Credibility</strong><span>If asked, mention this is part of our partnership with ADT — installed by our partners at SafeHaven.</span></div></div>
+  <div class="doorbell-tip"><div class="doorbell-tip-icon">⏱</div><div><strong>Keep It Brief</strong><span>These scripts are intentionally short. Deliver the line and let silence work for you. Don't over-explain.</span></div></div>
+  <div class="doorbell-tip"><div class="doorbell-tip-icon">📋</div><div><strong>Always Document</strong><span>Check the box on the Estimate form.</span></div></div>
+</div></div>
+</div>
+</aside>
+<div class="global-doorbell-overlay" id="globalDoorbellOverlay" onclick="toggleDoorbellLookup()"></div>
 <div id="body">
 <!-- FORM -->
 <div id="form-panel">
@@ -5406,7 +5604,7 @@ body.show-move-info #full-pane.active .remarks-customer-card #preview-content{
 <div class="result-chip">
 <div class="rl">Travel Charge</div>
 <div class="rv" id="calcTravelCharge">—</div>
-<div class="ru" id="calcTravelChargeSub">Travel hrs × $139 × trucks</div>
+<div class="ru" id="calcTravelChargeSub">Travel hrs × combined truck rate</div>
 </div>
 </div>
 </div>
@@ -14110,7 +14308,7 @@ function calcUpdate() {
     $$("calcFuel").textContent              = "—";
     $$("calcFuelSub").textContent           = "Miles × $1.25 × trucks";
     $$("calcTravelCharge").textContent      = "—";
-    $$("calcTravelChargeSub").textContent   = "Travel hrs × $139 × trucks";
+    $$("calcTravelChargeSub").textContent   = `Travel hrs × $${CALC_RATE * calcTrucks}`;
     updateGrandTotal();
     return;
   }
@@ -14132,7 +14330,7 @@ function calcUpdate() {
   $$("calcFuel").textContent            = fmt$(fuel);
   $$("calcFuelSub").textContent         = `${miles} mi × $1.25 × ${calcTrucks} truck${calcTrucks !== 1 ? "s" : ""}`;
   $$("calcTravelCharge").textContent    = fmt$(travelCharge);
-  $$("calcTravelChargeSub").textContent = `${rounded}h × $${CALC_RATE} × ${calcTrucks} truck${calcTrucks !== 1 ? "s" : ""}`;
+  $$("calcTravelChargeSub").textContent = `${rounded}h × $${CALC_RATE * calcTrucks}`;
   updateGrandTotal();
 }
 
@@ -15972,140 +16170,6 @@ async function regCopy() {
      on every page. Keeps the Move Details rail and notes generator
      in normal flow so they do not jump or break.
      ============================================================ -->
-<style id="final-nav-under-header-position-patch">
-  :root{
-    --fixed-header-h:76px!important;
-    --fixed-nav-h:68px!important;
-    --fixed-shell-top:144px!important;
-  }
-
-  html,
-  body{
-    min-height:100%!important;
-    height:auto!important;
-    overflow-x:hidden!important;
-    overflow-y:auto!important;
-  }
-
-  body{
-    padding-top:var(--fixed-shell-top)!important;
-  }
-
-  .final-app-header{
-    position:fixed!important;
-    top:0!important;
-    left:0!important;
-    right:0!important;
-    width:100vw!important;
-    height:var(--fixed-header-h)!important;
-    min-height:var(--fixed-header-h)!important;
-    z-index:100000!important;
-  }
-
-  #toolbar,
-  body.show-move-info #toolbar,
-  body.wide-pane #toolbar{
-    position:fixed!important;
-    top:var(--fixed-header-h)!important;
-    left:0!important;
-    right:0!important;
-    width:100vw!important;
-    height:var(--fixed-nav-h)!important;
-    min-height:var(--fixed-nav-h)!important;
-    z-index:99999!important;
-    display:flex!important;
-    flex-direction:row!important;
-    align-items:center!important;
-    justify-content:center!important;
-    gap:10px!important;
-    padding:10px 24px!important;
-    box-sizing:border-box!important;
-    background:#f7f9f7!important;
-    border-bottom:0!important;
-    box-shadow:none!important;
-    overflow:visible!important;
-  }
-
-  #toolbar .toolbar-primary{
-    width:auto!important;
-    flex:0 0 auto!important;
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    gap:10px!important;
-    min-width:0!important;
-    overflow:visible!important;
-  }
-
-  #toolbar .toolbar-brand-mini,
-  #toolbar #copy-btn{
-    display:none!important;
-  }
-
-  #toolbar .tab-btn.primary-tab,
-  #toolbar .more-tools-wrap,
-  #toolbar .more-tools-menu > summary{
-    flex:0 0 auto!important;
-    white-space:nowrap!important;
-  }
-
-  .more-tools-wrap{
-    margin-left:0!important;
-    position:relative!important;
-  }
-
-  #body{
-    padding-top:0!important;
-    margin-top:0!important;
-    min-height:calc(100vh - var(--fixed-shell-top))!important;
-    height:auto!important;
-    overflow:visible!important;
-  }
-
-  #right-panel,
-  body.show-move-info #right-panel{
-    padding-top:0!important;
-    min-height:calc(100vh - var(--fixed-shell-top))!important;
-    height:auto!important;
-    overflow:visible!important;
-  }
-
-  body.show-move-info #form-panel{
-    position:relative!important;
-    top:auto!important;
-    left:auto!important;
-    transform:none!important;
-    align-self:flex-start!important;
-  }
-
-  body.night-mode #toolbar{
-    background:#06160f!important;
-  }
-
-  @media(max-width:1180px){
-    body{
-      padding-top:calc(66px + var(--fixed-nav-h))!important;
-    }
-
-    .final-app-header{
-      height:66px!important;
-      min-height:66px!important;
-    }
-
-    #toolbar,
-    body.show-move-info #toolbar,
-    body.wide-pane #toolbar{
-      top:66px!important;
-      justify-content:flex-start!important;
-      overflow-x:auto!important;
-      overflow-y:visible!important;
-    }
-
-    #toolbar .toolbar-primary{
-      justify-content:flex-start!important;
-    }
-  }
-</style>
 
 
 
@@ -16486,6 +16550,309 @@ body:has(#ams-pane.active) #form-panel{
   }
 }
 </style>
+
+
+
+<!-- ============================================================
+     FINAL UTILITY DEAD-SPACE FIX V2
+     Removes the old fixed-nav/header spacer conflict that was leaving
+     large blank space on Regulated Markets, Backhaul, and utility tabs.
+     ============================================================ -->
+<style id="final-utility-dead-space-fix-v2">
+  html,
+  body{
+    min-height:100%!important;
+    height:auto!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    padding-top:0!important;
+    margin-top:0!important;
+  }
+
+  .final-app-header{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    right:auto!important;
+    width:100%!important;
+    height:76px!important;
+    min-height:76px!important;
+    margin:0!important;
+    z-index:1200!important;
+  }
+
+  #body{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+  }
+
+  #right-panel,
+  body.show-move-info #right-panel,
+  body.wide-pane #right-panel{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+  }
+
+  #toolbar,
+  body.show-move-info #toolbar,
+  body.wide-pane #toolbar{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    right:auto!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:64px!important;
+    margin:0!important;
+    padding:10px 24px!important;
+    z-index:1100!important;
+    background:#f7f9f7!important;
+    border-top:0!important;
+    border-bottom:1px solid #dfe9e1!important;
+    box-shadow:0 6px 18px rgba(16,25,19,.03)!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:10px!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+  }
+
+  #toolbar .toolbar-primary{
+    width:auto!important;
+    flex:0 0 auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:10px!important;
+  }
+
+  #toolbar .toolbar-brand-mini,
+  #toolbar #copy-btn{
+    display:none!important;
+  }
+
+  /* Default page shell: no side rail on non-remarks tabs. */
+  #form-panel{
+    display:none!important;
+  }
+
+  .pane:not(.active){
+    display:none!important;
+    visibility:hidden!important;
+  }
+
+  .pane.active{
+    display:block!important;
+    visibility:visible!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    margin-top:0!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Compact the utility/reference tabs that had the visible dead zone. */
+  #regmkt-pane.active,
+  #backhaul-pane.active,
+  #sop-pane.active,
+  #buildquote-pane.active,
+  #offices-pane.active,
+  #commission-pane.active,
+  #gunsafe-pane.active,
+  #stor-pane.active,
+  #calc-pane.active,
+  #od-pane.active,
+  #reg-pane.active{
+    width:100%!important;
+    max-width:1260px!important;
+    margin:0 auto!important;
+    padding:8px 22px 90px!important;
+    box-sizing:border-box!important;
+  }
+
+  #backhaul-pane.active{
+    max-width:1320px!important;
+    padding-top:0!important;
+  }
+
+  #regmkt-pane.active{
+    padding-top:0!important;
+  }
+
+  #regmkt-pane.active > *,
+  #backhaul-pane.active > *,
+  #sop-pane.active > *,
+  #buildquote-pane.active > *,
+  #offices-pane.active > *,
+  #commission-pane.active > *,
+  #gunsafe-pane.active > *,
+  #stor-pane.active > *,
+  #calc-pane.active > *,
+  #od-pane.active > *,
+  #reg-pane.active > *{
+    margin-top:0!important;
+  }
+
+  #backhaul-pane.active > div,
+  #regmkt-pane.active > div,
+  #regmkt-pane.active section,
+  #sop-pane.active > div,
+  #buildquote-pane.active > div,
+  #offices-pane.active > div,
+  #commission-pane.active > div,
+  #gunsafe-pane.active > div{
+    width:100%!important;
+    max-width:1180px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+  #backhaul-pane.active h1,
+  #backhaul-pane.active h2,
+  #regmkt-pane.active h1,
+  #regmkt-pane.active h2,
+  #sop-pane.active h1,
+  #sop-pane.active h2,
+  #buildquote-pane.active h1,
+  #buildquote-pane.active h2,
+  #offices-pane.active h1,
+  #offices-pane.active h2,
+  #commission-pane.active h1,
+  #commission-pane.active h2,
+  #gunsafe-pane.active h1,
+  #gunsafe-pane.active h2{
+    margin-top:0!important;
+  }
+
+  /* Backhaul two-column content begins immediately under its title. */
+  #backhaul-pane.active div[style*="display:flex"][style*="gap:24px"]{
+    margin-top:0!important;
+  }
+
+  /* Remarks page keeps the Move Details rail and the stable two-card layout. */
+  body.remarks-active #body,
+  body:has(#full-pane.active) #body{
+    display:flex!important;
+    align-items:flex-start!important;
+    gap:18px!important;
+    width:100%!important;
+    max-width:1920px!important;
+    margin:0 auto!important;
+    padding:0 10px!important;
+    box-sizing:border-box!important;
+  }
+
+  body.remarks-active #form-panel,
+  body:has(#full-pane.active) #form-panel{
+    display:block!important;
+    flex:0 0 300px!important;
+    width:300px!important;
+    min-width:300px!important;
+    max-width:300px!important;
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    transform:none!important;
+    align-self:flex-start!important;
+    margin:14px 0 0 0!important;
+    height:calc(100vh - 170px)!important;
+    max-height:calc(100vh - 170px)!important;
+    overflow:auto!important;
+    box-sizing:border-box!important;
+    padding:16px!important;
+    border:1px solid #dfe9e1!important;
+    border-radius:22px!important;
+    background:#fff!important;
+    box-shadow:0 14px 32px rgba(16,25,19,.055)!important;
+    z-index:20!important;
+  }
+
+  body.remarks-active #right-panel,
+  body:has(#full-pane.active) #right-panel{
+    flex:1 1 auto!important;
+    min-width:0!important;
+    width:auto!important;
+    max-width:none!important;
+    padding:0!important;
+    margin:0!important;
+  }
+
+  #full-pane.active{
+    width:100%!important;
+    max-width:1580px!important;
+    margin:0 auto!important;
+    padding:10px 0 80px!important;
+    box-sizing:border-box!important;
+  }
+
+  /* AMS keeps the wide map layout. */
+  body.ams-focus #body{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    padding:0!important;
+  }
+
+  body.ams-focus #right-panel{
+    width:100vw!important;
+    max-width:none!important;
+    padding:0!important;
+    margin:0!important;
+  }
+
+  #ams-pane.active{
+    display:block!important;
+    width:100vw!important;
+    max-width:none!important;
+    margin-left:calc(50% - 50vw)!important;
+    margin-right:calc(50% - 50vw)!important;
+    padding:10px 14px 42px!important;
+    box-sizing:border-box!important;
+  }
+
+  body.night-mode #toolbar{
+    background:#06160f!important;
+    border-bottom-color:#174428!important;
+  }
+
+  @media(max-width:1180px){
+    #toolbar,
+    body.show-move-info #toolbar,
+    body.wide-pane #toolbar{
+      justify-content:flex-start!important;
+      overflow-x:auto!important;
+      overflow-y:visible!important;
+    }
+
+    body.remarks-active #body,
+    body:has(#full-pane.active) #body{
+      display:block!important;
+      padding:0 16px!important;
+    }
+
+    body.remarks-active #form-panel,
+    body:has(#full-pane.active) #form-panel{
+      display:none!important;
+    }
+  }
+</style>
+
+
 
 </body></html>`;
   try {
@@ -17153,6 +17520,117 @@ document.addEventListener("DOMContentLoaded", () => renderGlobalAmsOffices());
 
 
 
+
+
+
+
+/* ============================================================
+   Doorbell Sidebar
+   Opens from the header like Office Lookup.
+   ============================================================ */
+function resetDoorbellJourney(){
+  [
+    "doorbellSizeScriptCard",
+    "doorbellOwnerScriptCard",
+    "doorbellRenterScriptCard",
+    "doorbellAcceptedScriptCard",
+    "doorbellDeclinedScriptCard",
+    "doorbellObjectionsCard",
+    "doorbellProTipsCard"
+  ].forEach(id => document.getElementById(id)?.classList.add("doorbell-hidden"));
+
+  doorbellSetActive(["doorbellSizeBtn"], "");
+  doorbellSetActive(["doorbellOwnerBtn", "doorbellRenterBtn"], "");
+  doorbellSetActive(["doorbellAcceptedBtn", "doorbellDeclinedBtn"], "");
+
+  const sidebar = document.getElementById("globalDoorbellLookup");
+  if(sidebar) sidebar.scrollTop = 0;
+}
+
+function toggleDoorbellLookup(){
+  const sidebar = document.getElementById("globalDoorbellLookup");
+  const overlay = document.getElementById("globalDoorbellOverlay");
+  if(!sidebar || !overlay) return;
+
+  const willOpen = !sidebar.classList.contains("open");
+
+  /* Keep it acting like the Office Lookup drawer, over the page content. */
+  document.getElementById("globalOfficeLookup")?.classList.remove("open");
+  document.getElementById("globalOfficeOverlay")?.classList.remove("open");
+
+  sidebar.classList.toggle("open", willOpen);
+  overlay.classList.toggle("open", willOpen);
+
+  if(!willOpen) resetDoorbellJourney();
+}
+
+function doorbellSetActive(ids, activeId){
+  ids.forEach(id => document.getElementById(id)?.classList.toggle("active", id === activeId));
+}
+
+function doorbellShowHelpers(){
+  document.getElementById("doorbellObjectionsCard")?.classList.remove("doorbell-hidden");
+  document.getElementById("doorbellProTipsCard")?.classList.remove("doorbell-hidden");
+}
+
+function doorbellShowSizeScript(){
+  document.getElementById("doorbellSizeScriptCard")?.classList.remove("doorbell-hidden");
+  document.getElementById("doorbellOwnerScriptCard")?.classList.add("doorbell-hidden");
+  document.getElementById("doorbellRenterScriptCard")?.classList.add("doorbell-hidden");
+  document.getElementById("doorbellAcceptedScriptCard")?.classList.add("doorbell-hidden");
+  document.getElementById("doorbellDeclinedScriptCard")?.classList.add("doorbell-hidden");
+  document.getElementById("doorbellObjectionsCard")?.classList.add("doorbell-hidden");
+  document.getElementById("doorbellProTipsCard")?.classList.add("doorbell-hidden");
+  doorbellSetActive(["doorbellSizeBtn"], "doorbellSizeBtn");
+  doorbellSetActive(["doorbellOwnerBtn", "doorbellRenterBtn"], "");
+  doorbellSetActive(["doorbellAcceptedBtn", "doorbellDeclinedBtn"], "");
+}
+
+function doorbellShowOwnerScript(){
+  document.getElementById("doorbellOwnerScriptCard")?.classList.remove("doorbell-hidden");
+  document.getElementById("doorbellRenterScriptCard")?.classList.add("doorbell-hidden");
+  document.getElementById("doorbellAcceptedScriptCard")?.classList.add("doorbell-hidden");
+  document.getElementById("doorbellDeclinedScriptCard")?.classList.add("doorbell-hidden");
+  doorbellSetActive(["doorbellOwnerBtn", "doorbellRenterBtn"], "doorbellOwnerBtn");
+  doorbellSetActive(["doorbellAcceptedBtn", "doorbellDeclinedBtn"], "");
+  doorbellShowHelpers();
+}
+
+function doorbellShowRenterScript(){
+  document.getElementById("doorbellRenterScriptCard")?.classList.remove("doorbell-hidden");
+  document.getElementById("doorbellOwnerScriptCard")?.classList.add("doorbell-hidden");
+  document.getElementById("doorbellAcceptedScriptCard")?.classList.add("doorbell-hidden");
+  document.getElementById("doorbellDeclinedScriptCard")?.classList.add("doorbell-hidden");
+  doorbellSetActive(["doorbellOwnerBtn", "doorbellRenterBtn"], "doorbellRenterBtn");
+  doorbellSetActive(["doorbellAcceptedBtn", "doorbellDeclinedBtn"], "");
+  doorbellShowHelpers();
+}
+
+function doorbellSetStatus(status){
+  const accepted = status === "accepted";
+  document.getElementById("doorbellAcceptedScriptCard")?.classList.toggle("doorbell-hidden", !accepted);
+  document.getElementById("doorbellDeclinedScriptCard")?.classList.toggle("doorbell-hidden", accepted);
+  doorbellSetActive(["doorbellAcceptedBtn", "doorbellDeclinedBtn"], accepted ? "doorbellAcceptedBtn" : "doorbellDeclinedBtn");
+}
+
+function copyDoorbellText(elementId){
+  const el = document.getElementById(elementId);
+  const text = (el?.innerText || el?.textContent || "").trim();
+  if(!text) return;
+  if(navigator.clipboard) navigator.clipboard.writeText(text);
+  else {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+  }
+}
+
+function copyDoorbellScript(){
+  copyDoorbellText("doorbellOwnerScriptText");
+}
 
 
 /* ============================================================
@@ -18387,5 +18865,924 @@ body.ams-focus #ams-pane > *{
   });
 })();
 </script>
+
+
+<!-- ============================================================
+     FINAL PAGE TOP-SPACING FIX
+     Removes excess blank space on utility tabs such as Regulated
+     Markets and Backhaul while leaving Remarks/sidebar layout alone.
+     ============================================================ -->
+
+
+
+<!-- ============================================================
+     FINAL UTILITY DEAD-SPACE FIX V2
+     Removes the old fixed-nav/header spacer conflict that was leaving
+     large blank space on Regulated Markets, Backhaul, and utility tabs.
+     ============================================================ -->
+<style id="final-utility-dead-space-fix-v2">
+  html,
+  body{
+    min-height:100%!important;
+    height:auto!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    padding-top:0!important;
+    margin-top:0!important;
+  }
+
+  .final-app-header{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    right:auto!important;
+    width:100%!important;
+    height:76px!important;
+    min-height:76px!important;
+    margin:0!important;
+    z-index:1200!important;
+  }
+
+  #body{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+  }
+
+  #right-panel,
+  body.show-move-info #right-panel,
+  body.wide-pane #right-panel{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+  }
+
+  #toolbar,
+  body.show-move-info #toolbar,
+  body.wide-pane #toolbar{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    right:auto!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:64px!important;
+    margin:0!important;
+    padding:10px 24px!important;
+    z-index:1100!important;
+    background:#f7f9f7!important;
+    border-top:0!important;
+    border-bottom:1px solid #dfe9e1!important;
+    box-shadow:0 6px 18px rgba(16,25,19,.03)!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:10px!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+  }
+
+  #toolbar .toolbar-primary{
+    width:auto!important;
+    flex:0 0 auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:10px!important;
+  }
+
+  #toolbar .toolbar-brand-mini,
+  #toolbar #copy-btn{
+    display:none!important;
+  }
+
+  /* Default page shell: no side rail on non-remarks tabs. */
+  #form-panel{
+    display:none!important;
+  }
+
+  .pane:not(.active){
+    display:none!important;
+    visibility:hidden!important;
+  }
+
+  .pane.active{
+    display:block!important;
+    visibility:visible!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    margin-top:0!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Compact the utility/reference tabs that had the visible dead zone. */
+  #regmkt-pane.active,
+  #backhaul-pane.active,
+  #sop-pane.active,
+  #buildquote-pane.active,
+  #offices-pane.active,
+  #commission-pane.active,
+  #gunsafe-pane.active,
+  #stor-pane.active,
+  #calc-pane.active,
+  #od-pane.active,
+  #reg-pane.active{
+    width:100%!important;
+    max-width:1260px!important;
+    margin:0 auto!important;
+    padding:8px 22px 90px!important;
+    box-sizing:border-box!important;
+  }
+
+  #backhaul-pane.active{
+    max-width:1320px!important;
+    padding-top:0!important;
+  }
+
+  #regmkt-pane.active{
+    padding-top:0!important;
+  }
+
+  #regmkt-pane.active > *,
+  #backhaul-pane.active > *,
+  #sop-pane.active > *,
+  #buildquote-pane.active > *,
+  #offices-pane.active > *,
+  #commission-pane.active > *,
+  #gunsafe-pane.active > *,
+  #stor-pane.active > *,
+  #calc-pane.active > *,
+  #od-pane.active > *,
+  #reg-pane.active > *{
+    margin-top:0!important;
+  }
+
+  #backhaul-pane.active > div,
+  #regmkt-pane.active > div,
+  #regmkt-pane.active section,
+  #sop-pane.active > div,
+  #buildquote-pane.active > div,
+  #offices-pane.active > div,
+  #commission-pane.active > div,
+  #gunsafe-pane.active > div{
+    width:100%!important;
+    max-width:1180px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+  #backhaul-pane.active h1,
+  #backhaul-pane.active h2,
+  #regmkt-pane.active h1,
+  #regmkt-pane.active h2,
+  #sop-pane.active h1,
+  #sop-pane.active h2,
+  #buildquote-pane.active h1,
+  #buildquote-pane.active h2,
+  #offices-pane.active h1,
+  #offices-pane.active h2,
+  #commission-pane.active h1,
+  #commission-pane.active h2,
+  #gunsafe-pane.active h1,
+  #gunsafe-pane.active h2{
+    margin-top:0!important;
+  }
+
+  /* Backhaul two-column content begins immediately under its title. */
+  #backhaul-pane.active div[style*="display:flex"][style*="gap:24px"]{
+    margin-top:0!important;
+  }
+
+  /* Remarks page keeps the Move Details rail and the stable two-card layout. */
+  body.remarks-active #body,
+  body:has(#full-pane.active) #body{
+    display:flex!important;
+    align-items:flex-start!important;
+    gap:18px!important;
+    width:100%!important;
+    max-width:1920px!important;
+    margin:0 auto!important;
+    padding:0 10px!important;
+    box-sizing:border-box!important;
+  }
+
+  body.remarks-active #form-panel,
+  body:has(#full-pane.active) #form-panel{
+    display:block!important;
+    flex:0 0 300px!important;
+    width:300px!important;
+    min-width:300px!important;
+    max-width:300px!important;
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    transform:none!important;
+    align-self:flex-start!important;
+    margin:14px 0 0 0!important;
+    height:calc(100vh - 170px)!important;
+    max-height:calc(100vh - 170px)!important;
+    overflow:auto!important;
+    box-sizing:border-box!important;
+    padding:16px!important;
+    border:1px solid #dfe9e1!important;
+    border-radius:22px!important;
+    background:#fff!important;
+    box-shadow:0 14px 32px rgba(16,25,19,.055)!important;
+    z-index:20!important;
+  }
+
+  body.remarks-active #right-panel,
+  body:has(#full-pane.active) #right-panel{
+    flex:1 1 auto!important;
+    min-width:0!important;
+    width:auto!important;
+    max-width:none!important;
+    padding:0!important;
+    margin:0!important;
+  }
+
+  #full-pane.active{
+    width:100%!important;
+    max-width:1580px!important;
+    margin:0 auto!important;
+    padding:10px 0 80px!important;
+    box-sizing:border-box!important;
+  }
+
+  /* AMS keeps the wide map layout. */
+  body.ams-focus #body{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    padding:0!important;
+  }
+
+  body.ams-focus #right-panel{
+    width:100vw!important;
+    max-width:none!important;
+    padding:0!important;
+    margin:0!important;
+  }
+
+  #ams-pane.active{
+    display:block!important;
+    width:100vw!important;
+    max-width:none!important;
+    margin-left:calc(50% - 50vw)!important;
+    margin-right:calc(50% - 50vw)!important;
+    padding:10px 14px 42px!important;
+    box-sizing:border-box!important;
+  }
+
+  body.night-mode #toolbar{
+    background:#06160f!important;
+    border-bottom-color:#174428!important;
+  }
+
+  @media(max-width:1180px){
+    #toolbar,
+    body.show-move-info #toolbar,
+    body.wide-pane #toolbar{
+      justify-content:flex-start!important;
+      overflow-x:auto!important;
+      overflow-y:visible!important;
+    }
+
+    body.remarks-active #body,
+    body:has(#full-pane.active) #body{
+      display:block!important;
+      padding:0 16px!important;
+    }
+
+    body.remarks-active #form-panel,
+    body:has(#full-pane.active) #form-panel{
+      display:none!important;
+    }
+  }
+</style>
+
+
+<style id="final-hourly-no-blank-swap-patch">
+/* ============================================================
+   FINAL HOURLY / REMARKS FIX
+   - Removes the blank-screen jump when Hourly Rate is clicked
+   - Keeps Remarks + Crew Notes visible immediately under the nav
+   - Customer Remarks receives the hourly quote/work area
+   - Crew Notes receives the do-not-send warning
+   ============================================================ */
+html, body{
+  height:auto!important;
+  min-height:100%!important;
+  overflow-y:auto!important;
+}
+#body{
+  padding-top:0!important;
+  margin-top:0!important;
+  height:auto!important;
+  min-height:calc(100vh - 76px)!important;
+  overflow:visible!important;
+}
+#right-panel,
+body.show-move-info #right-panel,
+body.remarks-active #right-panel,
+body:has(#full-pane.active) #right-panel{
+  padding-top:0!important;
+  margin-top:0!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow:visible!important;
+}
+#full-pane.active{
+  display:block!important;
+  visibility:visible!important;
+  margin-top:0!important;
+  padding-top:10px!important;
+}
+#full-pane.active .lab-page-title{
+  margin-top:0!important;
+}
+body.remarks-active #body,
+body:has(#full-pane.active) #body{
+  padding-top:0!important;
+  margin-top:0!important;
+  align-items:flex-start!important;
+}
+/* Hourly mode: the customer side needs room for the quote builder now. */
+body.hourly-mode #full-pane.active .remarks-workspace{
+  grid-template-columns:minmax(680px,1.2fr) minmax(360px,.8fr)!important;
+}
+body.hourly-mode #customer-remarks-box #hourly-warning,
+body.hourly-mode #customer-remarks-box #hourly-inputs{
+  max-width:none!important;
+  width:100%!important;
+}
+body.hourly-mode #customer-remarks-box #hourly-inputs > div{
+  width:100%!important;
+}
+body.hourly-mode #customer-remarks-box #hourly-inputs .calc-card{
+  flex:1 1 230px!important;
+}
+.hourly-crew-warning-card{
+  background:#b71c1c!important;
+  color:#fff!important;
+  border-radius:12px!important;
+  padding:20px 24px!important;
+  line-height:1.7!important;
+  font-family:Consolas,'Courier New',monospace!important;
+  font-weight:800!important;
+  max-width:100%!important;
+}
+.hourly-crew-warning-card .title{
+  font-size:18px!important;
+  font-weight:950!important;
+  letter-spacing:.04em!important;
+  text-transform:uppercase!important;
+  margin-bottom:12px!important;
+}
+.hourly-generated-customer-note{
+  border-top:1px solid #dfe9e1!important;
+  margin-top:14px!important;
+  padding-top:14px!important;
+}
+body.night-mode .hourly-generated-customer-note{
+  border-top-color:#267444!important;
+}
+@media(max-width:1180px){
+  body.hourly-mode #full-pane.active .remarks-workspace{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+<script id="final-hourly-no-blank-swap-js">
+(function(){
+  function el(id){ return document.getElementById(id); }
+  function checked(id){ const n = el(id); return !!(n && n.checked); }
+
+  function formatHourlyCustomerQuote(){
+    if (typeof generateCrewNotes !== 'function') return '';
+    const text = generateCrewNotes() || '';
+    const safe = text
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;');
+    return '<div class="hourly-generated-customer-note">' + safe.split('\n').map((line, i) => {
+      if (!line) return '<div style="height:8px"></div>';
+      if (i === 0) return '<div style="font-size:15px;font-weight:900;color:#2e7d32;letter-spacing:.04em;border-bottom:2px solid #c8e6c9;padding-bottom:6px;margin-bottom:6px;">' + line + '</div>';
+      return '<div style="font-size:13px;line-height:1.8;">' + line + '</div>';
+    }).join('') + '</div>';
+  }
+
+  function makeCrewWarning(){
+    return '<div class="hourly-crew-warning-card">' +
+      '<div class="title">⚠️ DO NOT SEND AN ESTIMATE</div>' +
+      '<div>Fill in the hourly quote fields in Customer Remarks, email the office, CC Nick and Brian, and tell them the hourly quote.</div>' +
+      '<div style="margin-top:10px;">👉 Use the Customer Remarks hourly fields for crew size, trucks, rate, travel, fuel, hour range, packing, and access notes.</div>' +
+      '<div style="margin-top:10px;">📊 Use Building a Quote to help come up with hour ranges.</div>' +
+      '<button type="button" onclick="switchTab(\'buildquote\')" style="margin-top:14px;background:#2e7d32;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:900;cursor:pointer;">📊 GO TO BUILDING A QUOTE</button>' +
+    '</div>';
+  }
+
+  function moveHourlyBlocks(){
+    const warning = el('hourly-warning');
+    const inputs = el('hourly-inputs');
+    const customerBox = el('customer-remarks-box');
+    const preview = el('preview-content');
+    const crewSlot = document.querySelector('#full-pane .crew-slot');
+    const crewText = el('crew-text');
+    const hourly = checked('hourlyRate');
+
+    document.body.classList.toggle('hourly-mode', hourly);
+
+    if (!warning || !inputs || !customerBox || !preview || !crewSlot || !crewText) return;
+
+    if (hourly) {
+      warning.style.display = 'block';
+      inputs.style.display = 'block';
+      // Put the hourly warning and inputs on the Customer Remarks side.
+      customerBox.insertBefore(warning, preview);
+      customerBox.insertBefore(inputs, preview);
+      preview.innerHTML = formatHourlyCustomerQuote();
+      crewText.innerHTML = makeCrewWarning();
+    } else {
+      // Put the original hourly blocks back in Crew Notes, hidden until needed.
+      if (warning.parentElement !== crewSlot) crewSlot.insertBefore(warning, crewSlot.firstChild);
+      if (inputs.parentElement !== crewSlot) crewSlot.insertBefore(inputs, warning.nextSibling);
+      warning.style.display = 'none';
+      inputs.style.display = 'none';
+      document.body.classList.remove('hourly-mode');
+    }
+  }
+
+  const originalRender = window.render;
+  window.render = function(){
+    try {
+      if (typeof originalRender === 'function') originalRender.apply(this, arguments);
+    } catch (err) {
+      console.error('Render recovered after error:', err);
+      const full = el('full-pane');
+      if (full) { full.style.display = 'block'; full.classList.add('active'); }
+    }
+    try { moveHourlyBlocks(); } catch (err) { console.error('Hourly layout patch error:', err); }
+    try {
+      const full = el('full-pane');
+      if (full && full.classList.contains('active')) {
+        full.style.display = 'block';
+        full.style.visibility = 'visible';
+      }
+    } catch(e) {}
+  };
+
+  const originalSwitchTab = window.switchTab;
+  window.switchTab = function(tab){
+    if (typeof originalSwitchTab === 'function') originalSwitchTab.apply(this, arguments);
+    if (tab === 'full') setTimeout(() => { try { window.render(); } catch(e){} }, 0);
+  };
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(() => { try { moveHourlyBlocks(); } catch(e){} }, 0);
+  });
+})();
+</script>
+
+
+
+<style id="final-hourly-visibility-hard-fix">
+/* HARD FIX: when Hourly Rate is selected, do not let any older layout rule hide or push the Remarks pane. */
+body.hourly-mode #body,
+body.hourly-mode.remarks-active #body,
+body.hourly-mode:has(#full-pane.active) #body{
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:18px!important;
+  padding-top:0!important;
+  margin-top:0!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:visible!important;
+}
+body.hourly-mode #right-panel,
+body.hourly-mode.remarks-active #right-panel,
+body.hourly-mode:has(#full-pane.active) #right-panel{
+  display:block!important;
+  visibility:visible!important;
+  flex:1 1 auto!important;
+  min-width:0!important;
+  width:auto!important;
+  padding-top:0!important;
+  margin-top:0!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow:visible!important;
+}
+body.hourly-mode #full-pane,
+body.hourly-mode #full-pane.active{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  top:auto!important;
+  left:auto!important;
+  transform:none!important;
+  margin-top:0!important;
+  padding-top:10px!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow:visible!important;
+}
+body.hourly-mode #form-panel{
+  display:block!important;
+  visibility:visible!important;
+  flex:0 0 300px!important;
+  width:300px!important;
+  min-width:300px!important;
+  max-width:300px!important;
+  position:relative!important;
+  top:auto!important;
+  left:auto!important;
+  transform:none!important;
+  margin:14px 0 0 0!important;
+  height:calc(100vh - 170px)!important;
+  max-height:calc(100vh - 170px)!important;
+  overflow:auto!important;
+}
+body.hourly-mode .pane:not(#full-pane){
+  display:none!important;
+  visibility:hidden!important;
+}
+body.hourly-mode #full-pane .remarks-workspace{
+  display:grid!important;
+  grid-template-columns:minmax(680px,1.2fr) minmax(360px,.8fr)!important;
+  gap:24px!important;
+  align-items:start!important;
+}
+@media(max-width:1180px){
+  body.hourly-mode #body{display:block!important;padding:0 16px!important;}
+  body.hourly-mode #form-panel{display:none!important;}
+  body.hourly-mode #full-pane .remarks-workspace{grid-template-columns:1fr!important;}
+}
+</style>
+<script id="final-hourly-visibility-hard-fix-js">
+(function(){
+  function el(id){ return document.getElementById(id); }
+  function isHourly(){ const n = el('hourlyRate'); return !!(n && n.checked); }
+  function esc(s){ return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function buildHourlyQuoteHtml(){
+    let text = '';
+    try { text = (typeof generateCrewNotes === 'function' ? generateCrewNotes() : '') || ''; } catch(e){ text = ''; }
+    if (!text.trim()) text = '=== Estimator Hourly Rate Quote ===\n\nFill in the hourly quote fields below.';
+    return '<div class="hourly-generated-customer-note">' + esc(text).split('\n').map(function(line, i){
+      if (!line) return '<div style="height:8px"></div>';
+      if (i === 0) return '<div style="font-size:15px;font-weight:900;color:#2e7d32;letter-spacing:.04em;border-bottom:2px solid #c8e6c9;padding-bottom:6px;margin-bottom:6px;">' + line + '</div>';
+      return '<div style="font-size:13px;line-height:1.8;">' + line + '</div>';
+    }).join('') + '</div>';
+  }
+
+  function crewWarningHtml(){
+    return '<div class="hourly-crew-warning-card">' +
+      '<div class="title">⚠️ DO NOT SEND AN ESTIMATE</div>' +
+      '<div>Fill in the hourly quote fields in Customer Remarks, email the office, CC Nick and Brian, and tell them the hourly quote.</div>' +
+      '<div style="margin-top:10px;">👉 Use the Customer Remarks hourly fields for crew size, trucks, rate, travel, fuel, hour range, packing, and access notes.</div>' +
+      '<div style="margin-top:10px;">📊 Use Building a Quote to help come up with hour ranges.</div>' +
+      '<button type="button" onclick="switchTab(\'buildquote\')" style="margin-top:14px;background:#2e7d32;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:900;cursor:pointer;">📊 GO TO BUILDING A QUOTE</button>' +
+    '</div>';
+  }
+
+  function activateRemarksPane(){
+    var full = el('full-pane');
+    if (!full) return;
+    document.querySelectorAll('.pane').forEach(function(p){ p.classList.remove('active'); p.style.display='none'; p.style.visibility='hidden'; });
+    full.classList.add('active');
+    full.style.display='block';
+    full.style.visibility='visible';
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    var tab = el('tab-full');
+    if (tab) tab.classList.add('active');
+    document.body.classList.add('remarks-active','show-move-info');
+    document.body.classList.remove('home-active','ams-focus','wide-pane');
+  }
+
+  function applyHourlyLayout(opts){
+    var hourly = isHourly();
+    document.body.classList.toggle('hourly-mode', hourly);
+    if (hourly) activateRemarksPane();
+
+    var warning = el('hourly-warning');
+    var inputs = el('hourly-inputs');
+    var customerBox = el('customer-remarks-box');
+    var preview = el('preview-content');
+    var crewSlot = document.querySelector('#full-pane .crew-slot');
+    var crewText = el('crew-text');
+    if (!warning || !inputs || !customerBox || !preview || !crewSlot || !crewText) return;
+
+    if (hourly) {
+      warning.style.display = 'block';
+      inputs.style.display = 'block';
+      if (warning.parentElement !== customerBox) customerBox.insertBefore(warning, preview);
+      if (inputs.parentElement !== customerBox) customerBox.insertBefore(inputs, preview);
+      preview.innerHTML = buildHourlyQuoteHtml();
+      crewText.innerHTML = crewWarningHtml();
+      if (!opts || opts.scroll !== false) {
+        setTimeout(function(){
+          var full = el('full-pane');
+          if (!full) return;
+          var r = full.getBoundingClientRect();
+          // If the page is sitting on the artificial blank area, pull the actual notes content into view.
+          if (r.top > 130 || r.top < -20) window.scrollTo({ top: Math.max(0, window.scrollY + r.top - 96), behavior:'auto' });
+        }, 25);
+      }
+    } else {
+      if (warning.parentElement !== crewSlot) crewSlot.insertBefore(warning, crewSlot.firstChild);
+      if (inputs.parentElement !== crewSlot) crewSlot.insertBefore(inputs, warning.nextSibling);
+      warning.style.display = 'none';
+      inputs.style.display = 'none';
+    }
+  }
+
+  // Wrap render after the older patches. This wrapper is intentionally last.
+  var priorRender = window.render;
+  window.render = function(){
+    if (typeof priorRender === 'function') {
+      try { priorRender.apply(this, arguments); }
+      catch(err){ console.error('Recovered render error:', err); activateRemarksPane(); }
+    }
+    try { applyHourlyLayout({scroll:false}); } catch(err){ console.error('Hourly hard layout error:', err); }
+  };
+
+  document.addEventListener('change', function(ev){
+    if (ev.target && ev.target.id === 'hourlyRate') {
+      setTimeout(function(){
+        try { if (typeof window.render === 'function') window.render(); } catch(e){}
+        try { applyHourlyLayout({scroll:true}); } catch(e){}
+      }, 0);
+      setTimeout(function(){ try { applyHourlyLayout({scroll:true}); } catch(e){} }, 80);
+    }
+  }, true);
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ try { applyHourlyLayout({scroll:false}); } catch(e){} }, 0);
+  });
+})();
+</script>
+
+
+
+<style id="final-notes-render-repair-css">
+/* Final notes repair: do not let old hourly/crew patches leave the generated notes empty. */
+body.show-move-info #full-pane.active #preview-content,
+body.show-move-info #full-pane.active #crew-text{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+body.show-move-info #full-pane.active #customer-remarks-box,
+body.show-move-info #full-pane.active #crew-notes-box{
+  display:flex!important;
+  flex-direction:column!important;
+}
+.hourly-generated-customer-note div,
+.hourly-crew-warning-card div{
+  font-family:Consolas,'Courier New',monospace!important;
+}
+</style>
+<script id="final-notes-render-repair-js">
+(function(){
+  function el(id){ return document.getElementById(id); }
+  function checked(id){ var n = el(id); return !!(n && n.checked); }
+  function safeApplyBrand(s){
+    try { return (typeof applyBrand === 'function') ? applyBrand(String(s || '')) : String(s || ''); }
+    catch(e){ return String(s || ''); }
+  }
+  function esc(s){
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function lineHtml(lines){
+    return (lines || []).map(function(l){
+      return l === '' ? '<p>&nbsp;</p>' : '<p>' + safeApplyBrand(esc(l)) + '</p>';
+    }).join('');
+  }
+  function crewWarningHtml(){
+    return '<div class="hourly-crew-warning-card" style="background:#b71c1c;color:#fff;border-radius:10px;padding:20px 24px;max-width:100%;">' +
+      '<div style="font-size:20px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;color:#fff!important;">⚠️ DO NOT SEND AN ESTIMATE</div>' +
+      '<div style="font-size:14px;line-height:1.7;font-weight:700;color:#fff!important;">Fill in the hourly quote fields in Customer Remarks, email the office, CC Nick and Brian, and tell them the hourly quote.</div>' +
+      '<div style="margin-top:10px;font-size:14px;line-height:1.7;font-weight:700;color:#fff!important;">👉 Use the Customer Remarks hourly fields for crew size, trucks, rate, travel, fuel, hour range, packing, and access notes.</div>' +
+      '<div style="margin-top:10px;font-size:14px;line-height:1.7;font-weight:700;color:#fff!important;">📊 Use Building a Quote to help come up with hour ranges.</div>' +
+      '<button type="button" onclick="switchTab(\'buildquote\')" style="margin-top:14px;background:#2e7d32;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:900;cursor:pointer;">📊 GO TO BUILDING A QUOTE</button>' +
+    '</div>';
+  }
+  function formattedCrewNotesAsCustomer(){
+    var text = '';
+    try { text = (typeof generateCrewNotes === 'function' ? generateCrewNotes() : '') || ''; } catch(e){ text = ''; }
+    if (!text.trim()) text = '=== Estimator Hourly Rate Quote ===\n\nFill in the hourly quote fields below.';
+    var lines = text.split('\n');
+    return '<div class="hourly-generated-customer-note">' + lines.map(function(line, i){
+      var clean = safeApplyBrand(esc(line));
+      if (!line) return '<div style="height:8px"></div>';
+      if (i === 0) return '<div style="font-size:15px;font-weight:900;color:#2e7d32;letter-spacing:.04em;border-bottom:2px solid #c8e6c9;padding-bottom:6px;margin-bottom:6px;">' + clean + '</div>';
+      return '<div style="font-size:13px;line-height:1.8;">' + clean + '</div>';
+    }).join('') + '</div>';
+  }
+  function setRemarksActive(){
+    var full = el('full-pane');
+    if (!full) return;
+    document.querySelectorAll('.pane').forEach(function(p){
+      p.classList.toggle('active', p === full);
+      if (p === full) { p.style.display = 'block'; p.style.visibility = 'visible'; }
+      else { p.style.display = 'none'; p.style.visibility = 'hidden'; }
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    var tab = el('tab-full');
+    if (tab) tab.classList.add('active');
+    document.body.classList.add('remarks-active','show-move-info');
+    document.body.classList.remove('home-active','ams-focus','wide-pane');
+  }
+  function finalRenderNotes(){
+    var preview = el('preview-content');
+    var crewText = el('crew-text');
+    var customerBox = el('customer-remarks-box');
+    var crewSlot = document.querySelector('#full-pane .crew-slot');
+    var warning = el('hourly-warning');
+    var inputs = el('hourly-inputs');
+    if (!preview || !crewText) return;
+
+    var hourly = checked('hourlyRate');
+    document.body.classList.toggle('hourly-mode', hourly);
+
+    try { if (typeof syncPartialPacking === 'function') syncPartialPacking(); } catch(e){}
+    try { if (typeof syncPartialRoomsOther === 'function') syncPartialRoomsOther(); } catch(e){}
+    try { if (typeof syncSpecialtyOther === 'function') syncSpecialtyOther(); } catch(e){}
+    try { if (typeof syncParkingOriginOther === 'function') syncParkingOriginOther(); } catch(e){}
+    try { if (typeof syncParkingDestinationOther === 'function') syncParkingDestinationOther(); } catch(e){}
+
+    if (hourly) {
+      setRemarksActive();
+      if (warning && customerBox && warning.parentElement !== customerBox) customerBox.insertBefore(warning, preview);
+      if (inputs && customerBox && inputs.parentElement !== customerBox) customerBox.insertBefore(inputs, preview);
+      if (warning) warning.style.display = 'block';
+      if (inputs) inputs.style.display = 'block';
+      preview.innerHTML = formattedCrewNotesAsCustomer();
+      crewText.innerHTML = crewWarningHtml();
+    } else {
+      if (warning && crewSlot && warning.parentElement !== crewSlot) crewSlot.insertBefore(warning, crewSlot.firstChild);
+      if (inputs && crewSlot && inputs.parentElement !== crewSlot) crewSlot.insertBefore(inputs, warning ? warning.nextSibling : crewSlot.firstChild);
+      if (warning) warning.style.display = 'none';
+      if (inputs) inputs.style.display = 'none';
+      var lines = [];
+      var crew = '';
+      try { lines = (typeof generateNotes === 'function' ? generateNotes() : []) || []; } catch(e){ lines = []; }
+      try { crew = (typeof generateCrewNotes === 'function' ? generateCrewNotes() : '') || ''; } catch(e){ crew = ''; }
+      preview.innerHTML = lineHtml(lines);
+      crewText.textContent = safeApplyBrand(crew);
+    }
+
+    try { if (typeof captureOriginalGeneratedNotes === 'function') captureOriginalGeneratedNotes(); } catch(e){}
+    try { if (typeof syncMoveInfoPanelToCustomerRemarks === 'function') setTimeout(syncMoveInfoPanelToCustomerRemarks, 0); } catch(e){}
+    try { if (typeof syncCrewHourlyMirrorToBuildquote === 'function') syncCrewHourlyMirrorToBuildquote(); } catch(e){}
+    try { if (typeof calcUpdate === 'function') calcUpdate(); } catch(e){}
+  }
+
+  window.render = finalRenderNotes;
+
+  document.addEventListener('change', function(ev){
+    if (ev.target && ev.target.id === 'hourlyRate') {
+      ev.stopImmediatePropagation();
+      setTimeout(function(){ finalRenderNotes(); }, 0);
+    }
+  }, true);
+
+  document.addEventListener('input', function(ev){
+    if (ev.target && ev.target.closest && ev.target.closest('#form-panel, #hourly-inputs')) {
+      setTimeout(finalRenderNotes, 0);
+    }
+  }, true);
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(finalRenderNotes, 0);
+    setTimeout(finalRenderNotes, 150);
+  });
+  setTimeout(finalRenderNotes, 300);
+})();
+</script>
+
+
+<!-- ============================================================
+     FINAL TAB VISIBILITY SAFETY PATCH
+     Fixes: Hourly Rate notes repair was forcing Remarks + Crew Notes
+     to stay visible on every tab. This patch makes tab switching the
+     source of truth while keeping hourly notes content intact.
+     ============================================================ -->
+<style id="final-tab-visibility-safety-css">
+  .pane:not(.active){display:none!important;visibility:hidden!important;}
+  .pane.active{display:block!important;visibility:visible!important;}
+  body:not(.show-move-info) #form-panel{display:none!important;}
+  body.show-move-info #form-panel{display:block!important;}
+</style>
+<script id="final-tab-visibility-safety-js">
+(function(){
+  if (window.__finalTabVisibilitySafetyPatch) return;
+  window.__finalTabVisibilitySafetyPatch = true;
+
+  var paneByTab = {
+    home:'home-pane', full:'full-pane', calc:'calc-pane', reg:'reg-pane', regmkt:'regmkt-pane', ams:'ams-pane',
+    sop:'sop-pane', buildquote:'buildquote-pane', offices:'offices-pane', commission:'commission-pane', gunsafe:'gunsafe-pane', backhaul:'backhaul-pane',
+    od:'od-pane', stor:'stor-pane', crew:'crew-pane'
+  };
+  var buttonByTab = {
+    home:'tab-home', full:'tab-full', calc:'tab-calc', reg:'tab-reg', regmkt:'tab-regmkt', ams:'tab-ams',
+    sop:'tab-sop', buildquote:'tab-buildquote', offices:'tab-offices', commission:'tab-commission', gunsafe:'tab-gunsafe', backhaul:'tab-backhaul',
+    od:'tab-od', stor:'tab-stor', crew:'tab-crew'
+  };
+  var tabByButton = {};
+  Object.keys(buttonByTab).forEach(function(t){ tabByButton[buttonByTab[t]] = t; });
+
+  function currentTab(){
+    var activeBtn = document.querySelector('.tab-btn.active[id]');
+    if (activeBtn && tabByButton[activeBtn.id]) return tabByButton[activeBtn.id];
+    var activePane = document.querySelector('.pane.active[id]');
+    if (activePane) {
+      var found = Object.keys(paneByTab).find(function(t){ return paneByTab[t] === activePane.id; });
+      if (found) return found;
+    }
+    return 'home';
+  }
+
+  window.__estimatorDesiredTab = window.__estimatorDesiredTab || currentTab();
+
+  function enforceTab(tab){
+    tab = paneByTab[tab] ? tab : 'home';
+    window.__estimatorDesiredTab = tab;
+    var activePaneId = paneByTab[tab];
+
+    document.querySelectorAll('.pane').forEach(function(pane){
+      var active = pane.id === activePaneId;
+      pane.classList.toggle('active', active);
+      pane.style.display = active ? 'block' : 'none';
+      pane.style.visibility = active ? 'visible' : 'hidden';
+      pane.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(function(btn){ btn.classList.remove('active'); });
+    var btn = document.getElementById(buttonByTab[tab]);
+    if (btn) btn.classList.add('active');
+
+    document.body.classList.toggle('home-active', tab === 'home');
+    document.body.classList.toggle('show-move-info', tab === 'full');
+    document.body.classList.toggle('ams-focus', tab === 'ams');
+    document.body.classList.toggle('wide-pane', tab !== 'full');
+  }
+
+  var priorSwitchTab = window.switchTab;
+  window.switchTab = function(tab){
+    window.__estimatorDesiredTab = paneByTab[tab] ? tab : 'home';
+    if (typeof priorSwitchTab === 'function') {
+      try { priorSwitchTab.apply(this, arguments); } catch(e) { console.warn('Recovered switchTab error:', e); }
+    }
+    enforceTab(window.__estimatorDesiredTab);
+    [0, 25, 80, 180, 350].forEach(function(ms){
+      setTimeout(function(){ enforceTab(window.__estimatorDesiredTab); }, ms);
+    });
+  };
+
+  document.addEventListener('click', function(e){
+    var btn = e.target && e.target.closest ? e.target.closest('.tab-btn[id]') : null;
+    if (!btn || !tabByButton[btn.id]) return;
+    var tab = tabByButton[btn.id];
+    window.__estimatorDesiredTab = tab;
+    [0, 25, 80, 180, 350].forEach(function(ms){
+      setTimeout(function(){ enforceTab(tab); }, ms);
+    });
+  }, true);
+
+  document.addEventListener('change', function(e){
+    if (e.target && e.target.id === 'hourlyRate') {
+      var tab = window.__estimatorDesiredTab || currentTab();
+      // Hourly checkbox can update the notes, but it must not force every other tab to show Remarks.
+      [30, 100, 220, 420].forEach(function(ms){
+        setTimeout(function(){ enforceTab(tab); }, ms);
+      });
+    }
+  }, true);
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ enforceTab(window.__estimatorDesiredTab || currentTab()); }, 0);
+  });
+
+  window.enforceEstimatorLabPane = enforceTab;
+})();
+</script>
+
 </body>
 </html>
